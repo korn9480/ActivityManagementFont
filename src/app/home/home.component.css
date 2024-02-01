@@ -1,0 +1,28 @@
+/* backgroud add activity */
+.bg-home{
+  background-color:rgb(232, 226, 226);
+  display: grid;
+}
+.post-heading {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #dddfe2;
+  overflow: hidden;
+}
+.position-image{
+  display: flex;
+  flex-direction: row;
+}
+.post-image {
+  width: 488px;
+  max-height: 100%; 
+  display: inline-block;
+  padding-top: 8px;
+}
+#image-1{
+  padding-right: 12px;
+}
+#image-2{
+  padding-left: 12px;
+}

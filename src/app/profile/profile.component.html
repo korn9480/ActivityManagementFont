@@ -1,0 +1,227 @@
+<app-navbar [profile]="profile_navbar"></app-navbar> 
+<div class="relative bg min-w-screen min-h-screen ">
+    <div class="absolute left-0 right-0 top-0 bottom-0 flex justify-center items-center">
+        <form class=" p-16 pl-12 pr-12  bg-white shadow-md" (ngSubmit)="submit()" *ngIf="form!=undefined">
+            <div class="flex"> 
+                <div class="ml-12">
+                    <div class="w-40 h-40 rounded-full overflow-hidden object-none cusrom-position">
+                        <img class="" *ngIf="!urlFile" src="/assets/image/profile.png" alt="Profile User">
+                        <img class="" *ngIf="urlFile" [src]="urlFile" alt="Profile User">
+                    </div>
+    
+                    <div class="flex justify-between items-center mt-2">
+                        <label for="upload-profile">
+                            <img class="w-8 h-8 ml-6" src="../../assets/image/edit-profile.webp" alt="Edit Profile">
+                        </label>
+                        <input type="file" id="upload-profile" *ngIf="!is_edit" accept="image/*" name="profile" style="display: none;"
+                            (change)="onSelectFiles($event)">
+                        <div class="mr-4">แก้ไขรูปภาพ</div>
+                    </div>
+                </div>
+                <div class="items-center ml-20 w-full mr-12">
+                    <div class="mr-auto text-xl">ข้อมูลส่วนตัว</div>
+                    <div class="line"></div>
+                    <div class="grid grid-cols-2 gap-4 items-center mb-4">
+    
+                        <div class="relative" [ngClass]="{'error': error.code_student || error.conde_already_exist}">
+                            <label class="text-lg block mb-2" for="username">รหัสนิสิต</label>
+                            <input class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none" 
+                                    type="text" id="username" name="username" required [(ngModel)]="form.code_student" [maxlength]="8" readonly>
+                            <div *ngIf="error.code_student" class="error-message text-red-500 text-sm mt-2">รหัสนิสิตน้อยกว่า 8 ตัว</div>
+                            <div *ngIf="error.conde_already_exist" class="error-message text-red-500 text-sm mt-2">รหัสนิสิตนี้มีอยู่ในระบบเเล้ว</div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'error': error.first_name}">
+                            <label class="text-lg block mb-2" for="firstName">ชื่อ</label>
+                            <input class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none" [readonly]="is_edit"
+                                    type="text" id="firstName" name="firstName" required [(ngModel)]="form.first_name">
+                            <div *ngIf="error.first_name" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'error': error.last_name}">
+                            <label class="text-lg block mb-2" for="lastName">นามสกุล</label>
+                            <input class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none" [readonly]="is_edit"
+                                    type="text" id="lastName" name="lastName" required [(ngModel)]="form.last_name">
+                            <div *ngIf="error.last_name" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'error': error.nick_name}">
+                            <label class="text-lg block mb-2" for="nickname">ชื่อเล่น</label>
+                            <input class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none" [readonly]="is_edit"
+                                    type="text" id="nickname" name="nickname" required [(ngModel)]="form.nick_name">
+                            <div *ngIf="error.nick_name" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'error': error.faculty}">
+                            <label class="text-lg block mb-2" for="faculty">คณะ</label>
+                            <select class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none"
+                                    id="faculty" name="faculty" required [(ngModel)]="form.faculty">
+                                <option disabled  hidden selected></option>
+                                <option value="คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ">คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ</option>
+                                <option value="คณะทันตแพทยศาสตร์">คณะทันตแพทยศาสตร์</option>
+                                <option value="คณะเทคโนโลยีสารสนเทศและการสื่อสาร">คณะเทคโนโลยีสารสนเทศและการสื่อสาร</option>
+                                <option value="คณะนิติศาสตร์">คณะนิติศาสตร์</option>
+                                <option value="คณะบริหารธุรกิจและนิเทศศาสตร์">คณะบริหารธุรกิจและนิเทศศาสตร์</option>
+                                <option value="คณะพยาบาลศาสตร์">คณะพยาบาลศาสตร์ </option>
+                                <option value="คณะพลังงานและสิ่งแวดล้อม">คณะพลังงานและสิ่งแวดล้อม</option>
+                                <option value="คณะแพทยศาสตร์">คณะแพทยศาสตร์</option>
+                                <option value="คณะเภสัชศาสตร์">คณะเภสัชศาสตร์</option>
+                                <option value="คณะรัฐศาสตร์และสังคมศาสตร์">คณะรัฐศาสตร์และสังคมศาสตร์</option>
+            
+                                <option value="คณะวิทยาศาสตร์">คณะวิทยาศาสตร์</option>
+                                <option value="คณะวิศวกรรมศาสตร์">คณะวิศวกรรมศาสตร์</option>
+                                <option value="คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์">คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</option>
+                                <option value="คณะสหเวชศาสตร์">คณะสหเวชศาสตร์</option>
+                                <option value="คณะสาธารณสุขศาสตร์">คณะสาธารณสุขศาสตร์</option>
+                                <option value="คณะวิทยาศาสตร์การแพทย์">คณะวิทยาศาสตร์การแพทย์</option>
+                                <option value="คณะศิลปศาสตร์">คณะศิลปศาสตร์</option>
+                                <option value="วิทยาลัยการศึกษา" selected>วิทยาลัยการศึกษา</option>
+                            </select>
+                            <div *ngIf="error.faculty" class="error-message text-red-500 text-sm mt-2">ไม่ได้เลือกคณะ</div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'error': error.major}">
+                            <label class="text-lg block mb-2" for="major">สาขา</label>
+                            <select class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none"
+                                    id="major" name="major" required [(ngModel)]="form.major">
+                                    <option *ngIf="form.major==''"></option>
+                                    <option value="สาขาวิชาเกษตรศาสตร์" *ngIf="form.faculty == 'คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ'">สาขาวิชาเกษตรศาสตร์</option>
+                                    <option value="สาขาวิชาเทคโนโลยีนวัตกรรมการประมง" *ngIf="form.faculty == 'คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ'">สาขาวิชาเทคโนโลยีนวัตกรรมการประมง</option>
+                                    <option value="สาขาวิชาความปลอดภัยทางอาหาร" *ngIf="form.faculty == 'คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ'">สาขาวิชาความปลอดภัยทางอาหาร</option>
+                                    <option value="สาขาวิชาวิทยาศาสตร์และเทคโนโลยีการอาหาร" *ngIf="form.faculty == 'คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ'">สาขาวิชาวิทยาศาสตร์และเทคโนโลยีการอาหาร</option>
+                                    <option value="สาขาวิชาสัตวศาสตร์" *ngIf="form.faculty == 'คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ'">สาขาวิชาสัตวศาสตร์</option>
+                                    <option value="สาขาวิชาเทคโนโลยีการเกษตร" *ngIf="form.faculty == 'คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ'">สาขาวิชาเทคโนโลยีการเกษตร</option>
+        
+                                    <option value="สาขาวิชาคอมพิวเตอร์กราฟิกและมัลติมีเดีย" *ngIf="form.faculty == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'">สาขาวิชาคอมพิวเตอร์กราฟิกและมัลติมีเดีย</option>
+                                    <option value="สาขาวิชาธุรกิจดิจิทัล" *ngIf="form.faculty == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'">สาขาวิชาธุรกิจดิจิทัล</option>
+                                    <option value="สาขาวิชาเทคโนโลยีสารสนเทศ" *ngIf="form.faculty == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'">สาขาวิชาเทคโนโลยีสารสนเทศ</option>
+                                    <option value="สาขาวิชาภูมิสารสนเทศศาสตร์" *ngIf="form.faculty == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'">สาขาวิชาภูมิสารสนเทศศาสตร์</option>
+                                    <option value="สาขาวิชาวิทยาการข้อมูลและการประยุกต์" *ngIf="form.faculty == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'">สาขาวิชาวิทยาการข้อมูลและการประยุกต์</option>
+                                    <option value="สาขาวิชาวิทยาการคอมพิวเตอร์" *ngIf="form.faculty == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'">สาขาวิชาวิทยาการคอมพิวเตอร์</option>
+                                    <option value="สาขาวิชาวิศวกรรมซอฟต์แวร์" *ngIf="form.faculty == 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'">สาขาวิชาวิศวกรรมซอฟต์แวร์</option>
+        
+                                    <option value="สาขาวิชาการจัดการการสื่อสาร" *ngIf="form.faculty == 'คณะบริหารธุรกิจและนิเทศศาสตร์'">สาขาวิชาการจัดการการสื่อสาร</option>
+                                    <option value="สาขาวิชาการสื่อสารสื่อใหม่" *ngIf="form.faculty == 'คณะบริหารธุรกิจและนิเทศศาสตร์'">สาขาวิชาการสื่อสารสื่อใหม่</option>
+                                    <option value="สาขาวิชาการเงินและการลงทุน" *ngIf="form.faculty == 'คณะบริหารธุรกิจและนิเทศศาสตร์'">สาขาวิชาการเงินและการลงทุน</option>
+                                    <option value="สาขาวิชาการจัดการธุรกิจ" *ngIf="form.faculty == 'คณะบริหารธุรกิจและนิเทศศาสตร์'">สาขาวิชาการจัดการธุรกิจ</option>
+                                    <option value="สาขาวิชาการตลาดดิจิทัล" *ngIf="form.faculty == 'คณะบริหารธุรกิจและนิเทศศาสตร์'">สาขาวิชาการตลาดดิจิทัล</option>
+                                    <option value="สาขาวิชาการท่องเที่ยวและการโรงแรม" *ngIf="form.faculty == 'คณะบริหารธุรกิจและนิเทศศาสตร์'">สาขาวิชาการท่องเที่ยวและการโรงแรม</option>
+        
+                                    <option value="สาขาวิศวกรรมสิ่งแวดล้อม" *ngIf="form.faculty == 'คณะพลังงานและสิ่งแวดล้อม'">สาขาวิศวกรรมสิ่งแวดล้อม</option>
+                                    <option value="สาขาการจัดการพลังงานและสิ่งแวดล้อม" *ngIf="form.faculty == 'คณะพลังงานและสิ่งแวดล้อม'">สาขาการจัดการพลังงานและสิ่งแวดล้อม</option>
+        
+                                    <option value="สาขาวิชาปฏิบัติการฉุกเฉินการแพทย์" *ngIf="form.faculty == 'คณะแพทยศาสตร์'">สาขาวิชาปฏิบัติการฉุกเฉินการแพทย์</option>
+        
+                                    <option value="สาขาวิชาบริบาลทางเภสัชกรรม" *ngIf="form.faculty == 'คณะเภสัชศาสตร์'">สาขาวิชาบริบาลทางเภสัชกรรม</option>
+                                    <option value="สาขาวิชาวิทยาศาสตร์เครื่องสำอาง" *ngIf="form.faculty == 'คณะเภสัชศาสตร์'">สาขาวิชาวิทยาศาสตร์เครื่องสำอาง</option>
+        
+                                    <option value="สาขาวิชาการจัดการนวัตกรรมสาธารณะ" *ngIf="form.faculty == 'คณะรัฐศาสตร์และสังคมศาสตร์'">สาขาวิชาการจัดการนวัตกรรมสาธารณะ</option>
+                                    <option value="สาขาวิชาพัฒนาสังคม" *ngIf="form.faculty == 'คณะรัฐศาสตร์และสังคมศาสตร์'">สาขาวิชาพัฒนาสังคม</option>
+        
+                                    <option value="สาขาวิชาเคมี" *ngIf="form.faculty == 'คณะวิทยาศาสตร์'">สาขาวิชาเคมี</option>
+                                    <option value="สาขาวิชาคณิตศาสตร์" *ngIf="form.faculty == 'คณะวิทยาศาสตร์'">สาขาวิชาคณิตศาสตร์</option>
+                                    <option value="สาขาวิชาชีววิทยา" *ngIf="form.faculty == 'คณะวิทยาศาสตร์'">สาขาวิชาชีววิทยา</option>
+                                    <option value="สาขาวิชาฟิสิกส์" *ngIf="form.faculty == 'คณะวิทยาศาสตร์'">สาขาวิชาฟิสิกส์</option>
+                                    <option value="สาขาวิชาวิทยาศาสตร์การออกกำลังกายและการกีฬา" *ngIf="form.faculty == 'คณะวิทยาศาสตร์'">สาขาวิชาวิทยาศาสตร์การออกกำลังกายและการกีฬา</option>
+                                    <option value="สาขาวิชาสถิติประยุกต์และการจัดการข้อมูล" *ngIf="form.faculty == 'คณะวิทยาศาสตร์'">สาขาวิชาสถิติประยุกต์และการจัดการข้อมูล</option>
+                                    <option value="สาขาวิชาอุตสาหกรรมเคมีและเทคโนโลยีวัสดุ" *ngIf="form.faculty == 'คณะวิทยาศาสตร์'">สาขาวิชาอุตสาหกรรมเคมีและเทคโนโลยีวัสดุ</option>
+        
+                                    <option value="สาขาวิชาวิศวกรรมเครื่องกล" *ngIf="form.faculty == 'คณะวิศวกรรมศาสตร์'">สาขาวิชาวิศวกรรมเครื่องกล</option>
+                                    <option value="สาขาวิชาวิศวกรรมโยธา" *ngIf="form.faculty == 'คณะวิศวกรรมศาสตร์'">สาขาวิชาวิศวกรรมโยธา</option>
+                                    <option value="สาขาวิชาวิศวกรรมไฟฟ้า" *ngIf="form.faculty == 'คณะวิศวกรรมศาสตร์'">สาขาวิชาวิศวกรรมไฟฟ้า</option>
+                                    <option value="สาขาวิชาวิศวกรรมอุตสาหการ" *ngIf="form.faculty == 'คณะวิศวกรรมศาสตร์'">สาขาวิชาวิศวกรรมอุตสาหการ</option>
+                                    
+                                    <option value="สาขาวิชาดนตรีและนาฏศิลป์" *ngIf="form.faculty == 'คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์'">สาขาวิชาดนตรีและนาฏศิลป์</option>
+                                    <option value="สาขาวิชาศิลปะและการออกแบบ" *ngIf="form.faculty == 'คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์'">สาขาวิชาศิลปะและการออกแบบ</option>
+                                    <option value="สาขาวิชาสถาปัตยกรรม" *ngIf="form.faculty == 'คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์'">สาขาวิชาสถาปัตยกรรม</option>
+                                    <option value="สาขาวิชาสถาปัตยกรรมภายใน" *ngIf="form.faculty == 'คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์'">สาขาวิชาสถาปัตยกรรมภายใน</option>
+        
+                                    <option value="สาขาวิชาเทคนิคการแพทย์" *ngIf="form.faculty == 'คณะสหเวชศาสตร์'">สาขาวิชาเทคนิคการแพทย์</option>
+                                    
+                                    <option value="สาขาวิชาการส่งเสริมสุขภาพ" *ngIf="form.faculty == 'คณะสาธารณสุขศาสตร์'">สาขาวิชาการส่งเสริมสุขภาพ</option>
+                                    <option value="สาขาวิชาอนามัยสิ่งแวดล้อม" *ngIf="form.faculty == 'คณะสาธารณสุขศาสตร์'">สาขาวิชาอนามัยสิ่งแวดล้อม</option>
+                                    <option value="สาขาวิชาอาชีวอนามัยและความปลอดภัย" *ngIf="form.faculty == 'คณะสาธารณสุขศาสตร์'">สาขาวิชาอาชีวอนามัยและความปลอดภัย</option>
+                                    <option value="สาขาวิชาอนามัยชุมชน" *ngIf="form.faculty == 'คณะสาธารณสุขศาสตร์'">สาขาวิชาอนามัยชุมชน</option>
+        
+                                    <option value="สาขาวิชาโภชนาการและการกำหนดอาหาร" *ngIf="form.faculty == 'คณะวิทยาศาสตร์การแพทย์'">สาขาวิชาโภชนาการและการกำหนดอาหาร</option>
+                                    <option value="สาขาวิชาจุลชีววิทยา" *ngIf="form.faculty == 'คณะวิทยาศาสตร์การแพทย์'">สาขาวิชาจุลชีววิทยา</option>
+                                    <option value="สาขาวิชาชีวเคมี" *ngIf="form.faculty == 'คณะวิทยาศาสตร์การแพทย์'">สาขาวิชาชีวเคมี</option>
+        
+                                    <option value="สาขาวิชาภาษาไทย" *ngIf="form.faculty == 'คณะศิลปศาสตร์'">สาขาวิชาภาษาไทย</option>
+                                    <option value="สาขาวิชาภาษาจีน" *ngIf="form.faculty == 'คณะศิลปศาสตร์'">สาขาวิชาภาษาจีน</option>
+                                    <option value="สาขาวิชาภาษาญี่ปุ่น" *ngIf="form.faculty == 'คณะศิลปศาสตร์'">สาขาวิชาภาษาญี่ปุ่น</option>
+                                    <option value="สาขาวิชาภาษาฝรั่งเศส" *ngIf="form.faculty == 'คณะศิลปศาสตร์'">สาขาวิชาภาษาฝรั่งเศส</option>
+                                    <option value="สาขาวิชาภาษาอังกฤษ" *ngIf="form.faculty == 'คณะศิลปศาสตร์'">สาขาวิชาภาษาอังกฤษ</option>
+                                    
+                                    <option value="ไม่มี">ไม่มี</option>
+                            </select>
+                            <div *ngIf="error.major" class="error-message text-red-500 text-sm mt-2">ไม่ได้เลือกสาขา</div>
+                        </div>
+                        
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 items-center mb-4">
+    
+                        <div class="relative" [ngClass]="{'error': error.phone}">
+                            <label class="text-lg block mb-2" for="phone">เบอร์โทรศัพท์</label>
+                            <input class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none" [readonly]="is_edit"
+                                    type="tel" id="phone" name="phone" required [(ngModel)]="form.phone">
+                                    <div *ngIf="error.phone" class="error-message text-red-500 text-sm mt-2">เลขโทรศัพท์ไม่ถูกต้อง</div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'group-box--max-heigth':form.religion == 'อื่นๆ'}">
+                            <div class="flex flex-col" [ngClass]="{'error': error.religion && form.religion != 'อื่นๆ'}">
+                                <label class="text-lg block mb-2" for="religion">ศาสนา</label>
+                                <select class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none"
+                                        id="religion" name="religion" required [(ngModel)]="form.religion">
+                                    <option></option>
+                                    <option value="พุทธ">พุทธ</option>
+                                    <option value="คริสต์">คริสต์</option>
+                                    <option value="อิสลาม">อิสลาม</option>
+                                    <option value="ฮินดู">ฮินดู</option>
+                                    <option value="อื่นๆ">อื่นๆ</option>
+                                </select>
+                                <span *ngIf="form.religion === 'อื่นๆ'" [ngClass]="{'error': error.religion && form.religion=='อื่นๆ'}">
+                                    <input class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none"
+                                        type="text" id="otherReligion" name="otherReligion" placeholder="ระบุศาสนา" [(ngModel)]="customReligion">
+                                    <div *ngIf="error.religion && form.religion=='อื่นๆ'" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>
+                                </span>
+                                <div *ngIf="error.religion && form.religion!='อื่นๆ'" class="error-message text-red-500 text-sm mt-2">ไม่ได้เลือกศาสนา</div>
+                            </div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'error': error.blood_group}">
+                            <label class="text-lg block mb-2" for="bloodGroup">กรุ๊ปเลือด</label>
+                            <select class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none"
+                                    id="bloodGroup" name="bloodGroup" required [(ngModel)]="form.blood_group">
+                                <option></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="O">O</option>
+                                <option value="AB">AB</option>
+                                <option value="+AB">+AB</option>
+                            </select>
+                            <div *ngIf="error.blood_group" class="error-message text-red-500 text-sm mt-2">ไม่ได้เลือกกรุ๊ปเลือด</div>
+                        </div>
+    
+                        <div class="relative" [ngClass]="{'error': error.food_allergy}">
+                            <label class="text-lg block mb-2">สิ่งที่เเพ้</label>
+                            <input class="border-b border-black border-solid w-4/5 bg-transparent text-black outline-none" [readonly]="is_edit"
+                            type="text" name="allergy" [(ngModel)]="allergics">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="flex justify-center items-center py-3 px-10 text-lg text-white rounded-md cursor-pointer mx-auto mt-6  shadow-lg bg-bt bt-shadow" 
+                [disabled]="!checkStudentCodeLength()" *ngIf="is_edit" (click)="setChangeIsEdit()">
+            <span>แก้ไขข้อมูล</span>
+            </button>
+
+            <button class="flex justify-center items-center py-3 px-10 text-lg text-white rounded-md cursor-pointer mx-auto mt-6  shadow-lg bg-bt-2 bt-shadow-2" 
+            type="submit" [disabled]="!checkStudentCodeLength()" *ngIf="!is_edit">
+            <span>บันทึกข้อมูล</span>
+            </button>
+            
+    
+        </form>
+    </div>
+</div>

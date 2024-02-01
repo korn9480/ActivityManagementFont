@@ -1,0 +1,10 @@
+.bg-no{
+    background-color: rgb(196, 11, 19);
+}
+.bt-shadow-no{
+    --tw-shadow-color: #C40B13;
+    box-shadow: 0 2px 10px -2px rgb(196, 11, 19);
+}
+.shadow-none{
+    --tw-shadow:none;
+}

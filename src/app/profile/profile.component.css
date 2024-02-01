@@ -1,0 +1,26 @@
+.custom-positionn{
+    object-position: 60% -3px;
+}
+.line {
+    position: relative;
+    width: 90.5%;
+    height: 2px;
+    background-color: #000;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  /* botton */
+.bg-bt{
+    background-color: rgb(93, 56, 145);
+}
+.bg-bt-2{
+    background-color: rgb(161, 221, 112);
+}
+.bt-shadow{
+    --tw-shadow-color: #5D3891;
+    box-shadow: 0 2px 10px -2px rgb(93, 56, 145);
+}
+.bt-shadow-2{
+    --tw-shadow-color: #A1DD70;
+    box-shadow: 0 2px 10px -2px rgb(161, 221, 112);
+}

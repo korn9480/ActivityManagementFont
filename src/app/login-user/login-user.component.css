@@ -1,0 +1,19 @@
+.bg-bt{
+  background-color: rgb(93, 56, 145);
+}
+.bt-shadow{
+  --tw-shadow-color: #5D3891;
+  box-shadow: 0 2px 10px -2px rgb(93, 56, 145);
+}
+::ng-deep .custom-mat-form-field {
+  border-top: 1px solid #000; /* specify your top border color and style */
+  border-bottom: 1px solid #000; /* specify your bottom border color and style */
+  border-left: 1px solid #000; /* specify your left border color and style */
+  border-right: 1px solid #000; /* specify your right border color and style */
+}
+::ng--deep .mat-mdc-form-field-focus-overlay{
+  background-color: #5D3891;
+}
+::ng-deep .mat-mdc-form-field-focus-overlay:not(.mdc-text-field--disabled) ,.mdc-text-field--filled{
+  background-color: white;
+}

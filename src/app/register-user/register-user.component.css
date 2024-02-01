@@ -1,0 +1,75 @@
+.set-register{
+/* position: fixed; */
+top: 0; bottom: 0;
+left: 0; right: 0;
+}
+
+.bg-bt{
+  background-color: rgb(93, 56, 145);
+}
+.bt-shadow{
+  --tw-shadow-color: #5D3891;
+  box-shadow: 0 2px 10px -2px rgb(93, 56, 145);
+}
+/* .register-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.register{
+text-align: center;
+}
+p{
+font-size: 24px;
+} */
+
+/* .group-box{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  align-items: center;
+  column-gap: 1rem;
+}
+.group-box--max-heigth{
+  height: 150px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.box-input {
+  position: relative;
+  flex-direction: column;
+  height: 90px;
+
+}
+.box-input input {
+  margin-bottom: 5px;
+}
+*/
+
+/* .religion-container {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* input, select, textarea {
+  padding: 8px;
+  margin-bottom: 5px;
+} */
+
+/* button {
+  padding: 15px 40px;
+  background-color: rgba(96, 40, 255, 1);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: auto;
+  font-size: 16px;
+} */
+/* .error select{
+  border-bottom: 2px solid red;
+} */

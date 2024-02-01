@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+<!-- <div class=""> -->
+    <form class="p-4 pr-16 pl-16 border-2 w-3/5 mx-auto mt-4" [formGroup]="myForm" (ngSubmit)="submit()">
+        <h1 class="mb-4">เพิ่มกิจกรรม</h1>
+        <div class="grid grid-cols-2 justify-center gap-4">
+            <div>
+                <!-- <div>ชื่อกิจกรรม</div> -->
+                <mat-label>ชื่อกิจกรรม</mat-label>
+                <mat-form-field class="w-full ">
+                    <input matInput formControlName="nameActivity" class="bg-red-500">
+                    <mat-error>*ไม่ได้กรอกชื่อ*</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="">
+                <!-- <div>เริ่มวันที่ - ถึงวันที่</div> -->
+                <mat-label>เริ่มวันที่ - ถึงวันที่</mat-label>
+                <mat-form-field class="w-full">
+                    <mat-date-range-input [rangePicker]="picker">
+                      <input matStartDate placeholder="Start date" formControlName="dateTimeStart">
+                      <input matEndDate placeholder="End date" formControlName="dateTimeEnd">
+                    </mat-date-range-input>
+                    
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                    <mat-error>*ไม่ได้กรอกวันที่*</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="">
+                <!-- <div>สถานที่</div> -->
+                <mat-label>เวลา</mat-label>
+                <mat-form-field class="w-full">
+                    <input matInput type="time" step="1800" formControlName="location">
+                    <mat-error>*ไม่ได้กรอกสถานที่*</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="">
+                <!-- <div>สถานที่</div> -->
+                <mat-label>สถานที่</mat-label>
+                <mat-form-field class="w-full">
+                    <input matInput formControlName="location">
+                    <mat-error>*ไม่ได้กรอกสถานที่*</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="">
+                <!-- <div>จำนวนผู้เข้าร่วม</div> -->
+                <mat-label>จำนวนผู้เข้าร่วม</mat-label>
+                <mat-form-field class="w-full">
+                    <input matInput type="number" formControlName="participants">
+                    <mat-error>*ไม่ได้กรอกจำนวนผู้เข้าร่วม*</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <!-- <div>รายละเอียด</div> -->
+            <mat-form-field class="w-full">
+                <mat-label>รายละเอียด</mat-label>
+                <textarea matInput placeholder="เขียนรายละเอียดของกิจกรรม" formControlName="details"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="relative flex items-center justify-center w-full">
+            <label *ngIf="myForm.get('asset')?.value.length==0 && fileUpload.length==0" for="up-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                </div>
+            </label>
+            <div *ngIf="myForm.get('asset')?.value.length>0 || fileUpload.length>0">
+                <label for="up-file" class="absolute top-0 left-0 z-10">
+                    <div class="bg-orange">เพิ่มรูป</div>
+                    <!-- <button type="button" mat-flat-button>เพิ่มรูป</button> -->
+                </label>
+                  
+                <div class="grid grid-cols-3 gap-2">
+                    <div *ngFor="let i of myForm.get('asset')?.value">
+                        <span class="absolute tob-0 right-2" (click)="removeUrlfile(i)">
+                            <mat-icon aria-hidden="false" aria-label="close icon" fontIcon="close" color=""></mat-icon>
+                        </span>
+                        <img  [src]="i">
+                    </div>
+                    <div class="relative" *ngFor="let img of urlFiles;let i = index" >
+                        <span class="absolute tob-0 right-2" (click)="removeUrlfile(i)">
+                            <mat-icon aria-hidden="false" aria-label="close icon" fontIcon="close" color=""></mat-icon>
+                        </span>
+                        <img [src]="img">
+                    </div>
+                </div>
+            </div>
+            <input id="up-file" type="file" class="hidden" multiple accept="image/*" (change)="onSelectFiles($event)" name="up-file"/>
+
+        </div> 
+        <div class="mt-4 w-full flex justify-center">
+            <button type="submit" mat-raised-button class="">โพสต์</button>
+        </div>
+    </form>
+    
+<!-- </div> -->

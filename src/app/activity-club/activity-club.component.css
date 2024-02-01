@@ -1,0 +1,81 @@
+
+/* activity */
+  /* .background{
+    padding-bottom: 24px;
+    background-color: rgba(223, 226, 232, 1);
+  }
+  .background-activity{
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 24px;
+    background-color: #ffffff;
+  }
+  .heading-activity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .activity-club {
+    margin-right: auto;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .year {
+    margin-left: auto;
+    font-size: 18px;
+    font-weight: bold;
+  } */
+
+.bg{
+  background-color:rgb(232, 226, 226);
+}
+
+/* crad */
+.card-container {
+  display: flex;
+  flex-direction: row;
+}
+.card-1,.card-2{
+  width: 484px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  margin-right: 24px;
+}
+.card-3 {
+  width: 484px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  /* margin-right: 24px; */
+}
+.card-image-1,.card-image-2{ 
+  height: 370px;
+  margin-right: 24px;
+}
+.card-image-3{ 
+  height: 370px;
+  /* margin-right: 24px; */
+}
+.card-body {
+  padding: 16px;
+}
+.card-body div {
+  color: #333;
+}
+.name-activity-crad{
+  padding-bottom: 8px;
+}
+.month-crad{
+  display: inline-block;
+}
+.amount-crad {  
+  display: inline-block;
+  margin-left: 59%;
+}
+.line {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}

@@ -1,0 +1,72 @@
+<!-- <p>card-join-activity works!</p> -->
+<div class="background bg">
+    <div class="feed-background">
+        <div class="post">
+            <div class="heading mb-4">
+                <div class="post-profile"> 
+                    <img class="icon-profile" src="../../assets/image/profile.png" alt="Post Profile">
+                    <div class="post-user-name">{{activity.addBy.first_name}} {{activity.addBy.last_name}}</div>
+                    <!-- <img class="hamburger" (click)="togglePopup()" src="../../assets/image/Group.png" alt="Hamburger-Dot" height="20px"> -->
+                    
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item [routerLink]="'/form-post/'+activity.id">
+                            <mat-icon >edit</mat-icon>
+                            <span>เเก้ไขโพสต์</span>
+                        </button>
+                        <button mat-menu-item >
+                            <mat-icon >delete</mat-icon>
+                            <span>ลบโพสต์</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>share</mat-icon>
+                            <span>เเชร์ลิ้งค์</span>
+                        </button>
+                    </mat-menu>
+
+                    
+                    <!-- <div class="popup-menu min-h-full" [ngClass]="{'show': showPopup}">
+                        <button (click)="editPost()">แก้ไขโพสต์</button>
+                        <button (click)="deletePost()">ลบโพสต์</button>
+                        <button (click)="share()">เเชร์ลิ้งค์</button>
+                    </div> -->
+                </div>
+                <div class="post-text">
+                    <!-- <div class="post-name-activity">ชื่อกิจกรรม</div> -->
+                    <div class="post-name-activity">{{activity.nameActivity}}</div>
+
+                    <!-- <div class="post-date">วันที่</div> -->
+                    <div class="post-date">
+                        <span >{{activity.dateTimeStart|date:"dd-MM-YYYY"}}</span>
+                        <span *ngIf="activity.dateTimeEnd">-</span>
+                        <span *ngIf="activity.dateTimeEnd">{{activity.dateTimeEnd}}</span>
+
+                    </div>
+
+                    <!-- <div class="post-location">สถานที่</div> -->
+                    <div class="post-location">{{activity.location}}</div>
+                    <!-- <a href="http://localhost:4200/join-activity">pp</a> -->
+                </div>
+                <div class="post-detail" *ngIf="activity.details">{{activity.details}}</div>
+                <div >
+                    <span *ngIf="status">
+                        ลงชื่อเช้าร่วมกิจกรรม
+                    </span>
+                    <span *ngIf="!status">
+                        หมดระยะเวลาเข้าร่วมกิจกรรม
+                    </span>
+                    <a *ngIf="status" class="post-limk text-blue-600 ml-2" [routerLink]="'/join-activity/'+activity.id">กดลิ้งค์</a>
+                </div>
+
+            </div>
+            <div class="position-image" >
+                <img class="post-image" *ngFor="let i of activity.asset" [src]="localhost+i.path">
+                <p></p>
+                <!-- <img class="post-image" src="../../assets/image/bg.png" alt="Post Image 1">
+                <img class="post-image" id="image-2" src="../../assets/image/bg.png" alt="Post Image 2"> -->
+            </div>
+        </div>
+    </div>
+</div>

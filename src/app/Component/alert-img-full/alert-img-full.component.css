@@ -1,0 +1,4 @@
+.gird-alert {
+    display: grid;
+    grid-template-columns: auto 3rem;
+}

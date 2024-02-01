@@ -1,0 +1,68 @@
+<div class="popup popup-add" [ngClass]="{'show':showPopup,'close-popup':!showPopup}">
+    <div class="popup-content">
+        <!-- <span class="close">ddd</span>/ -->
+        <span class="btn-close cursor-x" (click)="closePopup()">&times;</span>
+        <h2 class="text-2xl mb-8" *ngIf="!is_update">เพิ่มกิจกรรมชมรม</h2>
+        <h2 class="text-2xl mb-8" *ngIf="is_update">แก้ไขกิจกรรมชมรม</h2>
+        <form class="scroll">
+            <div class="group-box">
+                <div class="box-input" [ngClass]="{'error':warn.nameActivity}">
+                    <label class="text-lg" for="name-activity">ชื่อกิจกรรม</label><br>
+                    <input class="text-line" type="text" id="name-activity" name="name-activity" [(ngModel)]="form.nameActivity">
+                    <!-- <div class="error-message"></div> -->
+                </div>
+                <div class="box-input">
+                    <label class="text-lg">เริ่มวันที่ - ถึงวันที่</label><br>
+                    <div class="input-date" [ngClass]="{'error':warn.dateTimeStart || warn.dateTimeEnd}">
+                        <input class="text-line" type="date" id="date-start" name="date-start" required [(ngModel)]="form.dateTimeStart"> -
+                        <input class="text-line" type="date" id="date-end" name="date-end" required [(ngModel)]="form.dateTimeEnd">
+                    </div>
+                    <!-- <div class="error-message">ควรมีภาษาอังกฤษ พิมพ์เล็กพิมพ์ใหญ่</div> -->
+                </div>
+                <div class="box-input" [ngClass]="{'error':warn.location}">
+                    <label class="text-lg ml-9" for="name-activity">สถานที่</label><br>
+                    <input class="text-line ml-9 max-w-44" type="text" id="location" name="location" required [(ngModel)]="form.location">
+                    <!-- <div class="error-message">ควรมีภาษาอังกฤษ พิมพ์เล็กพิมพ์ใหญ่</div> -->
+                </div>
+            </div>
+            <div class="group-box group-box--two mt-6">
+                <div class="box-input input-details" [ngClass]="{'error-details':warn.details}">
+                    <label class="text-lg" for="details">รายละเอียด</label><br>
+                    <input class="text-line" id="name-activity" name="password" required [(ngModel)]="form.details">
+                    <!-- <div class="error-message">ควรมีภาษาอังกฤษ พิมพ์เล็กพิมพ์ใหญ่</div> -->
+                </div>
+                <div class="box-input" [ngClass]="{'error':warn.participants}">
+                    <label class="text-lg" for="participants">จำนวนผู้เข้าร่วม</label><br>
+                    <input class="text-line max-w-44" type="number" id="participants" name="participants" required [(ngModel)]="form.participants">
+                    <!-- <div class="error-message">ควรมีภาษาอังกฤษ พิมพ์เล็กพิมพ์ใหญ่</div> -->
+                </div>
+            </div>
+            <div>
+                <label for="image"  [ngClass]="{'close':form.asset.length > 0 || fileUpload.length > 0}">
+                    <div class="box-up-file items-center mt-8 mb-2" >
+                        <img class="max-w-16 max-h-16 " src="/assets/image/upload.png"  width="50px">
+                        <input type="file" id="image" accept="image/*" style="display: none;" multiple (change)="onSelectFiles($event)">
+                    </div>
+                </label>
+                <div class="images-activity mt-10 min-h-14" *ngIf="form.asset.length > 0 || fileUpload.length > 0">
+                    <label for="image" class="add-image bg-add-image text-white">
+                        เพิ่มรูป
+                    </label>
+                    <div class="box-image" *ngFor="let img of form.asset;let i = index" >
+                        <span class="btn-close delete-image cursor-x" (click)="removePath(i)">&times;</span>
+                        <img [src]="localhost+img.path">
+                    </div>
+                    <div class="box-image" *ngFor="let img of urlFiles;let i = index" >
+                        <span class="btn-close delete-image cursor-x" (click)="removeUrlfile(i)">&times;</span>
+                        <img [src]="img">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="flex justify-center items-center text-lg text-white px-10 py-3 rounded-md cursor-pointer mx-auto mt-6 mb-6 bg-bt bt-shadow"
+                        (click)="addActivity()">บันทึก</button>
+            </div>
+        </form>
+        
+    </div>
+</div>

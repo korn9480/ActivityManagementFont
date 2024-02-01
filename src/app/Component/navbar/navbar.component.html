@@ -1,0 +1,26 @@
+ <!-- navbar -->
+ <div class="relative bg-navbar text-white border-bg-navbar bg-shadow-navbar">
+    <div class="relative flex justify-between ml-40 mr-40">
+        <img class="max-w-[135px]" src="../../assets/image/IconYodYa.png" alt="Logo">
+  
+        <div class="flex items-center justify-center text-lg">
+            <a class="no-underline hover:text-navbar pr-8" href="/home">หน้าหลัก</a>
+            <a class="no-underline hover:text-navbar pr-8" href="/activity-club">กิจกรรมของชมรม</a>
+            <a class="no-underline hover:text-navbar pr-8" href="/calendar">ปฏิทินชมรม</a>
+
+            <div class="w-20 h-20 rounded-full overflow-hidden object-none cusrom-position">
+                <img  class="w-full h-auto cursor-pointer" (click)="UserDropdown()"
+                    [src]="profileImageSrc" alt="Profile">
+                
+                <div *ngIf="isDropdownOpen" class="absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" routerLink="/profile">แก้ไขข้อมูล</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ออกจากระบบ</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+    

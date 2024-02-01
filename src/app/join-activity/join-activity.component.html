@@ -1,0 +1,19 @@
+<app-navbar></app-navbar> 
+
+<div class="fixed right-0 left-0 top-32 bottom-0 flex justify-center items-center bg shadow-md ">
+    <div *ngIf="form" class="text-center mx-auto bg-white pt-16 pb-16 pr-32 pl-32 border-2 border-solid border-gray-200 shadow-2xl shadow-gray-400/50">
+        <div class="mb-6 text-2xl">แบบสอบถาม การเข้าร้วมกิจกรรม</div>
+        <div class="mb-6 text-lg">ชื่อกิจกรรม {{form.nameActivity}}</div>
+        <div class="mb-6 text-lg">วันที่ 
+            <span>{{form.dateTimeStart|date:'dd/MM/YYYY'}}</span>
+            <span *ngIf="form.dateTimeEnd"> - {{form.dateTimeEnd|date:'dd/MM/YYYY'}}</span>
+        </div>
+        <div class="mb-6 text-lg">สถานที่ {{form.location}}</div>
+        <div class="mb-6 text-lg">จำนวนผู้เข้าร่วม {{form.numberPP}}/{{form.participants}} คน</div>
+        <div class="flex pt-6 " *ngIf="form.numberPP < form.participants">
+            <button class="bg-bt bt-shadow text-white text-lg rounded-md cursor-pointer px-10 py-3 mr-16" (click)="join()">เข้าร่วม</button>
+            <button class="bg-no bt-shadow-no text-white text-lg rounded-md cursor-pointer px-10 py-3" (click)="notJoin()">ไม่เข้าร่วม</button>
+        </div>
+        <div *ngIf="form.isJoin" class="mt-6 text-red-500">รหัสนิสิตนี้เข้าร่วมเเล้ว</div>
+    </div>
+</div>
