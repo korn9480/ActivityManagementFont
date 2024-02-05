@@ -20,14 +20,17 @@ export class NavbarComponent implements OnInit{
   isDropdownOpen: boolean = false;
 
   ngOnInit(): void {
+    console.log("5555")
     this.profileImageSrc = this.cookie.get_profile()
-    console.log(this.profileImageSrc)
-    if (this.profileImageSrc){
+    console.log(this.profileImageSrc,typeof(this.profileImageSrc))
+    if (this.profileImageSrc!=="null"){
       console.log("load image")
       this.profileImageSrc = environment.localhost_back+"/asset/" + this.profileImageSrc
     }
     else {
+      console.log("not have image")
       let profix = this.cookie.get_profix()
+      console.log(profix)
       if (profix=="นาย"){
         this.profileImageSrc = '../../assets/image/profile.png';
       }

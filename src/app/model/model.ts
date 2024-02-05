@@ -45,7 +45,10 @@ export interface RegisterModel {
     blood_group: string ;
     allergics : AllergyModel[];
     roleId : number
-  }
+}
+export interface ListParticipants{
+    student:RegisterModel
+}
 export interface AllergyModel{
     id : number
     code_student:string

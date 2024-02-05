@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="bg min-w-screen min-h-screen pt-12">
+    <div class="w-4/5 mx-auto bg-white shadow-md p-6">
+        <div class="mr-auto text-xl">รายชื่อผู้เข้าร่วม {{nameactivity}}</div>
+        <div class="line"></div>
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+        <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-left text-sm font-light">
+            <thead class="border-b font-medium dark:border-neutral-500">
+              <tr>
+                <th scope="col" class="px-6 py-4">ลำดับ</th>
+                <th scope="col" class="px-6 py-4">รหัสนิสิต</th>
+                <th scope="col" class="px-6 py-4">ชื่อ - นามสกุล</th>
+                <th scope="col" class="px-6 py-4">คณะ</th>
+                <th scope="col" class="px-6 py-4">ชั้นปี</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let dataList of list_name;let i = index"
+                class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-300 dark:hover:bg-neutral-200">
+                <td class="whitespace-nowrap px-6 py-4 font-medium">{{i+1}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{dataList.student.code_student}}</td>
+                <td class="whitespace-nowrap px-6 py-4">
+                    <span class="mr-2">
+                        {{dataList.student.first_name}}{{dataList.student.last_name}}
+                    </span>
+                    <span>
+                        {{dataList.student.last_name}}
+                    </span>
+                </td>
+                <td class="whitespace-nowrap px-6 py-4">{{dataList.student.faculty}}</td>
+                <td class="whitespace-nowrap px-6 py-4">1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+</div>
