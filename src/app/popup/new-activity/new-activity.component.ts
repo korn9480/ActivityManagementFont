@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ApiUser } from 'src/app/API/api-user';
 import { FormAsset, FormNewActiviy } from 'src/app/model/form';
 import { ActivityModel } from '../../model/model';
-import { Cookie } from 'src/app/Cookie/cookie';
+import { Cookie } from 'src/app/service/cookie';
 import { environment } from 'src/environments/environment.development';
 
 @Component({
@@ -35,7 +35,6 @@ export class NewActivityComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    // console.log(this.cookie.get_code_student())
     if (!this.is_update){
       this.form = new FormNewActiviy("user",this.cookie.get_code_student())
     }
@@ -44,7 +43,6 @@ export class NewActivityComponent implements OnInit {
         this.form = data
       })
     }
-    console.log(this.form.id)
   }
 
   closePopup() {
@@ -53,7 +51,6 @@ export class NewActivityComponent implements OnInit {
   } 
   checkDateStartAndDateAnd():boolean{
     if (this.form.dateTimeEnd && this.form.dateTimeEnd.length>8){
-      console.log(this.form.dateTimeEnd)
       let start = new Date(this.form.dateTimeStart)
       let end = new Date(this.form.dateTimeEnd)
       if (start.getTime() >= end.getTime()){
@@ -96,10 +93,7 @@ export class NewActivityComponent implements OnInit {
         this.closePopup()
         return ;
       }
-      console.log("asset")
       this.api.create_asset(this.fileUpload,activity_id).subscribe((data:any)=>{
-        console.log("update file : ")
-        console.log(data)
         this.closePopup()
       })
   
@@ -112,19 +106,15 @@ export class NewActivityComponent implements OnInit {
   }
   async updateActivity(){
     this.api.update_activity(this.form.id,this.form).subscribe((data:any)=>{
-      console.log(data)
       // call api
       if (this.id_delete.length>0){
-        console.log("-----------------")
         this.id_delete.forEach((id:any)=>{
           this.api.delete_asset(id,this.form.id).subscribe((data:any)=>{
-            console.log("delete")
           })
         })
       }
       if (this.fileUpload.length <= 0 ){
         this.closePopup()
-        return ;
       } else{
         this.api.update_asset(this.fileUpload,this.form.id).subscribe((data:any)=>{
           this.closePopup()
@@ -168,7 +158,6 @@ export class NewActivityComponent implements OnInit {
   }
   removePath(index:number){
     let x = this.form.asset.splice(index,1)
-    console.log(x)
     this.id_delete.push(x[0].id)
   }
   removeUrlfile(index:number){

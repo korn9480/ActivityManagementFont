@@ -1,3 +1,6 @@
+.bg-home{
+    background-color:rgba(232, 226, 226, 1);
+  }
 .error input{
     border: 2px solid red;
   }
@@ -5,19 +8,6 @@
     color: red;
     font-size: 12px;
     margin-top: 5px;
-}
-.text-line {
-    /* background-color: transparent; */
-    /* color: black; */
-    /* outline: none; */
-    /* outline-style: none; */
-    /* border-top: none; */
-    /* border-left: none; */
-    /* border-right: none; */
-    /* border-bottom: solid black 1px; */
-    /* padding: 3px 10px; */
-    width: 100%; 
-    /* box-sizing: border-box; */
 }
 
 .bg{
@@ -45,6 +35,9 @@
 /* botton */
 .bg-bt{
     background-color: rgb(93, 56, 145);
+}
+.bg-bt-cencle{
+    background-color: gray;
 }
 .bt-shadow{
     --tw-shadow-color: #5D3891;

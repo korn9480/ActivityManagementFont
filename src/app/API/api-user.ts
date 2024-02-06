@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Cookie } from '../Cookie/cookie';
-import { ActivityModel, AssetModel } from '../model/model';
+import { Cookie } from '../service/cookie';
+import { ActivityModel, AssetModel, ListParticipants } from '../model/model';
 import { FormAsset, FormRegister } from '../model/form';
 import { environment } from 'src/environments/environment.development';
 @Injectable({
@@ -22,11 +22,7 @@ export class ApiUser{
     login_user(form:any){
         return this.http.post(this.localhost+"/auth/sign-in",form)
     }
-    // logout_user(){
-    //     return this.http.delete
-    // }
     register_user(form:any){
-        console.log(form)
         return this.http.post(this.localhost+"/auth/sign-up",form)
     }
     forgotPassword(form:any){
@@ -37,7 +33,6 @@ export class ApiUser{
     }
     // api user
     get_profile(){
-        console.log(this.cookie.get_code_student())
         return this.http.get(this.localhost+"/users/profile/"+this.cookie.get_code_student(),this.get_header())
     }
     upload_profile(file:any){
@@ -50,7 +45,6 @@ export class ApiUser{
         return this.http.post(this.localhost+"/activity",form,this.get_header())
     }
     get_activity_open_join(){
-        console.log(this.get_header())
         return this.http.get<ActivityModel[]>(this.localhost+"/activity/open_join",this.get_header())
     }
     get_activity_one(id:number){
@@ -60,7 +54,7 @@ export class ApiUser{
         return this.http.delete(this.localhost+"/activity/"+activity_id,this.get_header())
     }
     update_activity(activity_id:number,form:any){
-        console.log(form)
+
         form.type = form.type.id
         return this.http.put(this.localhost+"/activity/"+activity_id,form,this.get_header())
     }
@@ -68,15 +62,23 @@ export class ApiUser{
         return this.http.get(this.localhost+"/activity/perplo_join/"+id,this.get_header())
     }
     get_activity_club_by_year(year:string){
-        return this.http.get<ActivityModel[]>(this.localhost+"/activity/club/"+year,this.get_header())
+        // year = พ.ศ. เปลี่ยงเป็น ค.ศ.
+        return this.http.get<ActivityModel[]>(this.localhost+"/activity/club/"+(+year - 543),this.get_header())
     }
+    get_activity_user_open_join(){
+        return this.http.get<ActivityModel[]>(this.localhost+"/activity/user_open_join",this.get_header())
+    }
+    get_list_students(idActivity:number){
+        return this.http.get<ListParticipants[]>(this.localhost+"/activity/perple_join/"+idActivity,this.get_header())
+    }
+    // api join activity of activity
     joinActivity(id:number,form:any){
-        console.log(form)
+
         return this.http.post(this.localhost+"/activity/join/"+id,form,this.get_header())
     }
-    cancelJoinActivity(form:any){
-        console.log(form)
-        return this.http.post(this.localhost+"/activity/cancel",form,this.get_header())
+    cancelJoinActivity(form:any,id:number){
+
+        return this.http.post(this.localhost+"/activity/cancel/"+id,form,this.get_header())
     }
     // api asset
     get_image_profile(){
@@ -84,18 +86,16 @@ export class ApiUser{
     }
     create_asset(fileUpload:FormAsset[],activity_id:number){
         let formData = new FormData()
-        console.log('asset')
-        console.log(fileUpload)
+
         let number = 1
         fileUpload.forEach((asset:FormAsset)=>{
             asset.activityId = activity_id
-            console.log(asset.path.name)
             formData.append('path',asset.path)
             number += 1
         })
         formData.append('activityId',activity_id+"")
         formData.append('type',fileUpload[0].type+"")
-        console.log('api console')
+
         return this.http.post(this.localhost+"/asset",formData,this.get_header())
     }
     update_asset(fileUpload:FormAsset[], activity_id:number){
@@ -106,7 +106,6 @@ export class ApiUser{
         })
         formData.append('activityId',activity_id+"")
         formData.append('type',fileUpload[0].type+"")
-        console.log('api console')
         return this.http.post(this.localhost+"/asset",formData,this.get_header())
     }
     delete_asset(asset_id:number,activity_id:number){

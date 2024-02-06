@@ -10,6 +10,7 @@ import { ViewDataActivytyComponent } from './view-data-activyty/view-data-activy
 import { JoinActivityComponent } from './join-activity/join-activity.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormPostActivityComponent } from './form-post-activity/form-post-activity.component';
+import { ShowListAdminComponent } from './show-list-admin/show-list-admin.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginUserComponent },
@@ -18,12 +19,13 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'activity-club', component: ActivityClubComponent },
   { path: 'calendar', component: CalendarComponent },
-  { path: 'view-data-activity', component: ViewDataActivytyComponent },
+  { path: 'view-data-activity/:idActivity', component: ViewDataActivytyComponent },
   { path: 'join-activity/:idActivity', component: JoinActivityComponent},
   { path: 'profile', component: ProfileComponent },
   { path: 'form-post',component: FormPostActivityComponent},
   { path: 'form-post/:idActivity',component: FormPostActivityComponent},
-  { path: '**',redirectTo:'form-post'},
+  { path: 'show-list=admin/:idActivity/:nameActivity',component:ShowListAdminComponent},
+  { path: '**',redirectTo:'home'},
   // ViewDataActivity
 
   // { path: '**', redirectTo:'login'}

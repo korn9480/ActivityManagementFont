@@ -1,5 +1,5 @@
 export class FormNewActiviy{
-    constructor(type_activity:string,code_student:string){
+    constructor(type_activity:'user'|'admin',code_student:string){
         if (type_activity=="user") this.type = 1
         else if (type_activity=='admin') this.type = 2
         this.addBy = code_student

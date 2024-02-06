@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivityModel } from '../model/model';
 import { ApiUser } from '../API/api-user';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cookie } from '../Cookie/cookie';
+import { Cookie } from '../service/cookie';
+import { ConfirmDialogComponent } from '../Component/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 interface ActiviyJoin extends ActivityModel{
   numberPP: number
   isJoin : boolean
 }
 class FormJoinActivty {
   constructor(student:string,activity:number,isJoin:boolean){
-    console.log(activity)
     this.student = student
     this.activity = activity
     this.isJoin = isJoin
-    // "student should not be empty"
   }
   student:string = ""
   activity:number=0
@@ -25,11 +25,10 @@ class FormJoinActivty {
   styleUrls: ['./join-activity.component.css']
 })
 export class JoinActivityComponent implements OnInit{
-  constructor(private api:ApiUser,private route:ActivatedRoute,private cookie:Cookie,private router : Router){}
+  constructor(private api:ApiUser,private route:ActivatedRoute,private cookie:Cookie,private router : Router,private dialog:MatDialog){}
   idActivity:number = 0
   form! : ActiviyJoin
   ngOnInit(): void {
-    console.log("dididid")
     if (this.cookie.get_token().length<1){
       this.router.navigate(['/login'])
     }
@@ -41,7 +40,6 @@ export class JoinActivityComponent implements OnInit{
       this.idActivity = +data.idActivity
     })
     this.api.get_join_activity(this.idActivity).subscribe((data:any)=>{
-      console.log(data)
       this.form = data
     })
   }
@@ -51,20 +49,31 @@ export class JoinActivityComponent implements OnInit{
       this.loadData()
     })
   }
-  notJoin(){
-    let data = new FormJoinActivty(this.cookie.get_code_student(),this.idActivity,false)
-    if (!this.form.isJoin){
-      console.log("dididi")
-      this.api.joinActivity(this.idActivity,data).subscribe((data:any)=>{
-        // console.log(data)
-        this.loadData()
+  alertConfirmCancel(){
+    let dialogRef= this.dialog.open(ConfirmDialogComponent,{
+      data:"คุณต้องการยกเลิกการเข้าร่วมกิจกกรมนี้หรือไม่ ?"
+    })
+    return dialogRef.afterClosed()
+  }
+  isConfirm(value:'YES'|'NO'):boolean{
+    return value=="YES"
+  }
+  notJoin(){// ยกเลิกเข้าร่วม
+    if (this.form.isJoin){
+      this.alertConfirmCancel().subscribe(result=>{
+        if (this.isConfirm(result)){
+          let data = new FormJoinActivty(this.cookie.get_code_student(),this.idActivity,false)
+          if (this.form.isJoin) {
+            this.api.cancelJoinActivity(data,this.idActivity).subscribe((data:any)=>{
+              this.loadData()
+            })
+          }
+        }
       })
     }
-    else {
-      this.api.cancelJoinActivity(data).subscribe((data:any)=>{
-        // console.log(data)
-        this.loadData()
-      })
-    }
+    this.closePopup()
+  }
+  closePopup(){
+    this.router.navigate(['/activity-club'])
   }
 }

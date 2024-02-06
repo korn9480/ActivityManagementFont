@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterModel,AllergyModel } from '../model/model';
+import { RegisterModel, AllergyModel } from '../model/model';
 import { Router } from '@angular/router';
 import { ApiUser } from '../API/api-user';
-import { Cookie } from '../Cookie/cookie';
+import { Cookie } from '../service/cookie';
 import { FormAllergy, FormRegister } from '../model/form';
 import { environment } from 'src/environments/environment.development';
 
@@ -21,14 +21,15 @@ export class ProfileComponent implements OnInit {
   error_code_student: boolean = true;
   allergics:string = ""
   urlFile:any
-  is_edit:boolean = true;
   profile_navbar:any
+  showAlert: boolean = false;
 
   ngOnInit(): void {
     this.Api.get_profile().subscribe((data:any)=>{
       this.form = data
       console.log(data)
       this.form.first_name =this.form.prefix +"" + this.form.first_name 
+
       if (data.allergics==undefined){
         this.form.allergics = []
       }
@@ -41,6 +42,12 @@ export class ProfileComponent implements OnInit {
         this.urlFile = this.localhost+this.form.profile
       }
     })
+  }
+  showAlertSubmit(){
+    this.showAlert =true
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
   }
 
   error ={
@@ -76,17 +83,13 @@ export class ProfileComponent implements OnInit {
       food_allergy : false,
     }
   }
-  setChangeIsEdit(){
-    this.is_edit = !this.is_edit;
-  }
+
   checkStudentCodeLength(): boolean {
     return this.form.code_student.length === 8;
   }
 
   submit() {
     this.resetError()
-    console.log("----submit")
-    console.log(this.form)
     if (this.form.religion == "อื่นๆ") {
       this.form.religion = this.customReligion;
     }
@@ -94,12 +97,10 @@ export class ProfileComponent implements OnInit {
       this.error_code_student = true;
     } else {
       this.error_code_student = false;
-      // this.form.allergics = this.allergics.split(" ")
-      console.log(this.allergics.split(" "))
-      for(let a of this.allergics.split(" ")){
-        console.log(this.form.allergics)
-        let data:AllergyModel = {id:0,code_student:this.form.code_student,allergy:a}
-        
+      this.allergics = this.allergics.replace(/,/g," ")
+      let array = this.allergics.split(' ').filter(word=>word.trim()!=="" && word.trim()!==",")
+      for(let a of array){
+        let data :AllergyModel ={allergy:a,id:0,code_student:this.cookie.get_code_student()}
         this.form.allergics.push(data)
       }
       if (typeof(this.form.profile) != "string"){
@@ -109,8 +110,7 @@ export class ProfileComponent implements OnInit {
         })
       }
       this.Api.update_user(this.form).subscribe((data:any)=>{
-        console.log("update user")
-        this.setChangeIsEdit()
+        this.showAlertSubmit()
         },(r_error:any)=>{
           if (r_error.error.message==`User [${this.form.code_student}] already exist`){
             this.error.conde_already_exist = true
@@ -118,7 +118,6 @@ export class ProfileComponent implements OnInit {
           }
           let text_error = "format is incorrect"
           let message:[] = r_error.error.message
-          console.log(message)
           for(let i of message){
             if (i == "password too weak") this.error.password = true
             else if (i == "confirm_password must match password") this.error.confirm_password = true
@@ -135,8 +134,9 @@ export class ProfileComponent implements OnInit {
       )
     }
   }
+
   onSelectFiles(event:any){
-    this.setChangeIsEdit()
+    // this.setChangeIsEdit()
     this.readURL(event.target.files[0])
   }
   readURL(file: any): void {
@@ -155,6 +155,5 @@ export class ProfileComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
 }
 

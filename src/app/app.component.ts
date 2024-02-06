@@ -11,8 +11,5 @@ export class AppComponent {
   customReligion: string = '';
   code_student: string ='';
 
-  submit() {
-    console.log(`Submitted Username: ${this.code_student}`);
-  }
 
 }

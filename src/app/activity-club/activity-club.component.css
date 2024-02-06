@@ -32,37 +32,34 @@
 
 /* crad */
 .card-container {
-  display: flex;
+  display: grid;
   flex-direction: row;
+  justify-content: center;
+  /* border: 1px solid; */
 }
 .card-1,.card-2{
   width: 484px;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   overflow: hidden;
   margin-right: 24px;
 }
 .card-3 {
   width: 484px;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   overflow: hidden;
   /* margin-right: 24px; */
 }
-.card-image-1,.card-image-2{ 
-  height: 370px;
-  margin-right: 24px;
-}
-.card-image-3{ 
-  height: 370px;
-  /* margin-right: 24px; */
+.card-image{ 
+  /* height: 290px;
+  margin-right: 200px; */
+  border: 2px solid #ddd;
+  
 }
 .card-body {
   padding: 16px;
 }
 .card-body div {
   color: #333;
-}
-.name-activity-crad{
-  padding-bottom: 8px;
 }
 .month-crad{
   display: inline-block;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiUser } from '../API/api-user';
-import { FormNewActiviy } from '../model/form';
 import { ActivityModel } from '../model/model';
 import { Router } from '@angular/router';
 
@@ -39,10 +38,7 @@ export class HomeComponent implements OnInit{
     this.api.get_activity_open_join().subscribe(
       (data:ActivityModel[])=>{
         this.activity_join = data
-        console.log("test")
-        console.log(data)
       },(error:any)=>{
-        console.log(error)
         if (error.error.message=="jwt expired"&&error.error.statusCode===401) this.router.navigate(['/login']);
       }
     )

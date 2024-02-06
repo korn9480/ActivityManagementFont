@@ -1,14 +1,14 @@
-import { FormAllergy } from "./form"
-
 export interface ActivityModel{
     id:number
     nameActivity:string  
     location: string
     details:string 
     participants:number
+    number_pp:number
     dateTimeStart:string
     dateTimeEnd:string 
-    addBy:AddByModel 
+    addBy:AddByModel
+    is_open_join:boolean 
     type:TypeActivityModel
     asset:AssetModel[]
 }

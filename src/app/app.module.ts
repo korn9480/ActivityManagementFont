@@ -32,6 +32,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ThaiDatePipe } from './service/pipes';
+import { ConfirmDialogComponent } from './Component/confirm-dialog/confirm-dialog.component';
+import { PipeModele } from './service/pipes.modeul';
+import { MeterialModule } from './material.module';
+import { ShowListAdminComponent } from './show-list-admin/show-list-admin.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ActivityAdminComponent,
     AlertImgFullComponent,
     FormPostActivityComponent,
+    ShowListAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +68,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatSlideToggleModule,
     ReactiveFormsModule,
     FullCalendarModule ,
-    MatButtonModule, MatMenuModule, MatIconModule,MatFormFieldModule,MatInputModule,
-    MatDatepickerModule,MatFormFieldModule,MatNativeDateModule
-    // MeterialModule
+    // MatButtonModule, MatMenuModule, MatIconModule,MatFormFieldModule,MatInputModule,
+    // MatDatepickerModule,MatFormFieldModule,MatNativeDateModule,
+    MeterialModule,
+    PipeModele
   ],
   providers: [],
 

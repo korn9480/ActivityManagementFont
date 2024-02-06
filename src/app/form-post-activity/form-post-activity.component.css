@@ -1,0 +1,19 @@
+.line-buttom{
+    border-bottom: 2px solid black;
+    position: relative;
+}
+.tag-input{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 20px auto;
+    position: relative;
+    align-content: center;
+    border: 2px solid black;
+}
+.set-icon{
+    display: flex;
+    align-items: center;
+}
+.tag-input--warn{
+    border-color:red ;
+}

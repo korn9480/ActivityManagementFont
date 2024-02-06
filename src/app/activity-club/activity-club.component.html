@@ -1,90 +1,47 @@
 <app-navbar></app-navbar> 
-
 <!-- activity -->
-<div class=" bg">
-  <div class=" text-center ">
-    <button class="relative px-16 py-4 text-lg rounded-md text-white mt-6 mb-6 bg-bt bt-shadow" (click)="togglePopup()" *ngIf="" >เพิ่มกิจกรรม</button>
-    <span *ngIf="showPopup">
-        <!-- <app-new-activity [is_update]="is_update" (show)="togglePopup()" [data]="select_activity"></app-new-activity> -->
-        <app-activity-admin [is_update]="is_update" (show)="togglePopup()" [data]="select_activity"></app-activity-admin>
-    </span>
-  </div>
+<div class="bg-home pt-12 min-h-screen">
+    <div class="w-4/5 mx-auto">
+        <div class="max-w-[1500px] mx-auto px-5 py-6 bg-white bg-white shadow-md">
+              <div class="flex justify-center gap-x-8 text-center mb-2 ">
+                  <button class="text-xl pl-12" [ngClass]="{'border-b-2 border-purple-500 text-purple-500':typeActivity == 1}" (click)="selectTypeActivity(1)">กิจกรรมของสมาชิก</button>
+                  <button class="text-xl pr-12" [ngClass]="{'border-b-2 border-purple-500 text-purple-500':typeActivity == 2}" (click)="selectTypeActivity(2)">กิจกรรมของชมรม</button>
+              </div>
+              <div class="text-right min-h-6">
+                  <label for="clickYaer" class="mb-4" *ngIf="typeActivity==2">
+                      <span class="">ปี</span>
+                      <select class="px-1 no-underline" id="clickYaer" [(ngModel)]="acitivtyYear" (ngModelChange)="loadActivityClub()">
+                          <option class="w-full text-center" *ngFor="let i of yearSelectAll" [value]="i">{{i}}</option>
+                      </select>
+                  </label>
+              </div>
+            <div class="grid grid-cols-3 gap-x-6" *ngIf="activity_club.length > 0">
+              <div *ngFor="let i of activity_club;let index = index">
+                <div class="bg-white shadow-md" [routerLink]="'/view-data-activity/'+i.id">
+                    <img class="card-image" *ngIf="i.asset.length > 0" [src]="localhost+i.asset[0].path" alt="Card Image">
+                    <div class="card-body">
+                        <div>
+                            <b class="mb-1">{{i.nameActivity}}</b>
+                        </div>
+                        <div  class="month-crad my-1">
+                            <span *ngIf="!isDateStartWithDateEndEqual(index)">วันที่ {{i.dateTimeStart|thaiDateTime}}น. 
+                                <span>ถึง {{i.dateTimeEnd|thaiDateTime}}น.</span>
+                            </span>
+                            <span *ngIf="isDateStartWithDateEndEqual(index)">วันที่ {{i.dateTimeStart|thaiDate}} 
+                                <span>เริ่ม {{i.dateTimeStart|thaiTime}}น. ถึง {{i.dateTimeEnd|thaiTime}}น.</span>
+                            </span>
+                        </div>
+                        <div> {{i.number_pp}}/{{i.participants}} คน</div>
+                        
+                        <button *ngIf="i.is_open_join" class="text-white px-5 py-1 mt-3 rounded-md cursor-pointer mx-auto bg-bt bt-shadow" [routerLink]="'/join-activity/'+i.id">ลงชื่อ</button>
+                    </div>
+                </div>
 
-  <div class="max-w-[1500px] mx-auto p-6 bg-white bg-white shadow-md">
-
-      <div class="flex items-center mb-6">
-          <div class="mr-auto text-xl">กิจกรรมของชมรม</div>
-          <div class="ml-auto text-xl">ปี 2567</div>
-      </div>
-      <a class="card-container" routerLink="/view-data-activity">
-        <div class="card-1 bg-white shadow-md" >
-          <img class="card-image-1" src="../../assets/image/bg.png" alt="Card Image">
-          <div class="card-body">
-            <div class="name-activity-crad">ชื่อกิจกรรม</div>
-            <div class="month-crad">เดือน มกราคม</div>
-            <div class="amount-crad">จำนวน 0 คน</div>
-          </div>
+              </div>
+            </div>
+            <div *ngIf="activity_club.length <= 0">
+                <div class="text-lg text-center">ไม่มีกิจกรรม</div>
+            </div>
         </div>
-
-        <div class="card-2 bg-white shadow-md">
-          <img class="card-image-2" src="../../assets/image/bg.png" alt="Card Image">
-          <div class="card-body">
-            <div class="name-activity-crad">ชื่อกิจกรรม</div>
-            <div class="month-crad">เดือน มกราคม</div>
-            <div class="amount-crad">จำนวน 0 คน</div>
-          </div>
-        </div>
-
-        <div class="card-3 bg-white shadow-md">
-          <img class="card-image-3" src="../../assets/image/bg.png" alt="Card Image">
-          <div class="card-body">
-            <div class="name-activity-crad">ชื่อกิจกรรม</div>
-            <div class="month-crad">เดือน มกราคม</div>
-            <div class="amount-crad">จำนวน 0 คน</div>
-          </div>
-        </div>
-      </a>
-      <div class="line"></div>
-
-<!-- 66 -->
-      <div class="flex items-center mb-6">
-          
-          <div class="ml-auto text-xl">ปี 2566</div>
-      </div>
-      <div class="card-container">
-
-          <div class="card-1 bg-white shadow-md">
-              <div class="card-header">
-                <img class="card-image" src="../../assets/image/bg.png" alt="Card Image">
-              </div>
-              <div class="card-body">
-                <div class="name-activity-crad">ชื่อกิจกรรม</div>
-                <div class="month-crad">เดือน ธันวาคม</div>
-                <div class="amount-crad">จำนวน 0 คน</div>
-              </div>
-          </div>
-
-          <div class="card-2 bg-white shadow-md">
-              <div class="card-header">
-                <img class="card-image" src="../../assets/image/bg.png" alt="Card Image">
-              </div>
-              <div class="card-body">
-                <div class="name-activity-crad">ชื่อกิจกรรม</div>
-                <div class="month-crad">เดือน ธันวาคม</div>
-                <div class="amount-crad">จำนวน 0 คน</div>
-              </div>
-          </div>
-
-          <div class="card-3 bg-white shadow-md">
-              <div class="card-header">
-                <img class="card-image" src="../../assets/image/bg.png" alt="Card Image">
-              </div>
-              <div class="card-body">
-                <div class="name-activity-crad">ชื่อกิจกรรม</div>
-                <div class="month-crad">เดือน พฤศจิกายน</div>
-                <div class="amount-crad">จำนวน 0 คน</div>
-              </div>
-          </div>
-      </div>
-  </div>
+    </div>
 </div>

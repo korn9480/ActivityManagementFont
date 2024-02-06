@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ApiUser } from '../API/api-user';
 import { Router } from '@angular/router';
 import { FormAllergy } from '../model/form';
-import { Cookie } from '../Cookie/cookie';
+import { Cookie } from '../service/cookie';
 
 class Register {
   code_student: string = "";
@@ -72,7 +72,6 @@ export class RegisterUserComponent {
 
   submit() {
     this.resetError()
-    console.log(this.form)
     if (this.form.religion == "อื่นๆ") {
       this.form.religion = this.customReligion;
     }
@@ -81,27 +80,23 @@ export class RegisterUserComponent {
     } else {
       this.error_code_student = false;
       // this.form.allergics = this.allergics.split(" ")
-      console.log(this.allergics.split(" "))
-      for(let a of this.allergics.split(" ")){
-        console.log(a)
+      this.allergics = this.allergics.replace(/,/g," ")
+      let array = this.allergics.split(' ').filter(word=>word.trim()!=="" && word.trim()!==",")
+      for(let a of array){
         let data = new FormAllergy(this.form.code_student,a)
         this.form.allergics.push(data)
       }
-      
       this.Api.register_user(this.form).subscribe(
         (data:any)=>{
-          console.log(data)
           this.router.navigate(['/login']);
         },
         (r_error:any)=>{
-          console.log(r_error)
           if (r_error.error.message==`User [${this.form.code_student}] already exist`){
             this.error.conde_already_exist = true
             return;
           }
           let text_error = "format is incorrect"
           let message:[] = r_error.error.message
-          console.log(message)
           for(let i of message){
             if (i == "password too weak") this.error.password = true
             else if (i == "confirm_password must match password") this.error.confirm_password = true

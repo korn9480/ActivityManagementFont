@@ -1,15 +1,10 @@
 
 import { Injectable } from '@angular/core';
-// impolocalStorage } from 'ngx-cookie-service';
-import { ApiUser } from '../API/api-user';
 @Injectable({
     providedIn:"root"
 })
 
 export class Cookie {
-  constructor() {
-
-  }
   getKeyItem(key: string): string {
     let value = localStorage.getItem(key);
   
@@ -24,10 +19,9 @@ export class Cookie {
   }
 
   set_data(code_student:string,profile:string,profix:string){
-    console.log(code_student,profile)
     localStorage.setItem('code_student',code_student)
     localStorage.setItem('profile',profile)
-    localStorage.setItem('profix',profix)
+    localStorage.setItem('prefix',profix)
   }
   set_profile(profile:string){
     localStorage.setItem('profile',profile)
@@ -52,7 +46,7 @@ export class Cookie {
   get_profile(){
     return this.getKeyItem("profile")
   }
-  get_profix(){
-    return this.getKeyItem("profix")
+  get_prefix(){
+    return this.getKeyItem("prefix")
   }
 }

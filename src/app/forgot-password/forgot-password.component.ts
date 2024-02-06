@@ -20,8 +20,8 @@ export class ForgotPasswordComponent {
 
   warn = {
     code_student : false,
-    password : true,
-    confirm_password : true,
+    password : false,
+    confirm_password : false,
     conde_not_exist : false
   }
   resetWarn(){
@@ -34,7 +34,6 @@ export class ForgotPasswordComponent {
   
   }
   forgotpassword(){
-    // if (this.isValidForm()) {
       this.resetWarn()
       this.api.forgotPassword(this.form).subscribe((data:any)=>{
         this.router.navigate(['/login']);
@@ -44,10 +43,8 @@ export class ForgotPasswordComponent {
         }
 
         let messages:string[] = error.error.message
-        console.log(messages)
         for(let m of messages){
           // confirm_password should not be empty
-          console.log(m.includes('confirm_password'))
           if (m.includes("code_student")) this.warn.code_student = true
           else if (m.includes("confirm_password")){
             this.warn.confirm_password = true

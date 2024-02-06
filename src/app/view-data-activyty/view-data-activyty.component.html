@@ -1,28 +1,41 @@
-<app-navbar></app-navbar>
-
-<div class="pt-6 bg">
-    <div class="max-w-[1500px] mx-auto p-6 bg-white bg-white shadow-md">
-        <div class="flex items-center mb-6">
-            <div class="mr-auto text-xl">กิจกรรมของชมรม</div>
-            <div class="ml-auto text-xl">ปี 2567</div>
+<div class="bg min-h-screen">
+    <app-navbar></app-navbar>
+    <div class="w-[970px] mx-auto p-6 bg-white bg-white shadow-md mt-12" *ngIf="data!=undefined">
+        <div class="flex justify-between mb-6">
+            <div class="text-lg">{{data.nameActivity}}</div>
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/show-list=admin/'+data.id+'/'+data.nameActivity" *ngIf="mycode == data.addBy.code_student">
+                        <mat-icon>view_list</mat-icon>
+                        <span>แสดงรายชื่อผู้เข้าร่วม</span>
+                    </button>
+                </mat-menu>
+            </div>
         </div>
-        <div class="line"></div>
-        <div class="mb-6 text-lg">ชื่อกิจกรรม</div>
-        <div class="flex">
-            <img class="image-activity" src="../../assets/image/bg.png" alt="Image Activity">
-            <div class="detail-activity text-lg">เนื้อหากิจกรรม</div>
+        <div [ngClass]="{'img-content': data.asset.length > 0}" *ngIf="data.asset.length > 0 || data.details.length > 0 ">
+            <div class="overflow-hidden object-none" *ngIf="data.asset.length > 0">
+                <img class="image-activity w-full h-auto custom-positionn" [src]="localhost+data.asset[0].path" alt="Image Activity">
+            </div>
+            <div class="detail-activity text-lg">{{data.details}}</div>
         </div>
-        <div class="heading-detail mb-6">
-            <span class="day">วันที่ 1 มกราคม 2566</span>
-            <span class="month">เดือน มกราคม</span>
-            <span class="location">สถานที่จัด สวนสาธารณะ</span>
-            <span class="amount">จำนวนเข้าร่วม 50 คน</span>
+        <div class="heading-detail my-8">
+            <span *ngIf="!isDateStartWithDateEndEqual()">วันที่ {{data.dateTimeStart|thaiDateTime}}น. 
+                <span>ถึง {{data.dateTimeEnd|thaiDateTime}}น.</span>
+            </span>
+            <span *ngIf="isDateStartWithDateEndEqual()">วันที่ {{data.dateTimeStart|thaiDate}} 
+                <span>เริ่ม {{data.dateTimeStart|thaiTime}}น. ถึง {{data.dateTimeEnd|thaiTime}}น.</span>
+            </span>
+            <span class="ml-2 mr-2">สถานที่ {{data.location}}</span>
+            <div class="amount">จำนวน {{data.number_pp}}/{{data.participants}} คน</div>
         </div>
-        <div class="text-lg mb-6">รูปกิจกรรม</div>
-        <div class="flex flex-row">
-            <img class="image-1" src="../../assets/image/bg.png" alt="Image 1">
-            <img class="image-2" src="../../assets/image/bg.png" alt="Image 2">
-            <img class="image-3" src="../../assets/image/bg.png" alt="Image 3">
+        <div class="text-lg mb-8">รูปกิจกรรม</div>
+        <div class="grid grid-cols-3 gap-x-6">
+            <img *ngFor="let i of  data.asset" [src]="localhost+i.path" class="image"  alt="Image 1">
+            <!-- <img class="image" src="../../assets/image/bg.png" alt="Image 2">
+            <img class="image" src="../../assets/image/bg.png" alt="Image 3"> -->
         </div>
     </div>
 </div>

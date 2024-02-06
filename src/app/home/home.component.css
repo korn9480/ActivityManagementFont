@@ -1,7 +1,6 @@
 /* backgroud add activity */
 .bg-home{
   background-color:rgb(232, 226, 226);
-  display: grid;
 }
 .post-heading {
   display: flex;

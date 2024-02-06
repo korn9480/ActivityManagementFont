@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Cookie } from 'src/app/Cookie/cookie';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cookie } from 'src/app/service/cookie';
 import { FormRegister } from 'src/app/model/form';
 import { RegisterModel } from 'src/app/model/model';
 import { environment } from 'src/environments/environment.development';
@@ -20,17 +20,12 @@ export class NavbarComponent implements OnInit{
   isDropdownOpen: boolean = false;
 
   ngOnInit(): void {
-    console.log("5555")
     this.profileImageSrc = this.cookie.get_profile()
-    console.log(this.profileImageSrc,typeof(this.profileImageSrc))
-    if (this.profileImageSrc!=="null"){
-      console.log("load image")
+    if (this.profileImageSrc.includes(this.cookie.get_code_student())){
       this.profileImageSrc = environment.localhost_back+"/asset/" + this.profileImageSrc
     }
     else {
-      console.log("not have image")
-      let profix = this.cookie.get_profix()
-      console.log(profix)
+      let profix = this.cookie.get_prefix()
       if (profix=="นาย"){
         this.profileImageSrc = '../../assets/image/profile.png';
       }

@@ -1,6 +1,6 @@
-<app-navbar [profile]="profile_navbar"></app-navbar> 
 <div class="relative bg min-w-screen min-h-screen ">
-    <div class="absolute left-0 right-0 top-0 mt-12 flex justify-center items-center">
+    <app-navbar [profile]="profile_navbar"></app-navbar> 
+    <div class="mt-12 flex justify-center items-center">
         <form class=" pt-12 pb-12 pl-6 pr-6 bg-white shadow-md" (ngSubmit)="submit()" *ngIf="form!=undefined">
             <div class="flex"> 
                 <div class="">
@@ -13,12 +13,12 @@
                         <label for="upload-profile">
                             <img class="w-8 h-8 ml-4" src="../../assets/image/edit-profile.webp" alt="Edit Profile">
                         </label>
-                        <input type="file" id="upload-profile" *ngIf="!is_edit" accept="image/*" name="profile" style="display: none;"
+                        <input type="file" id="upload-profile"  accept="image/*" name="profile" style="display: none;"
                             (change)="onSelectFiles($event)">
                         <div class="">แก้ไขรูปภาพ</div>
                     </div>
                 </div>
-                <div class="items-center ml-12 w-full ">
+                <div class="items-center ml-12 w-full">
                     <div class="mr-auto text-xl">ข้อมูลส่วนตัว</div>
                     <div class="line"></div>
                     <div class="grid grid-cols-2 gap-y-1 gap-x-6">
@@ -33,21 +33,21 @@
     
                         <div class="relative" [ngClass]="{'error': error.nick_name}">
                             <label class="text-lg block mb-2" for="nickname">ชื่อเล่น</label>
-                            <input class="border-2 border-black w-full p-1"  [readonly]="is_edit"
+                            <input class="border-2 border-black w-full p-1"  
                                     type="text" id="nickname" name="nickname" required [(ngModel)]="form.nick_name">
                             <div *ngIf="error.nick_name" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>
                         </div>
 
                         <div class="relative" [ngClass]="{'error': error.first_name}">
                             <label class="text-lg block mb-2" for="firstName">ชื่อ</label>
-                            <input class="border-2 border-black w-full p-1"  [readonly]="is_edit"
+                            <input class="border-2 border-black w-full p-1"  
                                     type="text" id="firstName" name="firstName" required [(ngModel)]="form.first_name">
                             <div *ngIf="error.first_name" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>
                         </div>
     
                         <div class="relative" [ngClass]="{'error': error.last_name}">
                             <label class="text-lg block mb-2" for="lastName">นามสกุล</label>
-                            <input class="border-2 border-black w-full p-1"  [readonly]="is_edit"
+                            <input class="border-2 border-black w-full p-1"  
                                     type="text" id="lastName" name="lastName" required [(ngModel)]="form.last_name">
                             <div *ngIf="error.last_name" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>
                         </div>
@@ -160,7 +160,7 @@
                         
                         <div class="relative" [ngClass]="{'error': error.phone}">
                             <label class="text-lg block mb-2" for="phone">เบอร์โทรศัพท์</label>
-                            <input class="border-2 border-black w-full p-1"  [readonly]="is_edit"
+                            <input class="border-2 border-black w-full p-1"  
                                     type="tel" id="phone" name="phone" required [(ngModel)]="form.phone">
                                     <div *ngIf="error.phone" class="error-message text-red-500 text-sm mt-2">เลขโทรศัพท์ไม่ถูกต้อง</div>
                         </div>
@@ -202,24 +202,27 @@
     
                         <div class="relative" [ngClass]="{'error': error.food_allergy}">
                             <label class="text-lg block mb-2">สิ่งที่เเพ้</label>
-                            <input class="border-2 border-black w-full p-1"  [readonly]="is_edit"
+                            <input class="border-2 border-black w-full p-1"  
                             type="text" name="allergy" [(ngModel)]="allergics">
                         </div>
 
                     </div>
                 </div>
             </div>
-            <button class="flex py-3 px-6 text-lg text-white rounded-md cursor-pointer mx-auto mt-8 shadow-lg bg-bt bt-shadow" 
-                [disabled]="!checkStudentCodeLength()" *ngIf="is_edit" (click)="setChangeIsEdit()">
-            <span>แก้ไขข้อมูล</span>
-            </button>
-
             <button class="flex py-3 px-6 text-lg text-white rounded-md cursor-pointer mx-auto mt-8 shadow-lg bg-bt bt-shadow"
-                    type="submit" [disabled]="!checkStudentCodeLength()" *ngIf="!is_edit">
+                    type="submit" [disabled]="!checkStudentCodeLength()">
             <span>บันทึกข้อมูล</span>
             </button>
             
     
         </form>
+        <div *ngIf="showAlert" class="anima flex items-center p-4  mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <span class="font-medium">บันทึกข้อมูลเสร็จสิ้น!</span>
+
+        </div>
     </div>
 </div>
