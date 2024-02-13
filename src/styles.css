@@ -1,17 +1,23 @@
-.bg-home{
-    background-color:rgba(232, 226, 226, 1);
-  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .error input{
     border: 2px solid red;
-  }
+}
 .error-message {
     color: red;
     font-size: 12px;
     margin-top: 5px;
 }
-
 .bg{
     background-color:rgb(232, 226, 226);
+}
+.bg-white{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.bg-white-home{
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(64, 63, 63, 0.2), 0 8px 14px 0 rgba(132, 130, 130, 0.19);
 }
 
 /* text purple */
@@ -25,7 +31,9 @@
 }
 .bg-shadow-navbar{
     --tw-shadow-color: #F99417;
-    box-shadow: 0 3px 10px -3px rgb(249, 148, 23);
+    /* box-shadow: 0 3px 10px -3px rgb(249, 148, 23); */
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px rgb(249, 148, 23);
 }
 .hover\:text-navbar:hover{
     color: rgb(93, 56, 145);
@@ -35,9 +43,6 @@
 /* botton */
 .bg-bt{
     background-color: rgb(93, 56, 145);
-}
-.bg-bt-cencle{
-    background-color: gray;
 }
 .bt-shadow{
     --tw-shadow-color: #5D3891;

@@ -1,14 +1,14 @@
  <!-- navbar -->
- <div class="sticky z-10 top-0 bg-navbar text-white border-bg-navbar bg-shadow-navbar">
-    <div class="relative flex justify-between ml-40 mr-40">
-        <a class="flex items-center justify-center text-3xl no-underline hover:text-navbar mt-2 mb-2" href="/home">ยอดหญ้าบนภูสูง</a>
+<div class="sticky z-10 top-0 bg-navbar text-white border-bg-navbar bg-shadow-navbar">
+    <div class="relative flex justify-between ml-36 mr-36 mobile-m desktop-navbar">
+        <a class="flex items-center justify-center text-2xl font-semibold no-underline hover:text-navbar mt-1 mb-1" href="/home">ยอดหญ้าบนภูสูง</a>
         
-        <div class="flex items-center justify-center text-lg mt-2 mb-2">
-            <a class="no-underline hover:text-navbar pr-8" href="/home">หน้าหลัก</a>
-            <a class="no-underline hover:text-navbar pr-8" href="/activity-club">กิจกรรมของชมรม</a>
-            <a class="no-underline hover:text-navbar pr-8" href="/calendar">ปฏิทินชมรม</a>
+        <div class="flex items-center justify-center text-xl mt-1 mb-1">
+            <a class="no-underline hover:text-navbar pr-6" href="/home">หน้าหลัก</a>
+            <a class="no-underline hover:text-navbar pr-6" href="/activity-club">กิจกรรมของชมรม</a>
+            <a class="no-underline hover:text-navbar pr-6" href="/calendar">ปฏิทินชมรม</a>
 
-            <div class="w-20 h-20 rounded-full overflow-hidden object-none cusrom-position">
+            <div class="w-16 h-16 rounded-full overflow-hidden object-none cusrom-position">
                 <button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                     <img  class="w-full h-auto cursor-pointer" [src]="profileImageSrc" alt="Profile">
                 </button>
@@ -22,12 +22,47 @@
                         <span>ออกจากระบบ</span>
                     </button>
                 </mat-menu>
-
             </div>
-
+        </div>
+    </div>
+<!-- molbile -->
+    <div class="relative flex items-center justify-between ml-40 mr-40 pt-2 pb-2 mobile-m mobile-navbar">
+        <div class="w-12 h-12 rounded-full overflow-hidden object-none cusrom-position">
+            <button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <img  class="w-full h-auto cursor-pointer" [src]="profileImageSrc" alt="Profile"></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/profile">
+                    <mat-icon >edit</mat-icon>
+                    <span>แก้ไขข้อมูล</span>
+                </button>
+                <button mat-menu-item routerLink="/login">
+                    <mat-icon>logout</mat-icon>
+                    <span>ออกจากระบบ</span>
+                </button>
+            </mat-menu>
         </div>
 
+        <div class="flex  justify-center text-3xl no-underline hover:text-navbar">ยอดหญ้าบนภูสูง</div>
+        <div>
+            <div class="">
+                <button (click)="clickNavbar()" aria-label="Example icon-button with a menu">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
-    
+<div class="bg-white sticky top-16" *ngIf="menuMobile">
+    <div class="nav-mobile-p">
+        <li class="list-none py-3 hover:bg-gray-500">
+            <a class="no-underline hover:text-navbar pr-8" href="/home">หน้าหลัก</a>
+        </li>
+        <li class="list-none py-3 hover:bg-gray-500">
+            <a class="no-underline hover:text-navbar pr-8" href="/activity-club">กิจกรรมของชมรม</a>
+        </li>
+        <li class="list-none py-3 hover:bg-gray-500">
+            <a class="no-underline hover:text-navbar pr-8" href="/calendar">ปฏิทินชมรม</a>
+        </li>
+    </div>
+</div>

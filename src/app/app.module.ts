@@ -68,10 +68,8 @@ import { ShowListAdminComponent } from './show-list-admin/show-list-admin.compon
     MatSlideToggleModule,
     ReactiveFormsModule,
     FullCalendarModule ,
-    // MatButtonModule, MatMenuModule, MatIconModule,MatFormFieldModule,MatInputModule,
-    // MatDatepickerModule,MatFormFieldModule,MatNativeDateModule,
     MeterialModule,
-    PipeModele
+    PipeModele,
   ],
   providers: [],
 

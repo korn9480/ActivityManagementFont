@@ -1,57 +1,60 @@
+  <!-- background image  -->
+  <div class="h-screen bg-cover bg-center bg-fixed" 
+  style="background-image: url(../../assets/image/bg.png)">
 
-<div class="absolute inset-0 flex items-center justify-center bg-cover bg-center" 
-     style="background-image:url('/assets/image/bg.png'); background-size: 100%;">
+<div class="flex justify-center items-center h-full"> 
+ <div class="bg-white pt-8 pb-8 pl-14 pr-14 shadow-lg mx-auto rounded-lg">
 
-  <div class="max-w-[600px] min-w-[500px] mx-auto pt-12 pb-12 pl-24 pr-24 border-2 border-solid border-gray-200 rounded bg-white shadow-2xl shadow-gray-200/50">
-    <div class="text-center">
-      <!-- <img class="logo mx-auto" src="/assets/image/IconYodYa.png" alt="Logo"> -->
-      <p class="login text-3xl text-gray-900 dark:text-back mb-12">ยอดหญ้าบนภูสูง</p>
-      <p class="login text-2xl text-gray-900 dark:text-back mb-8" >เข้าสู่ระบบ</p>
-    </div>
+   <div class="text-center">
+     <h1 class="text-2xl mb-8">ยอดหญ้าบนภูสูง</h1>
+     <h1 class="text-xl mb-6">เข้าสู่ระบบ</h1>
+   </div>
 
-    <form (submit)="login()" [formGroup]="formLogin">
+   <form (submit)="login()" [formGroup]="formLogin">
 
-      <div class="mb-4" [ngClass]="{'error' : formLogin.get('code_student')?.hasError('required') &&  formLogin.get('code_student')?.touched}">
-          <label class="text-lg text-gray-600 dark:text-back " for="code_student">รหัสนิสิต</label>
-          <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 mt-2" formControlName="code_student"
-              type="text" id="code_student" name="username" [maxlength]="8" required autocomplete="username">
-          
-          <input *ngIf="!rememberPassword" class="border-2 border-black w-full p-1 mt-2" formControlName="code_student"
-              type="text" id="code_student" name="username" [maxlength]="8">
-        <div *ngIf="formLogin.get('code_student')?.hasError('required') && formLogin.get('code_student')?.touched" 
-              class="text-red-500 mt-1 text-sm">รหัสนิสิตน้อยกว่า 8 ตัว</div>
-      </div>
+     <div class="mb-4" [ngClass]="{'error' : formLogin.get('code_student')?.hasError('required') &&  formLogin.get('code_student')?.touched}">
+         <label class="text-lg" for="code_student">รหัสนิสิต</label>
+         <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 mt-2 rounded-md" formControlName="code_student"
+             type="text" id="code_student" name="username" [maxlength]="8" required autocomplete="username">
+         <input *ngIf="!rememberPassword" class="border-2 border-black w-full p-1 mt-2 rounded-md" formControlName="code_student"
+             type="text" id="code_student" name="username" [maxlength]="8">
+         <div *ngIf="formLogin.get('code_student')?.hasError('required') && formLogin.get('code_student')?.touched" 
+               class="text-red-500 mt-1 text-sm">รหัสนิสิตน้อยกว่า 8 ตัว
+         </div>
+     </div>
 
-      <div class="mb-2" [ngClass]="{'error' : (formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched) || error_password }">
-        <label class="text-lg text-gray-600 dark:text-back" for="password">รหัสผ่าน</label>
-        <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 mt-2" formControlName="password"
-              type="password" id="password" name="password" required autocomplete="current-password">
+     <div class="mb-2" [ngClass]="{'error' : (formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched) || error_password }">
+       <label class="text-lg" for="password">รหัสผ่าน</label>
+       <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 mt-2 rounded-md" formControlName="password"
+             type="password" id="password" name="password" required autocomplete="current-password">
+       <input *ngIf="!rememberPassword" class="password text-line bg-transparent text-black outline-none border-t-0 border-l-0 border-r-0 border-b border-solid border-black px-3 py-1" 
+             type="password" id="password" name="password" required formControlName="password">
+       <div *ngIf="formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched" 
+           class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ได้กรอก
+       </div>
+       <div *ngIf="error_password" class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ถูกต้อง</div>
+     </div>
+   
+     <div class="flex justify-between">
+       <label class="flex">
+         <input class="mr-2 mx-auto" type="checkbox" name="remember-password">
+         <span>จดจำรหัสผ่าน</span>
+       </label>
+       <a href="/forgot-password" class="text">ลืมรหัสผ่าน ?</a>
+     </div>
 
-        <input *ngIf="!rememberPassword" class="password text-line bg-transparent text-black outline-none border-t-0 border-l-0 border-r-0 border-b border-solid border-black px-3 py-1" 
-              type="password" id="password" name="password" required formControlName="password">
-        <div *ngIf="formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched" 
-            class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ได้กรอก</div>
-        <div *ngIf="error_password" class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ถูกต้อง</div>
-      </div>
-      
-      <div class="flex justify-between">
-          <label class="flex">
-            <input class="remember-password mr-2 mx-auto" type="checkbox" name="remember-password">
-            <span>จดจำรหัสผ่าน</span>
-          </label>
-        <a href="/forgot-password" class="text">ลืมรหัสผ่าน ?</a>
-      </div>
+     <div class="flex justify-center ">
+       <button type="submit" class="btn text-lg text-white px-6 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-8 bg-bt bt-shadow">เข้าสู่ระบบ</button>
+     </div>
 
-      <div class="w-full flex justify-center mt-2 mb-4">
-        <button type="submit" class="text-lg text-white px-10 py-3 rounded-md cursor-pointer mx-auto mt-8 mb-8 bg-bt bt-shadow">เข้าสู่ระบบ</button>
-      </div>
-      <div class="mb-4 flex justify-between">
-        <div class="mx-auto pr-0">
-          <span class="text-base mr-4">ยังไม่มีบัญชี ?</span>
-          <a routerLink="/register" class="text">สมัครสมาชิก</a>
-        </div> 
-      </div>
-    </form>
+     <div class="flex justify-between">
+       <div class="mx-auto pr-0">
+         <span class="text-base mr-6">ยังไม่มีบัญชี ?</span>
+         <a routerLink="/register" class="text">สมัครสมาชิก</a>
+       </div> 
+     </div>
+   </form>
 
-  </div>
+ </div>
+</div>
 </div>

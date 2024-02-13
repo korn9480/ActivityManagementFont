@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit{
   form! : RegisterModel|FormRegister
   urlFile:any
   isDropdownOpen: boolean = false;
+  menuMobile = false;
 
   ngOnInit(): void {
     this.profileImageSrc = this.cookie.get_profile()
@@ -39,10 +40,12 @@ export class NavbarComponent implements OnInit{
     this.is_edit = false;
   }
 
-
-
   UserDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  clickNavbar(){
+    this.menuMobile = !this.menuMobile
   }
 
 }

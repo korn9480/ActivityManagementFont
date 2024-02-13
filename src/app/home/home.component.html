@@ -1,13 +1,9 @@
 <app-alert-img-full [is_show]="is_display_alert"></app-alert-img-full>
-<!-- <app-confirm-dialog></app-confirm-dialog> -->
 <div class="bg-home min-h-screen">
     <app-navbar></app-navbar> 
     <!-- ปุ่มเพิ่มกิจกรรม -->
     <div class=" text-center ">
-        <button class=" px-16 py-4 text-lg rounded-md text-white mt-6 mb-6 bg-bt bt-shadow" routerLink="/form-post" >เพิ่มกิจกรรม</button>
-        <!-- <span *ngIf="showPopup">
-            <app-new-activity [is_update]="is_update" (show)="togglePopup()" [data]="select_activity" (alert)="showAlert()"></app-new-activity>
-        </span> -->
+        <button class="btn text-lg text-white px-8 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-8 bg-bt bt-shadow" routerLink="/form-post" >เพิ่มกิจกรรม</button>
     </div>
     <div *ngFor="let activity of activity_join;let i = index">
         <app-card-join-activity [activity]="activity" (updated)="loadActivity()" (update)="updateActivity($event)"

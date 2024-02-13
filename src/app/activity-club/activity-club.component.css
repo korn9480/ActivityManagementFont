@@ -1,31 +1,4 @@
 
-/* activity */
-  /* .background{
-    padding-bottom: 24px;
-    background-color: rgba(223, 226, 232, 1);
-  }
-  .background-activity{
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 24px;
-    background-color: #ffffff;
-  }
-  .heading-activity {
-    display: flex;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-  .activity-club {
-    margin-right: auto;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  .year {
-    margin-left: auto;
-    font-size: 18px;
-    font-weight: bold;
-  } */
-
 .bg{
   background-color:rgb(232, 226, 226);
 }
@@ -47,11 +20,8 @@
   width: 484px;
   border: 2px solid #ddd;
   overflow: hidden;
-  /* margin-right: 24px; */
 }
 .card-image{ 
-  /* height: 290px;
-  margin-right: 200px; */
   border: 2px solid #ddd;
   
 }
@@ -75,4 +45,23 @@
   background-color: #000;
   margin-top: 24px;
   margin-bottom: 24px;
+}
+
+@media only screen and (max-width:1280px){
+  .feed-background{
+    max-width: 70%;
+  }
+}
+@media only screen and (max-width:1024px){
+  .feed-background{
+    max-width: 80%;
+  }
+}
+@media only screen and (max-width:640px){
+  .grid-cols-3{
+    grid-template-columns: 1fr;
+  }
+  .gap-x-6 {
+    gap: 8px 0;
+  }
 }

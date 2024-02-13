@@ -1,13 +1,11 @@
-<!-- <p>card-join-activity works!</p> -->
+
 <div class="background bg">
     <div class="feed-background">
         <div class="post">
             <div class="heading mb-4">
                 <div class="post-profile"> 
                     <img class="icon-profile" src="../../assets/image/profile.png" alt="Post Profile">
-                    <div class="post-user-name">{{activity.addBy.first_name}} {{activity.addBy.last_name}}</div>
-                    <!-- <img class="hamburger" (click)="togglePopup()" src="../../assets/image/Group.png" alt="Hamburger-Dot" height="20px"> -->
-                    
+                    <div class="post-user-name">{{activity.addBy.first_name}} {{activity.addBy.last_name}}</div>                    
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
                     </button>
@@ -26,43 +24,25 @@
                         </button>
                     </mat-menu>
                 </div>
-                <div class="">
-                    <!-- <div class="post-name-activity">ชื่อกิจกรรม</div> -->
-                    <div >{{activity.nameActivity}}</div>
-                    <div class="">
-                        <!-- <div class="post-date">วันที่</div> -->
+
+                <div>
+                    <div class="mb-1">{{activity.nameActivity}}</div>
+                    <div>
                         <span class="post-date">
-                            <span >วันที่ {{activity.dateTimeStart|thaiDate}}</span>
-                            <span *ngIf="activity.dateTimeEnd"> ถึง </span>
+                            <span>วันที่ {{activity.dateTimeStart|thaiDate}}</span>
+                            <span class="ml-1 mr-1" *ngIf="activity.dateTimeEnd">ถึง</span>
                             <span *ngIf="activity.dateTimeEnd">{{activity.dateTimeEnd|thaiDate}}</span>
                         </span>
                         <span>
-                            <span>เวลา {{activity.dateTimeStart|thaiTime}} ถึง {{activity.dateTimeEnd|thaiTime}} </span>
+                            <span class="ml-4 mr-4">เวลา {{activity.dateTimeStart|thaiTime}} ถึง {{activity.dateTimeEnd|thaiTime}} </span>
                         </span>
-                        <!-- <span class="post-location">สถานที่</span> -->
-                        <span class="post-location">สถานที่                         {{activity.location}}</span>
-                        <!-- <a href="http://localhost:4200/join-activity">pp</a> -->
+                        <span class="post-location">สถานที่ {{activity.location}}</span>
                     </div>
                     <div class="post-detail" *ngIf="activity.details">{{activity.details}}</div>
-                    <!-- <div >
-                        <span *ngIf="status">
-                            ลงชื่อเช้าร่วมกิจกรรม
-                        </span>
-                        <span *ngIf="!status">
-                            หมดระยะเวลาเข้าร่วมกิจกรรม
-                        </span>
-                        <a *ngIf="status" class="post-limk text-blue-600 ml-2" [routerLink]="'/join-activity/'+activity.id">กดลิ้งค์</a>
-                    </div> -->
-
-                    </div>
-
-            </div>
-            <img src="" routerLink="/name_path">
-            <div class="position-image" >
-                <img class="post-image" *ngFor="let i of activity.asset" [src]="localhost+i.path">
-                <p></p>
-                <!-- <img class="post-image" src="../../assets/image/bg.png" alt="Post Image 1">
-                <img class="post-image" id="image-2" src="../../assets/image/bg.png" alt="Post Image 2"> -->
+                </div>
+                <div class="grid gap-4 grid-cols-3 w-full h-full mt-4">
+                    <img *ngFor="let i of activity.asset" [src]="localhost+i.path">
+                </div>
             </div>
         </div>
     </div>

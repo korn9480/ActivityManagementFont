@@ -1,3 +1,58 @@
 .custom-positionn{
     object-position: 60% -3px;
 }
+/* .desktop-navbar{
+    display: none;
+} */
+.mobile-navbar{
+    display: none;
+}
+
+@media only screen and (max-width:1280px){
+    .mobile-m{
+        margin: 0 15%;
+    }
+    .mobile-navbar{
+        display: none;
+    }
+    .desktop-navbar{
+        margin-left: 128px;
+        margin-right: 128px;
+    }
+}
+
+@media only screen and (max-width:1024px){
+    .pr-8{
+        padding-right: 16px;
+    }
+    .mobile-m{
+        margin: 0 10%;
+    }
+    .desktop-navbar{
+        margin-left: 88px;
+        margin-right: 88px;
+    }
+    
+}
+
+@media (min-width:0px) and (max-width:640px){
+    .mobile-m{
+        margin: 0 5%;
+    }
+    .text-3xl{
+        font-size: 24px;
+    }
+    .text-xl{
+        font-size: 18px;
+    }
+    /* navbar */
+    .desktop-navbar{
+        display: none;
+    }
+    .mobile-navbar{
+        display: flex;
+    }
+    .nav-mobile-p li{
+        padding: 12px 5%;
+    }
+}

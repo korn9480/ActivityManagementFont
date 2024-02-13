@@ -1,80 +1,91 @@
-<app-navbar></app-navbar>
-<!-- <div class=""> -->
-    <form class="p-4 pr-16 pl-16 border-2 w-3/5 mx-auto mt-4" (submit)="addActivity()">
-        <h1 class="mb-4 line-buttom text-lg">เพิ่มกิจกรรม</h1>
-        <div class="grid grid-cols-2 justify-center gap-x-8 gap-y-6">
-            <!-- <div class="group-box"> -->
+<div class="bg min-h-screen">
+    <app-navbar></app-navbar>
+        <form class="bg-white-home pt-4 pb-4 pr-8 pl-8 border-1 width mx-auto mt-6 width-white  rounded-lg" (submit)="addActivity()">
+            <h1 class="mb-4 line-buttom text-xl pb-1">เพิ่มกิจกรรม</h1>
+    
+            <div class="grid grid-cols-2 justify-center gap-x-4 gap-y-2 grid-m">
+    
                 <div class="box-input" [ngClass]="{'error':warn.nameActivity}">
                     <label class="text-lg" for="name-activity">ชื่อกิจกรรม</label><br>
-                    <input class="border-2 border-black w-full p-1 mt-2" type="text" id="name-activity" name="name-activity" [(ngModel)]="form.nameActivity">
-                    <!-- <div class="error-message"></div> -->
+                    <input class="border-2 border-black w-full p-1 mt-2 rounded-md" type="text" id="name-activity" name="name-activity" [(ngModel)]="form.nameActivity">
                 </div>
-                <div class="box-input">
+    
+                <div class="box-input date-1-col">
                     <label class="text-lg">เริ่มวันที่ - ถึงวันที่</label><br>
-                    <div class="grid grid-cols-2 gap-2 relative mt-2" >
-                        <div class="tag-input align-center border-2 p-1 focus:outline-none" [ngClass]="{'tag-input--warn':warn.dateTimeStart}">
+                    <div class="grid grid-cols-2 gap-2 relative mt-2 grid-m-date">
+    
+                        <div class="tag-input align-center border-2 p-1 focus:outline-none rounded-md" [ngClass]="{'tag-input--warn':warn.dateTimeStart}">
                             <input id="date-start" name="date-start" (change)="dateStart()" type="datetime-local" class="outline-none" required [(ngModel)]="form.dateTimeStart"> 
-                            <label id="date-start">{{form.dateTimeStart|thaiDateTime}}</label>
+                            <label class="" id="date-start">{{form.dateTimeStart|thaiDateTime}}</label>
                         </div>
-                        <div class="tag-input align-center border-2 border-black p-1  focus:outline-none" [ngClass]="{'tag-input--warn':warn.dateTimeEnd}">
+    
+                        <div class="tag-input align-center border-2 border-black p-1 focus:outline-none rounded-md" [ngClass]="{'tag-input--warn':warn.dateTimeEnd}">
                             <input id="date-end" name="date-end" type="datetime-local" class="outline-none" required [(ngModel)]="form.dateTimeEnd">
                             <label id="date-end">{{form.dateTimeEnd|thaiDateTime}}</label>
                         </div>
+    
                     </div>
-                    <!-- <div class="error-message">ควรมีภาษาอังกฤษ พิมพ์เล็กพิมพ์ใหญ่</div> -->
                 </div>
+    
                 <div class="box-input" [ngClass]="{'error':warn.location}">
                     <label class="text-lg" for="name-activity">สถานที่</label><br>
-                    <input class="border-2 border-black w-full p-1 mt-2" type="text" id="location" name="location" required [(ngModel)]="form.location">
-                    <!-- <div class="error-message">ควรมีภาษาอังกฤษ พิมพ์เล็กพิมพ์ใหญ่</div> -->
+                    <input class="border-2 border-black w-full p-1 mt-2 rounded-md" type="text" id="location" name="location" required [(ngModel)]="form.location">
+    
                 </div>
-            <!-- </div> -->
+    
                 <div class="box-input" [ngClass]="{'error':warn.participants}">
                     <label class="text-lg" for="participants">จำนวนผู้เข้าร่วม</label><br>
-                    <input class="border-2 border-black w-full p-1 mt-2" type="number" id="participants" name="participants" required [(ngModel)]="form.participants">
-                    <!-- <div class="error-message">ควรมีภาษาอังกฤษ พิมพ์เล็กพิมพ์ใหญ่</div> -->
-                </div>
-        </div>
-        <div class="text-lg mt-6">
-            <div>รายละเอียด</div>
-            <textarea [(ngModel)]="form.details" name="datails" class="border-2 border-black w-full p-1 mt-2"></textarea>
-        </div>
-        <div class="relative flex items-center justify-center w-full mt-6">
-            <label *ngIf="form.asset.length<=0 && urlFiles.length<=0" for="up-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                    </svg>
-                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">อัพรูปภาพ</span></p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX. 800x400px)</p>
-                </div>
-            </label>
-            <div *ngIf="form.asset.length>0 || urlFiles.length>0">
-                <label for="up-file" class="absolute top-0 left-0 z-10">
-                    <div class="text-sm text-white px-5 py-2 rounded-md cursor-pointer mx-auto bg-bt bt-shadow">เพิ่มรูป</div>
-                </label>
-                  
-                <div class="grid grid-cols-3 gap-2">
-                    <div class="relative" *ngFor="let a of form.asset;let i = index">
-                        <span class="absolute tob-0 right-2" (click)="removePath(i)">
-                            <mat-icon aria-hidden="false" aria-label="close icon" fontIcon="close" color=""></mat-icon>
-                        </span>
-                        <img  [src]="localhost + a.path">
-                    </div>
-                    <div class="relative" *ngFor="let img of urlFiles;let i = index" >
-                        <span class="absolute tob-0 right-2" (click)="removeUrlfile(i)">
-                            <mat-icon aria-hidden="false" aria-label="close icon" fontIcon="close" color=""></mat-icon>
-                        </span>
-                        <img [src]="img">
-                    </div>
+                    <input class="border-2 border-black w-full p-1 mt-2 rounded-md" type="number" id="participants" name="participants" required [(ngModel)]="form.participants">
+    
                 </div>
             </div>
-            <input id="up-file" type="file" class="hidden" multiple accept="image/*" (change)="onSelectFiles($event)" name="up-file"/>
-
-        </div> 
-        <div class="mt-4 w-full flex justify-center">
-            <button type="submit" mat-raised-button color="primary">โพสต์</button>
-        </div>
-    </form>
     
-<!-- </div> -->
+            <div class="text-lg mt-2">
+                <div>รายละเอียด</div>
+                <textarea [(ngModel)]="form.details" name="datails" class="border-2 border-black w-full p-1 mt-2 rounded-md"></textarea>
+            </div>
+    
+            <div class="relative flex items-center justify-center w-full mt-4">
+                <label *ngIf="form.asset.length<=0 && urlFiles.length<=0" for="up-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">อัพรูปภาพ</span></p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX. 800x400px)</p>
+                    </div>
+                </label>
+                <div *ngIf="form.asset.length>0 || urlFiles.length>0">
+                    <label for="up-file" class="absolute top-0 left-0 z-10">
+                        <div class="ml-1 mt-1  text-lg text-back px-2 py-1 rounded-sm cursor-pointer mx-auto bg-bt-white bt-add-m ">เพิ่ม</div>
+                    </label>
+                      
+                    <div class="grid grid-cols-3 gap-2 border-dotted border-2 border-gray-300">
+                        <div class="relative" *ngFor="let a of form.asset;let i = index">
+                            <span class="absolute tob-0 right-2" (click)="removePath(i)">
+                                <mat-icon aria-hidden="false" aria-label="close icon" fontIcon="close"></mat-icon>
+                            </span>
+                            <img  [src]="localhost + a.path" alt="Localhost Path" >
+                        </div>
+                        <div class="relative" *ngFor="let img of urlFiles;let i = index" >
+                            <span class="absolute tob-0 right-2 rounded-full h-6 bg-white mt-1" (click)="removeUrlfile(i)">
+                                <mat-icon aria-hidden="false" aria-label="close icon" fontIcon="close"></mat-icon>
+                            </span>
+                            <img [src]="img" alt="Src Image">
+                        </div>
+                    </div>
+
+                </div>
+    
+                <input id="up-file" type="file" class="hidden" multiple accept="image/*" (change)="onSelectFiles($event)" name="up-file"/>
+    
+            </div> 
+    
+            <div class="w-full flex justify-center">
+                <button class="btn text-lg text-white px-6 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-2 bg-bt bt-shadow"
+                        type="submit">โพสต์</button>
+            </div>
+    
+        </form>
+</div>
+    
