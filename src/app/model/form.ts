@@ -48,6 +48,6 @@ export class FormRegister {
     phone: string = "";
     religion: string = "";
     blood_group: string = "";
-    allergics : FormAllergy[] = [];
+    allergies : FormAllergy[] = [];
     roleId : number = 1
   }

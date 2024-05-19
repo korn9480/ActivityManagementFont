@@ -14,7 +14,7 @@ export interface ActivityModel{
 }
 export interface TypeActivityModel{
     id : number
-    name_type:string
+    nameType:string
 }
 export interface AddByModel{
     id:number
@@ -43,7 +43,7 @@ export interface RegisterModel {
     phone: string ;
     religion: string ;
     blood_group: string ;
-    allergics : AllergyModel[];
+    allergies : AllergyModel[];
     roleId : number
 }
 export interface ListParticipants{

@@ -25,17 +25,16 @@ export class ProfileComponent implements OnInit {
   showAlert: boolean = false;
 
   ngOnInit(): void {
-    this.Api.get_profile().subscribe((data:any)=>{
+    this.Api.get_profile().subscribe((data:RegisterModel)=>{
       this.form = data
-      console.log(data)
       this.form.first_name =this.form.prefix +"" + this.form.first_name 
 
-      if (data.allergics==undefined){
-        this.form.allergics = []
+      if (data.allergies==undefined){
+        this.form.allergies = []
       }
       else{
-        this.form.allergics.forEach((a:FormAllergy)=>{
-          this.allergics = a.allergy + " "
+        this.form.allergies.forEach((a:FormAllergy)=>{
+          this.allergics += a.allergy + " "
         })
       }
       if (data.profile){
@@ -101,7 +100,7 @@ export class ProfileComponent implements OnInit {
       let array = this.allergics.split(' ').filter(word=>word.trim()!=="" && word.trim()!==",")
       for(let a of array){
         let data :AllergyModel ={allergy:a,id:0,code_student:this.cookie.get_code_student()}
-        this.form.allergics.push(data)
+        this.form.allergies.push(data)
       }
       if (typeof(this.form.profile) != "string"){
         this.Api.upload_profile(this.form.profile).subscribe((data:any)=>{

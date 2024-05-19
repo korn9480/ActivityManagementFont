@@ -75,10 +75,21 @@ export class CodeYear extends ThaiTimeService implements PipeTransform{
     transform(value: AllergyModel[] ):string {
       // 64021700
       let text = ""
+      console.log(value)
       for (let i of value){
-        text += i.allergy
+        text += i.allergy + " "
       }
       text = (text =="")? "-":text
       return text
     }
   }
+
+  @Pipe({
+    name:'RepFacMamjor'
+    })
+    //
+    export class RepFacMamjor implements PipeTransform{
+      transform(value: string ):string {
+        return value.replace('คณะ','').replace('สาขา','')
+      }
+    }

@@ -3,7 +3,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ApiUser } from '../API/api-user';
-import { AllergyModel, ListParticipants, RegisterModel } from '../model/model';
+import { ActivityModel, AllergyModel, ListParticipants, RegisterModel } from '../model/model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,8 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ShowListAdminComponent implements OnInit {
   
   list_name:ListParticipants[] = [] as ListParticipants[]
-  
-  nameactivity = "newyear"
+  activity!:ActivityModel
+  placeholder="ค้นหาชื่อ,รหัสนิสิต,คณะ"
   textSearch =""
   isShowAllergics:boolean = false
   constructor(private api : ApiUser,private route:ActivatedRoute){
@@ -31,17 +31,30 @@ export class ShowListAdminComponent implements OnInit {
       let id = 0
       this.route.params.subscribe((data:any)=>{
         id = data.idActivity
-        this.nameactivity = data.nameActivity
+        // this.nameactivity = data.nameActivity
+      })
+      this.api.get_activity_one(id).subscribe((data:ActivityModel)=>{
+        this.activity = data
+        console.log(this.activity )
       })
       this.api.get_list_students(id).subscribe((data:Array<ListParticipants>)=>{
         this.list_name = data
+        console.log(data)
       })
   }
-  isShowName(d:RegisterModel){
+  isShowDataOfClub(d:RegisterModel){
     if (d.code_student.includes(this.textSearch) || 
       d.first_name.includes(this.textSearch) || 
       d.last_name.includes(this.textSearch) || 
       d.faculty.includes(this.textSearch)){
+      return true
+    }
+    return false
+  }
+  isShowDataOfUser(d:RegisterModel){
+    if (d.nick_name.includes(this.textSearch) || 
+      d.faculty.includes(this.textSearch) || 
+      d.major.includes(this.textSearch) ){
       return true
     }
     return false

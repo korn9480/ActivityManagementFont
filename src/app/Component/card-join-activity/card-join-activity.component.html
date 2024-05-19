@@ -27,21 +27,25 @@
 
                 <div>
                     <div class="mb-1">{{activity.nameActivity}}</div>
-                    <div>
-                        <span class="post-date">
-                            <span>วันที่ {{activity.dateTimeStart|thaiDate}}</span>
-                            <span class="ml-1 mr-1" *ngIf="activity.dateTimeEnd">ถึง</span>
-                            <span *ngIf="activity.dateTimeEnd">{{activity.dateTimeEnd|thaiDate}}</span>
-                        </span>
-                        <span>
-                            <span class="ml-4 mr-4">เวลา {{activity.dateTimeStart|thaiTime}} ถึง {{activity.dateTimeEnd|thaiTime}} </span>
-                        </span>
-                        <span class="post-location">สถานที่ {{activity.location}}</span>
-                    </div>
+                        <div>
+                            <span class="post-date">
+                                <span>วันที่ {{activity.dateTimeStart|thaiDate}}</span>
+                                <span class="ml-1 mr-1" *ngIf="activity.dateTimeEnd">ถึง</span>
+                                <span *ngIf="activity.dateTimeEnd">{{activity.dateTimeEnd|thaiDate}}</span>
+                            </span>
+                            <span>
+                                <span class="ml-4 mr-4">เวลา {{activity.dateTimeStart|thaiTime}} ถึง {{activity.dateTimeEnd|thaiTime}} </span>
+                            </span>
+                            <span class="post-location">สถานที่ {{activity.location}}</span>
+                        </div>
                     <div class="post-detail" *ngIf="activity.details">{{activity.details}}</div>
                 </div>
-                <div class="grid gap-4 grid-cols-3 w-full h-full mt-4">
-                    <img *ngFor="let i of activity.asset" [src]="localhost+i.path">
+
+            </div>
+            <img src="" routerLink="/name_path">
+            <div class="grid grid-cols-3 gap-2">
+                <div class="box-image" *ngFor="let i of activity.asset" >
+                    <img class="img-card" [src]="localhost+i.path">
                 </div>
             </div>
         </div>

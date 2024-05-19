@@ -34,8 +34,7 @@ export class LoginUserComponent {
            password : this.formLogin.get('password')?.value}).subscribe(
         (next:any) => {    
       if (next.accessToken){
-            console.log(next)
-            this.cookie.set_data(next.code_student,next.profile,next.prefix)
+            this.cookie.set_data(next.code_student,next.profile,next.prefix,next.role)
             this.cookie.set_token(next.accessToken)
             this.router.navigate(['/home']);
           }

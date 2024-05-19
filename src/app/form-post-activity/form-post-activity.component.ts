@@ -14,7 +14,7 @@ import { Cookie } from '../service/cookie';
 export class FormPostActivityComponent {
   constructor(private api: ApiUser,private cookie:Cookie,private route:ActivatedRoute,private router : Router){
   }
-  TYPE_ACTIVTY:'user'|'admin'='admin'
+  TYPE_ACTIVTY:'user'|'admin'='user'
   @Input('is_update') is_update:boolean = false
   @Output('succeed') succeed = new EventEmitter()
   @Output('show') showPopup = new EventEmitter();
@@ -39,9 +39,17 @@ export class FormPostActivityComponent {
   resetForm(){
     this.form = new FormNewActiviy(this.TYPE_ACTIVTY,this.cookie.get_code_student())
   }
-  
+  getMyRole(){
+    if (this.cookie.get_role() === "admin"){
+      this.TYPE_ACTIVTY = "admin"
+    }
+    else {
+      this.TYPE_ACTIVTY = "user"
+    }
+  }
   ngOnInit(): void {
     let id:number = 0
+    this.getMyRole()
     this.route.params.forEach((data:any)=>{
       id = data.idActivity
     })

@@ -11,22 +11,27 @@ import { Cookie } from '../service/cookie';
   styleUrls: ['./view-data-activyty.component.css']
 })
 export class ViewDataActivytyComponent implements OnInit {
-  constructor(private api:ApiUser,private route:ActivatedRoute,private cookie: Cookie){}
-  data! : ActivityModel
+  constructor(private api:ApiUser,private route:ActivatedRoute,public cookie: Cookie){}
+  data !: ActivityModel 
   localhost = environment.localhost_back + '/asset/'
-  mycode = this.cookie.get_code_student()
   ngOnInit(): void {
     let idActivity = 0
     this.route.params.subscribe((p:any)=>{
       idActivity = p.idActivity
     })
-    this.api.get_activity_one(idActivity).subscribe((data:any)=>{
-      this.data = data
+    this.api.get_activity_one(idActivity).subscribe((a:ActivityModel)=>{
+      this.data = a
+      console.log(this.data)
     })
   }
   isDateStartWithDateEndEqual(){
     let start = new Date(this.data.dateTimeStart)
     let end = new Date(this.data.dateTimeEnd)
     return start.toDateString() == end.toDateString()
+  }
+  isShowKebab():boolean{
+    let a = this.cookie.get_role() === 'admin'
+    let b = this.data.addBy.code_student == this.cookie.get_code_student()
+    return a || b
   }
 }

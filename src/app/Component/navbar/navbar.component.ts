@@ -3,6 +3,7 @@ import { Cookie } from 'src/app/service/cookie';
 import { FormRegister } from 'src/app/model/form';
 import { RegisterModel } from 'src/app/model/model';
 import { environment } from 'src/environments/environment.development';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
-  constructor(private cookie:Cookie){}
+  constructor(private cookie:Cookie,private router : Router){}
 
   @Input('profile') profileImageSrc: string = '../../assets/image/profile.png';
   
@@ -18,7 +19,7 @@ export class NavbarComponent implements OnInit{
   form! : RegisterModel|FormRegister
   urlFile:any
   isDropdownOpen: boolean = false;
-  menuMobile = false;
+  menuMobile = false
 
   ngOnInit(): void {
     this.profileImageSrc = this.cookie.get_profile()
@@ -44,8 +45,12 @@ export class NavbarComponent implements OnInit{
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  logout(){
+    this.cookie.logout()
+    this.router.navigate(['/login'])
+  }
+
   clickNavbar(){
     this.menuMobile = !this.menuMobile
   }
-
 }

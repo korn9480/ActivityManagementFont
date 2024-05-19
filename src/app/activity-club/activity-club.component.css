@@ -1,32 +1,22 @@
-
 .bg{
   background-color:rgb(232, 226, 226);
 }
 
 /* crad */
 .card-container {
+  height: 360px;
   display: grid;
-  flex-direction: row;
-  justify-content: center;
-  /* border: 1px solid; */
-}
-.card-1,.card-2{
-  width: 484px;
-  border: 2px solid #ddd;
-  overflow: hidden;
-  margin-right: 24px;
-}
-.card-3 {
-  width: 484px;
-  border: 2px solid #ddd;
-  overflow: hidden;
+  grid-template-rows: 200px auto;
 }
 .card-image{ 
+  /* height: 200px; */
+  width: 100%;
+
   border: 2px solid #ddd;
   
 }
 .card-body {
-  padding: 16px;
+  padding: 8px;
 }
 .card-body div {
   color: #333;
@@ -37,6 +27,9 @@
 .amount-crad {  
   display: inline-block;
   margin-left: 59%;
+}
+.photer-ac{
+  z-index: 0;
 }
 .line {
   position: relative;
@@ -56,6 +49,9 @@
   .feed-background{
     max-width: 80%;
   }
+  .head-content::before{
+    content: "กิจกรรมของ";
+  }
 }
 @media only screen and (max-width:640px){
   .grid-cols-3{
@@ -63,5 +59,24 @@
   }
   .gap-x-6 {
     gap: 8px 0;
+  }
+  .w-content{
+    width: 80%;
+  }
+}
+@media only screen and (max-width:376px) {
+  .grid-cols-3{
+    grid-template-columns: auto;
+    row-gap: 32px;
+  }
+  .text-xl{
+    font-size: 18px;
+  }
+  .year-moblile{
+    margin-bottom: 8px;
+  }
+
+  .w-content{
+    width: 95%;
   }
 }

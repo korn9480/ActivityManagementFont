@@ -9,3 +9,11 @@
     --tw-shadow:none;
     /* position: relative; */
 }
+@media only screen and (max-width:376px) {
+    .mobile-enter{
+        display: block;
+    }
+    .m-join{
+        padding: 48px 48px;
+    }
+}

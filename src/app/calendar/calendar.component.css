@@ -7,10 +7,13 @@ p{
     z-index: 4;
     /* position: sticky; */
 }
-/* .fc .fc-toolbar .fc-header-toolbar{
-    z-index: -1;
-} */
 .fc-toolbar-chunk{
     z-index: -2;
     /* color: purple; */
+}
+
+@media screen and (max-width:376px) {
+    .h-mobile{
+        width: 95%;
+    }
 }

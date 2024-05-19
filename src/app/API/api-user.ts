@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Cookie } from '../service/cookie';
-import { ActivityModel, AssetModel, ListParticipants } from '../model/model';
+import { ActivityModel, AssetModel, ListParticipants, RegisterModel } from '../model/model';
 import { FormAsset, FormRegister } from '../model/form';
 import { environment } from 'src/environments/environment.development';
 @Injectable({
@@ -33,7 +33,7 @@ export class ApiUser{
     }
     // api user
     get_profile(){
-        return this.http.get(this.localhost+"/users/profile/"+this.cookie.get_code_student(),this.get_header())
+        return this.http.get<RegisterModel>(this.localhost+"/users/profile/"+this.cookie.get_code_student(),this.get_header())
     }
     upload_profile(file:any){
         let formData = new FormData()
@@ -63,6 +63,7 @@ export class ApiUser{
     }
     get_activity_club_by_year(year:string){
         // year = พ.ศ. เปลี่ยงเป็น ค.ศ.
+        console.log(+year)
         return this.http.get<ActivityModel[]>(this.localhost+"/activity/club/"+(+year - 543),this.get_header())
     }
     get_activity_user_open_join(){
