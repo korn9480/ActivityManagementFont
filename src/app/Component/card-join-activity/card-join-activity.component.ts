@@ -44,12 +44,29 @@ export class CardJoinActivityComponent implements OnInit{
       this.status = true
     }
     this.isDateStartWithDateEndEqual()
+    this.loadProfile()
   }
   togglePopup() {
     this.showPopup = !this.showPopup;
   }
   editPost() {
     //
+  }
+  loadProfile(){
+    let profileImageSrc = this.activity.addBy.profile
+    if (this.activity.addBy.profile !=null && this.activity.addBy.profile !=undefined){
+      this.activity.addBy.profile = environment.localhost_back+"/asset/" + profileImageSrc
+    }
+    else {
+      console.log(profileImageSrc)
+      let profix = this.cookie.get_prefix()
+      if (profix=="นาย"){
+        this.activity.addBy.profile = '../../assets/image/profile.png';
+      }
+      else if (profix=="นางสาว"){
+        this.activity.addBy.profile = '../../assets/image/profile-girl.png'
+      }
+    }
   }
   alertConfirmCancel(){
     let dialogRef= this.dialog.open(ConfirmDialogComponent,{
@@ -65,7 +82,7 @@ export class CardJoinActivityComponent implements OnInit{
     this.alertConfirmCancel().subscribe(result=>{
       if (this.isConfirm(result)){
         this.api.delete_activity(this.activity.id).subscribe(data=>{
-          
+          this.updated.emit()
         })
       }
     })

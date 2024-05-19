@@ -4,6 +4,9 @@
 .mobile-navbar{
     display: none;
 }
+.mobile-menu{
+    display: none;
+}
 
 @media only screen and (max-width:1280px){
     .mobile-m{
@@ -51,5 +54,8 @@
     }
     .nav-mobile-p li{
         padding: 12px 5%;
+    }
+    .mobile-menu{
+        display: block;
     }
 }

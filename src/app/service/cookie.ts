@@ -11,7 +11,8 @@ export class Cookie {
     prefix: 'perfix',
     token: 'token',
     role_web: 'role_web',
-    role_serve : 'role_serve'
+    role_serve : 'role_serve',
+    isPageBefor:'page_join'
   }
   private getKeyItem(key: string): string {
     let value = localStorage.getItem(key);
@@ -35,6 +36,7 @@ export class Cookie {
   }
   set_profile(profile:string){
     localStorage.setItem(this.keyData.profile,profile)
+    console.log(this.get_profile())
   }
 
   set_token(token:string){
@@ -66,5 +68,12 @@ export class Cookie {
   }
   logout(){
     localStorage.clear()
+  }
+
+  set_page_befor(path:string){
+    localStorage.setItem(this.keyData.isPageBefor,path)
+  }
+  get_page_befor(){
+    return localStorage.getItem(this.keyData.isPageBefor)
   }
 }

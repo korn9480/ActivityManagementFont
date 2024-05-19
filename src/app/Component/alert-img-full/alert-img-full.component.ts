@@ -1,13 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-alert-img-full',
+  // selector: 'app-alert-img-full',
   templateUrl: './alert-img-full.component.html',
   styleUrls: ['./alert-img-full.component.css']
 })
 export class AlertImgFullComponent {
-  @Input('is_show') is_display_alert :boolean = false
+  constructor(public dialogRef: MatDialogRef<AlertImgFullComponent>,
+    ){}
   closeAlert(){
-    this.is_display_alert = false
+    this.dialogRef.close()
   }
 }

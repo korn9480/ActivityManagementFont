@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment.development';
 export class ProfileComponent implements OnInit {
   constructor(private router :Router , private Api: ApiUser,private cookie:Cookie) {}
   
-  form! : RegisterModel|FormRegister
+  form! : RegisterModel
   localhost = environment.localhost_back+"/asset/"
   selectedReligion: any;
   customReligion: any;
@@ -28,7 +28,6 @@ export class ProfileComponent implements OnInit {
     this.Api.get_profile().subscribe((data:RegisterModel)=>{
       this.form = data
       this.form.first_name =this.form.prefix +"" + this.form.first_name 
-
       if (data.allergies==undefined){
         this.form.allergies = []
       }
@@ -46,6 +45,7 @@ export class ProfileComponent implements OnInit {
     this.showAlert =true
     setTimeout(() => {
       this.showAlert = false;
+      this.refresh()
     }, 3000);
   }
 
@@ -98,16 +98,17 @@ export class ProfileComponent implements OnInit {
       this.error_code_student = false;
       this.allergics = this.allergics.replace(/,/g," ")
       let array = this.allergics.split(' ').filter(word=>word.trim()!=="" && word.trim()!==",")
+      this.form.allergies = []
       for(let a of array){
-        let data :AllergyModel ={allergy:a,id:0,code_student:this.cookie.get_code_student()}
+        let data :AllergyModel = {allergy:a,code_student:this.cookie.get_code_student()}
         this.form.allergies.push(data)
       }
       if (typeof(this.form.profile) != "string"){
         this.Api.upload_profile(this.form.profile).subscribe((data:any)=>{
-          this.profile_navbar = this.urlFile
-          this.cookie.set_profile(this.urlFile)
+          this.cookie.set_profile(environment.localhost_back+"/asset/"+data)
         })
       }
+      console.log("-------------------")
       this.Api.update_user(this.form).subscribe((data:any)=>{
         this.showAlertSubmit()
         },(r_error:any)=>{
@@ -132,6 +133,9 @@ export class ProfileComponent implements OnInit {
         }
       )
     }
+  }
+  refresh(){
+    window.location.reload()
   }
 
   onSelectFiles(event:any){

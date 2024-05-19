@@ -4,7 +4,7 @@
         <div class="post">
             <div class="heading mb-4">
                 <div class="post-profile"> 
-                    <img class="icon-profile" src="../../assets/image/profile.png" alt="Post Profile">
+                    <img class="icon-profile" [src]="activity.addBy.profile" alt="Post Profile">
                     <div class="post-user-name">{{activity.addBy.first_name}} {{activity.addBy.last_name}}</div>                    
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
@@ -38,6 +38,7 @@
                             </span>
                             <span class="post-location">สถานที่ {{activity.location}}</span>
                         </div>
+                        <div>{{activity.number_pp}}/{{activity.participants}} คน</div>
                     <div class="post-detail" *ngIf="activity.details">{{activity.details}}</div>
                 </div>
 

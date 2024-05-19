@@ -6,12 +6,12 @@
             <div class="grid grid-cols-2 justify-center gap-x-4 gap-y-2 grid-m">
     
                 <div class="box-input" [ngClass]="{'error':warn.nameActivity}">
-                    <label class="text-lg" for="name-activity">ชื่อกิจกรรม</label><br>
+                    <label class="text-lg" for="name-activity">ชื่อกิจกรรม <span class="text-2xl text-star text-red-500">*</span></label><br>
                     <input class="border-2 border-black w-full p-1 mt-2 rounded-md" type="text" id="name-activity" name="name-activity" [(ngModel)]="form.nameActivity">
                 </div>
     
                 <div class="box-input date-1-col">
-                    <label class="text-lg">เริ่มวันที่ - ถึงวันที่</label><br>
+                    <label class="text-lg">เริ่มวันที่ - ถึงวันที่ <span class="text-2xl text-star text-red-500">*</span></label><br>
                     <div class="grid grid-cols-2 gap-2 relative mt-2 grid-m-date">
     
                         <div class="tag-input align-center border-2 p-1 focus:outline-none rounded-md" [ngClass]="{'tag-input--warn':warn.dateTimeStart}">
@@ -28,13 +28,13 @@
                 </div>
     
                 <div class="box-input" [ngClass]="{'error':warn.location}">
-                    <label class="text-lg" for="name-activity">สถานที่</label><br>
+                    <label class="text-lg" for="name-activity">สถานที่ <span class="text-2xl text-star text-red-500">*</span></label><br>
                     <input class="border-2 border-black w-full p-1 mt-2 rounded-md" type="text" id="location" name="location" required [(ngModel)]="form.location">
     
                 </div>
     
                 <div class="box-input" [ngClass]="{'error':warn.participants}">
-                    <label class="text-lg" for="participants">จำนวนผู้เข้าร่วม</label><br>
+                    <label class="text-lg" for="participants">จำนวนผู้เข้าร่วม <span class="text-2xl text-star text-red-500">*</span></label><br>
                     <input class="border-2 border-black w-full p-1 mt-2 rounded-md" type="number" id="participants" name="participants" required [(ngModel)]="form.participants">
     
                 </div>
@@ -56,9 +56,6 @@
                     </div>
                 </label>
                 <div *ngIf="form.asset.length>0 || urlFiles.length>0">
-                    <label for="up-file" class="absolute top-0 left-0 z-10">
-                        <div class="ml-1 mt-1  text-lg text-back px-2 py-1 rounded-sm cursor-pointer mx-auto bg-bt-white bt-add-m ">เพิ่ม</div>
-                    </label>
                       
                     <div class="grid grid-cols-3 gap-2 border-dotted border-2 border-gray-300">
                         <div class="relative" *ngFor="let a of form.asset;let i = index">
@@ -74,6 +71,9 @@
                             <img [src]="img" alt="Src Image">
                         </div>
                     </div>
+                    <label for="up-file" class="absolute top-0 left-0">
+                        <div class="ml-1 mt-1  text-lg text-back px-2 py-1 rounded-sm cursor-pointer mx-auto bg-bt-white bt-add-m ">เพิ่ม</div>
+                    </label>
 
                 </div>
     
@@ -83,7 +83,7 @@
     
             <div class="w-full flex justify-center">
                 <button class="btn text-lg text-white px-6 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-2 bg-bt bt-shadow"
-                        type="submit">โพสต์</button>
+                        type="submit" id="btn-post">โพสต์</button>
             </div>
     
         </form>

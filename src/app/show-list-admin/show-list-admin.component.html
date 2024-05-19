@@ -3,18 +3,26 @@
     <div class=" w-content mx-auto bg-white shadow-md p-6" *ngIf="activity!=undefined">
         <div class="mr-auto text-xl"><b>รายชื่อผู้เข้าร่วม : </b> <br class="enter">{{activity.nameActivity}}</div>
         <div class="line"></div>
-        <div class="flex gap-4">
-          <input  (keyup)="applyFilter($event)" [placeholder]="placeholder" class="p-1 outline-none border-2 border-black" name="search" [(ngModel)]="textSearch">
-          <div class="flex items-center me-4" *ngIf="activity.type.nameType == 'culb'">
-            <input id="inline-checkbox" type="checkbox" value="" name="show-allergics" [(ngModel)]="isShowAllergics" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">สิ่งที่เเพ้</label>
+        <div class="flex justify-between">
+          <div class="flex gap-4">
+            <input [placeholder]="placeholder" class="p-1 outline-none border-2 border-black" name="search" [(ngModel)]="textSearch">
+            <div class="flex items-center me-4" *ngIf="activity.type.nameType == 'club'">
+              <input id="inline-checkbox" type="checkbox" value="" name="show-allergics" [(ngModel)]="isShowAllergics" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="inline-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">สิ่งที่เเพ้</label>
+            </div>
+          </div>
+          <div >
+            <button (click)="coppyDataUser()" class="flex align-center btn-coppy">
+              <mat-icon style="font-size: 20px;">content_copy</mat-icon> 
+              คัดลอก
+            </button>
+          </div>
         </div>
-      </div>
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
             <div class="overflow-hidden">
-              <table class="min-w-full text-left text-sm font-light" *ngIf="activity.type.nameType == 'club'">
+              <table id="dataTable" class="min-w-full text-left text-sm font-light" *ngIf="activity.type.nameType == 'club'">
                 <thead class="border-b font-medium dark:border-neutral-500">
                   <tr>
                     <th scope="col" class="whitespace-nowrap px-6 py-4">ลำดับ</th>

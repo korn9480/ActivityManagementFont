@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { ApiUser } from '../API/api-user';
 import { ActivityModel } from '../model/model';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
   constructor(
-    private api:ApiUser,private router : Router
+    private api:ApiUser,private router : Router,
   ){}
   is_update:boolean = false
   showPopup: boolean = false;
@@ -32,15 +32,22 @@ export class HomeComponent implements OnInit{
     this.is_display_alert = true
   }
   ngOnInit(): void {
+    this.router.events.subscribe(event=>{
+      console.log(event)
+    })
     this.loadActivity()
   }
   loadActivity(){
     this.api.get_activity_open_join().subscribe(
       (data:ActivityModel[])=>{
         this.activity_join = data
+        console.log(this.activity_join)
       },(error:any)=>{
         if (error.error.message=="jwt expired"&&error.error.statusCode===401) this.router.navigate(['/login']);
       }
     )
+  }
+  refresh(){
+    window.location.reload()
   }
 }

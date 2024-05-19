@@ -1,24 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiUser } from '../API/api-user';
 import { Router } from '@angular/router';
-import { FormAllergy } from '../model/form';
+import { FormAllergy, FormRegister } from '../model/form';
 import { Cookie } from '../service/cookie';
-
-class Register {
-  code_student: string = "";
-  password: string = "";
-  confirm_password: string = "";
-  first_name: string = "";
-  last_name: string = "";
-  nick_name: string = "";
-  faculty: string = "";
-  major: string = "";
-  phone: string = "";
-  religion: string = "";
-  blood_group: string = "";
-  allergics : FormAllergy[] = [];
-  roleId : number = 1
-}
 
 @Component({
   selector: 'app-register-user',
@@ -27,11 +11,13 @@ class Register {
 })
 
 export class RegisterUserComponent {
-  form: Register = new Register();
+  form: FormRegister = new FormRegister();
   selectedReligion: any;
   customReligion: any;
   error_code_student: boolean = true;
   allergics:string = ""
+  isViewPassword:boolean = false
+  isViewPasswordConfirm:boolean = false
 
   error ={
     conde_already_exist:false,
@@ -49,6 +35,12 @@ export class RegisterUserComponent {
     food_allergy : false,
   }
   have_allergy:string = 'not'
+  viewPassword(){
+    this.isViewPassword = !this.isViewPassword
+  }
+  viewPasswordComfirm(){
+    this.isViewPasswordConfirm = !this.isViewPasswordConfirm
+  }
   resetError(){
     this.error ={
       conde_already_exist: false,
@@ -84,13 +76,15 @@ export class RegisterUserComponent {
       let array = this.allergics.split(' ').filter(word=>word.trim()!=="" && word.trim()!==",")
       for(let a of array){
         let data = new FormAllergy(this.form.code_student,a)
-        this.form.allergics.push(data)
+        this.form.allergies.push(data)
       }
+      console.log(this.form)
       this.Api.register_user(this.form).subscribe(
         (data:any)=>{
           this.router.navigate(['/login']);
         },
         (r_error:any)=>{
+          console.log(r_error)
           if (r_error.error.message==`User [${this.form.code_student}] already exist`){
             this.error.conde_already_exist = true
             return;

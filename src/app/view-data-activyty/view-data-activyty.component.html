@@ -8,6 +8,10 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/form-post/'+data.id">
+                        <mat-icon>edit</mat-icon>
+                        <span>เเก้ไขกิจกรรม</span>
+                    </button>
                     <button mat-menu-item [routerLink]="'/show-list=admin/'+data.id+'/'+data.nameActivity">
                         <mat-icon>view_list</mat-icon>
                         <span>แสดงรายชื่อผู้เข้าร่วม</span>

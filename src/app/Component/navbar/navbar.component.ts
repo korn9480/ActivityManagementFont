@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit{
       else if (profix=="นางสาว"){
         this.profileImageSrc = '../../assets/image/profile-girl.png'
       }
+      console.log(profix)
     }
   }
 
@@ -47,6 +48,7 @@ export class NavbarComponent implements OnInit{
 
   logout(){
     this.cookie.logout()
+    console.log("dkdkdk")
     this.router.navigate(['/login'])
   }
 

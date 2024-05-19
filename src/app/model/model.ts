@@ -50,7 +50,7 @@ export interface ListParticipants{
     student:RegisterModel
 }
 export interface AllergyModel{
-    id : number
+    // id : number
     code_student:string
     allergy : string
 }

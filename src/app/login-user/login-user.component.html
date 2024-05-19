@@ -24,13 +24,27 @@
      </div>
 
      <div class="mb-2" [ngClass]="{'error' : (formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched) || error_password }">
-       <label class="text-lg" for="password">รหัสผ่าน</label>
-       <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 mt-2 rounded-md" formControlName="password"
-             type="password" id="password" name="password" required autocomplete="current-password">
-       <input *ngIf="!rememberPassword" class="password text-line bg-transparent text-black outline-none border-t-0 border-l-0 border-r-0 border-b border-solid border-black px-3 py-1" 
-             type="password" id="password" name="password" required formControlName="password">
-       <div *ngIf="formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched" 
-           class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ได้กรอก
+        <label class="text-lg" for="password">รหัสผ่าน</label>
+        <div class="relative" *ngIf="isViewPassword">
+          <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 rounded-md" formControlName="password"
+                type="text" id="password" name="password" required autocomplete="current-password">
+          <input *ngIf="!rememberPassword" class="border-2 border-black w-full p-1 rounded-md" 
+                type="text" id="password" name="password" required formControlName="password">
+          <span (click)="viewPassword()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+            <mat-icon>visibility_off</mat-icon>
+          </span>
+        </div>
+        <div class="relative" *ngIf="!isViewPassword">
+          <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 rounded-md" formControlName="password"
+                type="password" id="password" name="password" required autocomplete="current-password">
+          <input *ngIf="!rememberPassword" class="border-2 border-black w-full p-1 rounded-md" 
+                type="password" id="password" name="password" required formControlName="password">
+          <span (click)="viewPassword()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+            <mat-icon>visibility</mat-icon>
+          </span>
+        </div>
+        <div *ngIf="formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched" 
+            class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ได้กรอก
        </div>
        <div *ngIf="error_password" class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ถูกต้อง</div>
      </div>
@@ -44,7 +58,7 @@
      </div>
 
      <div class="flex justify-center ">
-       <button type="submit" class="btn text-lg text-white px-6 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-8 bg-bt bt-shadow">เข้าสู่ระบบ</button>
+       <button id="btn-login" type="submit" class="btn text-lg text-white px-6 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-8 bg-bt bt-shadow">เข้าสู่ระบบ</button>
      </div>
 
      <div class="flex justify-between">

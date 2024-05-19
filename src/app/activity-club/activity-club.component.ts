@@ -14,7 +14,7 @@ export class ActivityClubComponent implements OnInit {
     private api:ApiUser,private router : Router
   ){}
   localhost = environment.localhost_back+'/asset/'
-  typeActivity:number = 2 // user = 1, club = 2
+  typeActivity:number = 1 // user = 1, club = 2
   yearSelectAll:number[] = []
   acitivtyYear:number = new Date().getFullYear() + 543
   is_update:boolean = false
@@ -58,6 +58,7 @@ export class ActivityClubComponent implements OnInit {
     })
   }
   loadActivityClub(){
+    console.log(this.acitivtyYear)
     this.api.get_activity_club_by_year(this.acitivtyYear+"").subscribe((data:ActivityModel[])=>{
       this.activity_club = data
     })

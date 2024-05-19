@@ -3,7 +3,7 @@
 
     <div class="mt-6 flex justify-center items-center">
 
-        <form class="pt-8 pb-8 pl-6 pr-6 bg-white shadow-lg rounded-lg" (ngSubmit)="submit()" >
+        <form class="pt-8 pb-8 pl-6 pr-6 bg-white shadow-lg rounded-lg" (ngSubmit)="submit()" *ngIf="form !=undefined">
             
             <div class="flex"> 
 
@@ -198,7 +198,7 @@
                                     <option value="ฮินดู">ฮินดู</option>
                                     <option value="อื่นๆ">อื่นๆ</option>
                                 </select>
-                                <span class="mt-1" *ngIf="form.religion === 'อื่นๆ'" [ngClass]="{'error': error.religion && form.religion=='อื่นๆ'}">
+                                <span class="mt-1" *ngIf="form.religion === 'อื่นๆ'" [ngClass]=" {'error': error.religion && form.religion=='อื่นๆ'} ">
                                     <input class="border-2 border-black w-full p-1 rounded-md" 
                                         type="text" id="otherReligion" name="otherReligion" placeholder="ระบุศาสนา" [(ngModel)]="customReligion">
                                     <div *ngIf="error.religion && form.religion=='อื่นๆ'" class="error-message text-red-500 text-sm mt-2">เขียนภาษาไทย</div>

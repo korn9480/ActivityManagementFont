@@ -15,9 +15,16 @@ table {
   background-color: #000;
   margin-top: 8px;
   margin-bottom: 16px;
+  /* justify-content: space-between; */
 }
 .enter{
   display: none;
+  /* align-items: ; */
+  /* justify-content: center; */
+}
+
+.btn-coppy:active{
+  color: gray;
 }
 
 @media only screen and (max-width:376px){

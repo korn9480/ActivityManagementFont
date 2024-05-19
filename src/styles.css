@@ -19,7 +19,12 @@
     background-color: white;
     box-shadow: 0 2px 4px 0 rgba(64, 63, 63, 0.2), 0 8px 14px 0 rgba(132, 130, 130, 0.19);
 }
-
+.bg-home{
+    background-color:rgba(232, 226, 226, 1);
+}
+.bg{
+    background-color:rgb(232, 226, 226);
+}
 /* text purple */
 .text{
     color: #5D3891;
@@ -41,6 +46,9 @@
 }
 
 /* botton */
+.bg-bt-cencle{
+    background-color: gray;
+}
 .bg-bt{
     background-color: rgb(93, 56, 145);
 }

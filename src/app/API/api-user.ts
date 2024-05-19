@@ -38,6 +38,7 @@ export class ApiUser{
     upload_profile(file:any){
         let formData = new FormData()
         formData.append('profile',file)
+        console.log(this.cookie.get_code_student())
         return this.http.post(this.localhost+"/users/profile/"+this.cookie.get_code_student(),formData,this.get_header())
     }
     // api activity
@@ -62,8 +63,7 @@ export class ApiUser{
         return this.http.get(this.localhost+"/activity/perplo_join/"+id,this.get_header())
     }
     get_activity_club_by_year(year:string){
-        // year = พ.ศ. เปลี่ยงเป็น ค.ศ.
-        console.log(+year)
+        // year = พ.ศ. เปลี่ยงเป็น ค.ศ.        
         return this.http.get<ActivityModel[]>(this.localhost+"/activity/club/"+(+year - 543),this.get_header())
     }
     get_activity_user_open_join(){

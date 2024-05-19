@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CalendarOptions, EventAddArg, EventInput, EventSourceInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import { ApiUser } from '../API/api-user';
 import { ActivityModel } from '../model/model';
 import { Router } from '@angular/router';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 
 @Component({
   selector: 'app-calendar',
@@ -12,10 +13,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  constructor(private api:ApiUser,private router:Router){}
-  events:any[] =[]
+  constructor(private api:ApiUser,private router:Router,private cdr: ChangeDetectorRef){}
+  eventAll:any[] =[]
+  yearSearch:number = new Date().getFullYear()
   calendarOptions: CalendarOptions = {
-    // aspectRatio: 1,
     contentHeight:360,
     initialView: 'dayGridMonth',
     plugins:[dayGridPlugin,listPlugin],
@@ -27,22 +28,34 @@ export class CalendarComponent implements OnInit {
       left: 'title',
       center: 'dayGridMonth,listMonth',
       right: 'prev,next'
-    }
+    },
+    datesSet: event=>{
+      event.start.setDate(event.start.getDate()+7)
+      this.loadEvent(event.start.getFullYear())
+    },
   };
+  eventInput: EventInput[] = [];
+  
   ngOnInit(): void {
     let date = new Date()
-    this.api.get_activity_club_by_year(date.getFullYear()+543+"").subscribe((data:ActivityModel[])=>{      
-      data.forEach((ac:ActivityModel)=>{
-        this.events.push({
-          title: ac.nameActivity,
-          start: ac.dateTimeStart,
-          end: ac.dateTimeEnd,
-          id:ac.id,
-          // display: 'background'
+    this.loadEvent(date.getFullYear())
+  }
+  loadEvent(year:number){
+    if (this.yearSearch!=year || this.eventInput.length==0){
+      this.yearSearch = year
+      this.api.get_activity_club_by_year(year+543+"").subscribe((data:ActivityModel[])=>{      
+        let events:any[] = []
+        data.forEach((ac:ActivityModel)=>{
+          events.push({
+            title: ac.nameActivity,
+            start: ac.dateTimeStart,
+            end: ac.dateTimeEnd,
+            id:ac.id,
+          })
         })
+        this.eventInput = events
       })
-      this.calendarOptions.events= this.events
-    })
+    }
   }
   handleDateClick(arg:any) {
     this.router.navigate(['/view-data-activity/'+arg.event.id])

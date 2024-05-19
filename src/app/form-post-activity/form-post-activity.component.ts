@@ -6,13 +6,15 @@ import { ActivityModel } from '../model/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
 import { Cookie } from '../service/cookie';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertImgFullComponent } from '../Component/alert-img-full/alert-img-full.component';
 @Component({
   selector: 'app-form-post-activity',
   templateUrl: './form-post-activity.component.html',
   styleUrls: ['./form-post-activity.component.css']
 })
 export class FormPostActivityComponent {
-  constructor(private api: ApiUser,private cookie:Cookie,private route:ActivatedRoute,private router : Router){
+  constructor(private api: ApiUser,private cookie:Cookie,private route:ActivatedRoute,private router : Router,private dialog:MatDialog){
   }
   TYPE_ACTIVTY:'user'|'admin'='user'
   @Input('is_update') is_update:boolean = false
@@ -59,6 +61,7 @@ export class FormPostActivityComponent {
         this.form = data
       })
     }
+
   }
   dateStart(){
     this.form.dateTimeEnd = this.form.dateTimeStart
@@ -68,6 +71,7 @@ export class FormPostActivityComponent {
     this.router.navigate(['/home'])
   } 
   addActivity() {
+    console.log(this.form.dateTimeStart)
     if (this.form.id <= 0){
       // call api activity
       this.createActivity()
@@ -109,7 +113,6 @@ export class FormPostActivityComponent {
   async updateActivity(){
     this.api.update_activity(this.form.id,this.form).subscribe((data:any)=>{
       // call api
-      console.log("dkdkdk")
       if (this.id_delete.length>0){
         this.id_delete.forEach((id:any)=>{
           this.api.delete_asset(id,this.form.id).subscribe((data:any)=>{
@@ -134,9 +137,11 @@ export class FormPostActivityComponent {
     let lenghtImg = 0
     let files = event.target.files
     if (files.length + this.urlFiles.length + this.form.asset.length > 6){
-      this.alert.emit()
+      this.alertImageFull().subscribe()
+
     }
     else{
+      console.log(event.target.files)
       for(let file of event.target.files){
         this.readURL(file)
         if (lenghtImg>=4){
@@ -165,8 +170,21 @@ export class FormPostActivityComponent {
   }
   removeUrlfile(index:number){
     this.urlFiles.splice(index,1)
+    this.fileUpload.splice(index,1)
   }
   isLinkImage(path:string){
     return path.includes('/images')
+  }
+
+  alertImageFull(){
+    let dialogRef= this.dialog.open(AlertImgFullComponent,{
+      backdropClass:"none",
+      width: '300px',
+      position:{
+        top: '0'
+      }
+      // data:"คุณต้องการยกเลิกการเข้าร่วมกิจกกรมนี้หรือไม่ ?"
+    })
+    return dialogRef.afterClosed()
   }
 }

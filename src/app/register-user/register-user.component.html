@@ -5,7 +5,7 @@
         <div class="bg-white pt-8 pb-8 pl-14 pr-14 shadow-lg mx-auto rounded-lg">
             <div class="text-center">
                 <h1 class="text-2xl mb-4">ยอดหญ้าบนภูสูง</h1>
-                <h1 class="text-xl mb-2">เข้าสู่ระบบ</h1>
+                <h1 class="text-xl mb-2">สมัครสมาชิก</h1>
             </div>
 
             <form (submit)="submit()" >
@@ -192,19 +192,42 @@
 
                     <div [ngClass]="{'error': error.password}">
                         <label class="text-lg" for="password">รหัสผ่าน <span class="text-2xl text-star text-red-500">*</span></label>
-                        <input class="width-input border-2 border-black w-full p-1 mt-1 rounded-md" 
-                            type="password" id="password" name="password" required [(ngModel)]="form.password" >
+                        <div class="relative" *ngIf="!isViewPassword">
+                            <input class="border-2 border-black w-full p-1 rounded-md width-input"
+                                [ngClass]="{'border-red-500':error.password}"  type="password" id="password" name="password" required [(ngModel)]="form.password">
+                            <span (click)="viewPassword()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+                              <mat-icon>visibility</mat-icon>
+                            </span>
+                          </div>
+                          <div class="relative" *ngIf="isViewPassword">
+                            <input class="border-2 border-black w-full p-1 rounded-md width-input"
+                                [ngClass]="{'border-red-500':error.password}"  type="text" id="password" name="password" required [(ngModel)]="form.password">
+                            <span (click)="viewPassword()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+                              <mat-icon>visibility_off</mat-icon>
+                            </span>
+                          </div>
                         <div *ngIf="error.password" class="error-message text-red-500 mt-1 text-sm">*ต้องมีตัวพิมพ์ใหญ่เเละตัวพิมพ์เล็กอย่างน้อย 1 ตัว*</div>
                         <div *ngIf="error.password" class="error-message text-red-500 text-sm">*ต้องมีตัวเลขและตัวอักษรพิเศษอย่างน้อย 1 ตัว*</div>
                     </div>
 
                     <div [ngClass]="{'error': error.confirm_password}">  
                         <label class="text-lg" for="confirmPassword">ยืนยันรหัสผ่าน <span class="text-2xl text-star text-red-500">*</span></label>
-                        <input class="width-input border-2 border-black w-full p-1 mt-1 rounded-md" 
-                            type="password" id="confirmPassword" name="confirmPassword" required [(ngModel)]="form.confirm_password">
+                        <div class="relative" *ngIf="!isViewPasswordConfirm">
+                            <input class="border-2 border-black w-full p-1 rounded-md width-input"
+                                [ngClass]="{'border-red-500':error.confirm_password}"  type="password" id="confirm-password" name="confirm-password" required [(ngModel)]="form.confirm_password">
+                            <span (click)="viewPasswordComfirm()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+                              <mat-icon>visibility</mat-icon>
+                            </span>
+                          </div>
+                          <div class="relative" *ngIf="isViewPasswordConfirm">
+                            <input class="border-2 border-black w-full p-1 rounded-md width-input"
+                                [ngClass]="{'border-red-500':error.confirm_password}"  type="text" id="confirm-password" name="confirm-password" required [(ngModel)]="form.confirm_password">
+                            <span (click)="viewPasswordComfirm()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+                              <mat-icon>visibility_off</mat-icon>
+                            </span>
+                          </div>
                         <div *ngIf="error.confirm_password" class="error-message text-red-500 mt-1 text-sm">รหัสไม่ตรงกัน</div>
                     </div>
-
                 </div>
 
                 <div class="flex justify-center">

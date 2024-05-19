@@ -71,7 +71,9 @@ export class JoinActivityComponent implements OnInit{
         }
       })
     }
-    this.closePopup()
+    else{
+      this.closePopup()
+    }
   }
   closePopup(){
     this.router.navigate(['/activity-club'])

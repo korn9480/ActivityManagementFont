@@ -17,6 +17,8 @@ export class ForgotPasswordComponent {
   }
   // password!: string;
   rememberPassword: boolean = false;
+  isViewPassword:boolean = false
+  isViewPasswordConfirm:boolean = false
 
   warn = {
     code_student : false,
@@ -31,7 +33,12 @@ export class ForgotPasswordComponent {
       confirm_password : false,
       conde_not_exist : false
     }
-  
+  }
+  viewPassword(){
+    this.isViewPassword = !this.isViewPassword
+  }
+  viewPasswordComfirm(){
+    this.isViewPasswordConfirm = !this.isViewPasswordConfirm
   }
   forgotpassword(){
       this.resetWarn()

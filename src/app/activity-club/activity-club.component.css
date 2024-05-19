@@ -4,7 +4,7 @@
 
 /* crad */
 .card-container {
-  height: 360px;
+  height: auto;
   display: grid;
   grid-template-rows: 200px auto;
 }
@@ -39,7 +39,15 @@
   margin-top: 24px;
   margin-bottom: 24px;
 }
+.w-content{
+  width: 80%;
+}
 
+@media only screen and (min-width:600px){
+  .head-content::before{
+    content: "กิจกรรมของ";
+  }
+}
 @media only screen and (max-width:1280px){
   .feed-background{
     max-width: 70%;
@@ -49,9 +57,6 @@
   .feed-background{
     max-width: 80%;
   }
-  .head-content::before{
-    content: "กิจกรรมของ";
-  }
 }
 @media only screen and (max-width:640px){
   .grid-cols-3{
@@ -59,9 +64,6 @@
   }
   .gap-x-6 {
     gap: 8px 0;
-  }
-  .w-content{
-    width: 80%;
   }
 }
 @media only screen and (max-width:376px) {
@@ -78,5 +80,8 @@
 
   .w-content{
     width: 95%;
+  }
+  .z-add{
+    z-index: 4;
   }
 }

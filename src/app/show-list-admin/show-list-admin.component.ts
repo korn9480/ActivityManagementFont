@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ApiUser } from '../API/api-user';
 import { ActivityModel, AllergyModel, ListParticipants, RegisterModel } from '../model/model';
 import { ActivatedRoute } from '@angular/router';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-show-list-admin',
@@ -19,12 +20,26 @@ export class ShowListAdminComponent implements OnInit {
   placeholder="ค้นหาชื่อ,รหัสนิสิต,คณะ"
   textSearch =""
   isShowAllergics:boolean = false
-  constructor(private api : ApiUser,private route:ActivatedRoute){
-    
-  }
+  @ViewChild('myTable') myTable: ElementRef;
+  tableData: any[] = []
+  constructor(private api : ApiUser,private route:ActivatedRoute,private clipboardService:ClipboardService,
+    table:ElementRef){
+      this.myTable = table
+    }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  coppyDataUser(){
+    const table = document.querySelector('table');
+    if (table) {
+      const range = document.createRange();
+      range.selectNode(table);
+      const selection = window.getSelection();
+      if (selection) {
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        selection.removeAllRanges();
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -35,7 +50,8 @@ export class ShowListAdminComponent implements OnInit {
       })
       this.api.get_activity_one(id).subscribe((data:ActivityModel)=>{
         this.activity = data
-        console.log(this.activity )
+        console.log(this.activity.type.nameType )
+        
       })
       this.api.get_list_students(id).subscribe((data:Array<ListParticipants>)=>{
         this.list_name = data

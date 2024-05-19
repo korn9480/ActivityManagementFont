@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginUserComponent {
   formLogin:FormGroup;
-
+  isViewPassword:boolean = false
   constructor(private formbuilder:FormBuilder,private router : Router , private Api : ApiUser , private cookie : Cookie) {
     this.formLogin = formbuilder.group({
       code_student:['',[Validators.required,Validators.maxLength(8)]],
@@ -26,17 +26,24 @@ export class LoginUserComponent {
 
   hide = true;
 
+  viewPassword(){
+    this.isViewPassword = !this.isViewPassword
+  }
+
   login() {
     this.error_code_student = false
     this.error_password = false
+    console.log(this.formLogin.valid)
     if (this.formLogin.valid){
       this.Api.login_user({code_student :this.formLogin.get('code_student')?.value ,
-           password : this.formLogin.get('password')?.value}).subscribe(
+      password : this.formLogin.get('password')?.value}).subscribe(
         (next:any) => {    
       if (next.accessToken){
             this.cookie.set_data(next.code_student,next.profile,next.prefix,next.role)
             this.cookie.set_token(next.accessToken)
-            this.router.navigate(['/home']);
+            let path = this.cookie.get_page_befor() == undefined || this.cookie.get_page_befor()?.length == 0 ? "/home":this.cookie.get_page_befor()
+            this.cookie.set_page_befor("")
+            this.router.navigate([path]);
           }
         },
         (error:any)=>{

@@ -67,6 +67,9 @@
   .feed-background{
     max-width: 90%;
   }
+  .box-image{
+    height: 200px;
+  }
   .grid-cols-3{
     grid-template-columns: 1fr 1fr;
     gap: 4px;
