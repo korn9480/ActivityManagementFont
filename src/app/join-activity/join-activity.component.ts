@@ -5,20 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cookie } from '../service/cookie';
 import { ConfirmDialogComponent } from '../Component/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormJoinActivty } from '../model/form';
 interface ActiviyJoin extends ActivityModel{
   numberPP: number
   isJoin : boolean
 }
-class FormJoinActivty {
-  constructor(student:string,activity:number,isJoin:boolean){
-    this.student = student
-    this.activity = activity
-    this.isJoin = isJoin
-  }
-  student:string = ""
-  activity:number=0
-  isJoin:boolean = true
-}
+
 @Component({
   selector: 'app-join-activity',
   templateUrl: './join-activity.component.html',
@@ -42,6 +34,7 @@ export class JoinActivityComponent implements OnInit{
     this.api.get_join_activity(this.idActivity).subscribe((data:any)=>{
       this.form = data
     })
+
   }
   join(){
     let data = new FormJoinActivty(this.cookie.get_code_student(),this.idActivity,true)

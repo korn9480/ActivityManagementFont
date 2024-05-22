@@ -51,3 +51,14 @@ export class FormRegister {
     allergies : FormAllergy[] = [];
     roleId : number = 1
   }
+
+ export class FormJoinActivty {
+    constructor(student:string,activity:number,isJoin:boolean){
+      this.student = student
+      this.activity = activity
+      this.isJoin = isJoin
+    }
+    student:string = ""
+    activity:number=0
+    isJoin:boolean = true
+  }

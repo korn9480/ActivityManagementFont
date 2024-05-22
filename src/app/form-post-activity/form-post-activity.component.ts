@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormAsset, FormNewActiviy } from '../model/form';
+import { FormAsset, FormJoinActivty, FormNewActiviy } from '../model/form';
 import { ApiUser } from '../API/api-user';
 import { ActivityModel } from '../model/model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -64,7 +64,11 @@ export class FormPostActivityComponent {
 
   }
   dateStart(){
-    this.form.dateTimeEnd = this.form.dateTimeStart
+    console.log(this.form.dateTimeStart)
+    let dateStart = new Date(this.form.dateTimeStart)
+    dateStart.setHours(dateStart.getHours() + 3)
+    console.log(dateStart.toLocaleDateString())
+    this.form.dateTimeEnd = dateStart.toISOString()
   }
   closePopup() {
     this.resetForm()
@@ -94,6 +98,10 @@ export class FormPostActivityComponent {
   createActivity(){
     this.api.create_activity(this.form).subscribe((data:any)=>{
       let activity_id = data.id
+      if (this.TYPE_ACTIVTY=="user"){
+        let form = new FormJoinActivty(this.cookie.get_code_student(),activity_id,true)
+        this.api.joinActivity(activity_id,form).subscribe()
+      }
       // call api asset
       if (this.fileUpload.length == 0){
         this.closePopup()
