@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiUser } from '../API/api-user';
-import { Cookie } from '../service/cookie';
+import { UserCookie } from '../service/cookie';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginUserComponent {
   formLogin:FormGroup;
   isViewPassword:boolean = false
-  constructor(private formbuilder:FormBuilder,private router : Router , private Api : ApiUser , private cookie : Cookie) {
+  constructor(private formbuilder:FormBuilder,private router : Router , private Api : ApiUser , private cookie : UserCookie) {
     this.formLogin = formbuilder.group({
       code_student:['',[Validators.required,Validators.maxLength(8)]],
       password:['',Validators.required]
@@ -41,6 +41,7 @@ export class LoginUserComponent {
       if (next.accessToken){
             this.cookie.set_data(next.code_student,next.profile,next.prefix,next.role)
             this.cookie.set_token(next.accessToken)
+            this.cookie.set_full_name(next.first_name,next.last_name)
             let path = this.cookie.get_page_befor() == undefined || this.cookie.get_page_befor()?.length == 0 ? "/home":this.cookie.get_page_befor()
             this.cookie.set_page_befor("")
             this.router.navigate([path]);

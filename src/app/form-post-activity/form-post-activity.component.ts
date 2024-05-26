@@ -5,7 +5,7 @@ import { ApiUser } from '../API/api-user';
 import { ActivityModel } from '../model/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
-import { Cookie } from '../service/cookie';
+import { UserCookie } from '../service/cookie';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertImgFullComponent } from '../Component/alert-img-full/alert-img-full.component';
 @Component({
@@ -14,7 +14,7 @@ import { AlertImgFullComponent } from '../Component/alert-img-full/alert-img-ful
   styleUrls: ['./form-post-activity.component.css']
 })
 export class FormPostActivityComponent {
-  constructor(private api: ApiUser,private cookie:Cookie,private route:ActivatedRoute,private router : Router,private dialog:MatDialog){
+  constructor(private api: ApiUser,private cookie:UserCookie,private route:ActivatedRoute,private router : Router,private dialog:MatDialog){
   }
   TYPE_ACTIVTY:'user'|'admin'='user'
   @Input('is_update') is_update:boolean = false

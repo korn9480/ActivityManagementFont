@@ -11,7 +11,8 @@ import { JoinActivityComponent } from './join-activity/join-activity.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormPostActivityComponent } from './form-post-activity/form-post-activity.component';
 import { ShowListAdminComponent } from './show-list-admin/show-list-admin.component';
-import { GuardPage } from './service/guards/guard';
+import { GuardPage, GuardPageProfile } from './service/guards/guard';
+import { ClubProfileComponent } from './club-profile/club-profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginUserComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent,canActivate:[GuardPage] },
   { path: 'view-data-activity/:idActivity', component: ViewDataActivytyComponent,canActivate:[GuardPage] },
   { path: 'join-activity/:idActivity', component: JoinActivityComponent,canActivate:[GuardPage]},
-  { path: 'profile', component: ProfileComponent,canActivate:[GuardPage] },
+  { path: 'profile', component: ProfileComponent,canActivate:[GuardPage,GuardPageProfile] },
+  { path: 'c-profile', component: ClubProfileComponent,canActivate:[GuardPage,GuardPageProfile]},
   { path: 'form-post',component: FormPostActivityComponent,canActivate:[GuardPage]},
   { path: 'form-post/:idActivity',component: FormPostActivityComponent,canActivate:[GuardPage]},
   { path: 'show-list=admin/:idActivity/:nameActivity',component:ShowListAdminComponent,canActivate:[GuardPage]},

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ApiUser } from '../API/api-user';
 import { Router } from '@angular/router';
 import { FormAllergy, FormRegister } from '../model/form';
-import { Cookie } from '../service/cookie';
+import { UserCookie } from '../service/cookie';
 
 @Component({
   selector: 'app-register-user',
@@ -108,5 +108,5 @@ export class RegisterUserComponent {
     }
   }
 
-  constructor(private router :Router , private Api: ApiUser,private cookie:Cookie) {}
+  constructor(private router :Router , private Api: ApiUser,private cookie:UserCookie) {}
 }

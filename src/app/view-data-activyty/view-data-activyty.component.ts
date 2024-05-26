@@ -3,7 +3,7 @@ import { ApiUser } from '../API/api-user';
 import { ActivityModel } from '../model/model';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
-import { Cookie } from '../service/cookie';
+import { UserCookie } from '../service/cookie';
 
 @Component({
   selector: 'app-view-data-activyty',
@@ -11,7 +11,7 @@ import { Cookie } from '../service/cookie';
   styleUrls: ['./view-data-activyty.component.css']
 })
 export class ViewDataActivytyComponent implements OnInit {
-  constructor(private api:ApiUser,private route:ActivatedRoute,public cookie: Cookie){}
+  constructor(private api:ApiUser,private route:ActivatedRoute,public cookie: UserCookie){}
   data !: ActivityModel 
   localhost = environment.localhost_back + '/asset/'
   ngOnInit(): void {

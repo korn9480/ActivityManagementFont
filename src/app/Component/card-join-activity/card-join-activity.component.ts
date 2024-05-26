@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'; 
-import { Cookie } from '../../service/cookie';
+import { UserCookie } from '../../service/cookie';
 
 @Component({
   selector: 'app-card-join-activity',
@@ -20,7 +20,7 @@ import { Cookie } from '../../service/cookie';
 })
 export class CardJoinActivityComponent implements OnInit{
   constructor(private api:ApiUser,private router:Router ,private clipboardService:ClipboardService,
-    private dialog: MatDialog ,private  cookie:Cookie){
+    private dialog: MatDialog ,private  cookie:UserCookie){
     registerLocaleData(localeTh, 'th');
   }
   // menu = true

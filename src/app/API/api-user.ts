@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Cookie } from '../service/cookie';
+import { UserCookie, ClubCookie } from '../service/cookie';
 import { ActivityModel, AssetModel, ListParticipants, RegisterModel } from '../model/model';
 import { FormAsset, FormRegister } from '../model/form';
 import { environment } from 'src/environments/environment.development';
@@ -8,13 +8,13 @@ import { environment } from 'src/environments/environment.development';
     providedIn : 'root'
 })
 export class ApiUser{
-    constructor(public http: HttpClient,private cookie:Cookie){}
+    constructor(public http: HttpClient,private userCookie:UserCookie,private clubCookie:ClubCookie){}
     private localhost = environment.localhost_back
 
     get_header(){
         return {
             headers:{
-                'authorization':this.cookie.get_token(),
+                'authorization':this.userCookie.get_token(),
             }
         }
     }
@@ -29,23 +29,37 @@ export class ApiUser{
         return this.http.post(this.localhost+"/auth/forgot-password",form)
     }
     update_user(form:any){
-        return this.http.put(this.localhost+"/auth",form,this.get_header())
+        return this.http.put(this.localhost+"/auth/user",form,this.get_header())
     }
+    update_club(form:any){
+        return this.http.put(this.localhost+"/auth/club",form,this.get_header())
+    }
+
     // api user
     get_profile(){
-        return this.http.get<RegisterModel>(this.localhost+"/users/profile/"+this.cookie.get_code_student(),this.get_header())
+        let pathProfile = ""
+        if (this.userCookie.get_role()=="user") pathProfile = this.userCookie.get_code_student()
+        else pathProfile = this.clubCookie.getcode()
+        return this.http.get<RegisterModel>(this.localhost+"/users/profile/"+pathProfile, this.get_header())
     }
     upload_profile(file:any){
         let formData = new FormData()
         formData.append('profile',file)
-        console.log(this.cookie.get_code_student())
-        return this.http.post(this.localhost+"/users/profile/"+this.cookie.get_code_student(),formData,this.get_header())
+        console.log(this.userCookie.get_code_student())
+        return this.http.post(this.localhost+"/users/profile/"+this.userCookie.get_code_student(),formData,this.get_header())
+    }
+    upload_profile_club(file:any){
+        let formData = new FormData()
+        formData.append('profile',file)
+        // console.log(this.userCookie.get_code_student())
+        return this.http.post(this.localhost+"/admin/profile/club",formData,this.get_header())
     }
     // api activity
     create_activity(form:any){
         return this.http.post(this.localhost+"/activity",form,this.get_header())
     }
     get_activity_open_join(){
+        console.log("open join")
         return this.http.get<ActivityModel[]>(this.localhost+"/activity/open_join",this.get_header())
     }
     get_activity_one(id:number){
@@ -82,8 +96,8 @@ export class ApiUser{
         return this.http.post(this.localhost+"/activity/cancel/"+id,form,this.get_header())
     }
     // api asset
-    get_image_profile(){
-        return this.http.get(this.localhost+"/asset/"+this.cookie.get_profile())
+    get_user_profile(patProfile: string){
+        return this.http.get(this.localhost+"/asset/"+patProfile)
     }
     create_asset(fileUpload:FormAsset[],activity_id:number){
         let formData = new FormData()
@@ -113,4 +127,8 @@ export class ApiUser{
         return this.http.delete(this.localhost+'/asset/'+activity_id+'/'+asset_id,this.get_header())
     }
     
+    // admin
+    get_admin_date(){
+        return this.http.get<RegisterModel>(this.localhost+"/admin/data",this.get_header())
+    }
 }

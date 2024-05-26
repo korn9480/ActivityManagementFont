@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ApiUser } from 'src/app/API/api-user';
 import { FormAsset, FormNewActiviy } from 'src/app/model/form';
 import { ActivityModel } from '../../model/model';
-import { Cookie } from 'src/app/service/cookie';
+import { UserCookie } from 'src/app/service/cookie';
 import { environment } from 'src/environments/environment.development';
 
 @Component({
@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./activity-admin.component.css']
 })
 export class ActivityAdminComponent implements OnInit {
-  constructor(private api: ApiUser,private cookie:Cookie){}
+  constructor(private api: ApiUser,private cookie:UserCookie){}
   @Input('is_update') is_update:boolean = false
   @Output('succeed') succeed = new EventEmitter()
   @Output('show') showPopup = new EventEmitter();

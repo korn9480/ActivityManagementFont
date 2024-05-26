@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivityModel } from '../model/model';
 import { ApiUser } from '../API/api-user';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cookie } from '../service/cookie';
+import { UserCookie } from '../service/cookie';
 import { ConfirmDialogComponent } from '../Component/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormJoinActivty } from '../model/form';
@@ -17,7 +17,7 @@ interface ActiviyJoin extends ActivityModel{
   styleUrls: ['./join-activity.component.css']
 })
 export class JoinActivityComponent implements OnInit{
-  constructor(private api:ApiUser,private route:ActivatedRoute,private cookie:Cookie,private router : Router,private dialog:MatDialog){}
+  constructor(private api:ApiUser,private route:ActivatedRoute,private cookie:UserCookie,private router : Router,private dialog:MatDialog){}
   idActivity:number = 0
   form! : ActiviyJoin
   ngOnInit(): void {

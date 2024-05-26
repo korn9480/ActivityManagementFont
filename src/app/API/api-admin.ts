@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Cookie } from '../service/cookie';
+import { UserCookie } from '../service/cookie';
 import { environment } from 'src/environments/environment.development';
 @Injectable({
     providedIn : 'root'
 })
 export class ApiAdmin{
-    constructor(public http: HttpClient,private cookie:Cookie){}
+    constructor(public http: HttpClient,private cookie:UserCookie){}
     private localhost = environment.localhost_back
 
     get_header(){

@@ -37,6 +37,7 @@ import { ConfirmDialogComponent } from './Component/confirm-dialog/confirm-dialo
 import { PipeModele } from './service/pipes.modeul';
 import { MeterialModule } from './material.module';
 import { ShowListAdminComponent } from './show-list-admin/show-list-admin.component';
+import { ClubProfileComponent } from './club-profile/club-profile.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ShowListAdminComponent } from './show-list-admin/show-list-admin.compon
     ActivityAdminComponent,
     AlertImgFullComponent,
     FormPostActivityComponent,
-    ShowListAdminComponent
+    ShowListAdminComponent,
+    ClubProfileComponent,
   ],
   imports: [
     BrowserModule,
