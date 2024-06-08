@@ -34,6 +34,7 @@ export class CardJoinActivityComponent implements OnInit{
   showPopup: boolean = false;
   status:boolean = false;
   mycode:string = this.cookie.get_code_student()
+  myRole : string = this.cookie.get_role()
 
   ngOnInit(): void {
     
@@ -94,6 +95,16 @@ export class CardJoinActivityComponent implements OnInit{
     let start = new Date(this.activity.dateTimeStart)
     let end = new Date(this.activity.dateTimeEnd)
     return start.toDateString() == end.toDateString()
+  }
+
+  checkAuth(){
+    if((this.mycode == this.activity.addBy.code_student)){
+      return true
+    }
+    else if (this.cookie.get_role()=="admin" && this.activity.type.nameType=="club"){
+      return true
+    }
+    return false
   }
 
 }

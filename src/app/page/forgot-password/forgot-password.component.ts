@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiUser } from '../API/api-user';
+import { ApiUser } from 'src/app/API/api-user';
 
 @Component({
   selector: 'app-forgot-password',

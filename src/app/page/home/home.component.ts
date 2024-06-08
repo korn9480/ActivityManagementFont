@@ -1,6 +1,6 @@
 import { Component, OnInit, Pipe } from '@angular/core';
-import { ApiUser } from '../API/api-user';
-import { ActivityModel } from '../model/model';
+import { ApiUser } from 'src/app/API/api-user';
+import { ActivityModel } from 'src/app/model/model';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({

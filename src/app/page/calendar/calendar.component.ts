@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { CalendarOptions, EventAddArg, EventInput, EventSourceInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
-import { ApiUser } from '../API/api-user';
-import { ActivityModel } from '../model/model';
+import { ApiUser } from 'src/app/API/api-user';
+import { ActivityModel } from 'src/app/model/model';
 import { Router } from '@angular/router';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 

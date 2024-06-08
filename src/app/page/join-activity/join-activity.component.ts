@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivityModel } from '../model/model';
-import { ApiUser } from '../API/api-user';
+import { ActivityModel } from 'src/app/model/model';
+import { ApiUser } from 'src/app/API/api-user';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserCookie } from '../service/cookie';
-import { ConfirmDialogComponent } from '../Component/confirm-dialog/confirm-dialog.component';
+import { UserCookie } from 'src/app/service/cookie';
+import { ConfirmDialogComponent } from 'src/app/Component/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormJoinActivty } from '../model/form';
+import { FormJoinActivty } from 'src/app/model/form';
 interface ActiviyJoin extends ActivityModel{
   numberPP: number
   isJoin : boolean

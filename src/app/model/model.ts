@@ -49,6 +49,12 @@ export interface RegisterModel {
 export interface ListParticipants{
     student:RegisterModel
 }
+
+export interface AdminModel extends RegisterModel {
+    is_delete: string
+    id:number
+}
+
 export interface AllergyModel{
     // id : number
     code_student:string

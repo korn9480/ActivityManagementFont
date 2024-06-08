@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ApiUser } from '../API/api-user';
+import { ApiUser } from 'src/app/API/api-user';
 import { Router } from '@angular/router';
-import { FormAllergy, FormRegister } from '../model/form';
-import { UserCookie } from '../service/cookie';
+import { FormAllergy, FormRegister } from 'src/app/model/form';
+import { UserCookie } from 'src/app/service/cookie';
 
 @Component({
   selector: 'app-register-user',

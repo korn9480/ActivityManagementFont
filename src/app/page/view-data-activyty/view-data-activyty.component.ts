@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiUser } from '../API/api-user';
-import { ActivityModel } from '../model/model';
+import { ApiUser } from '../../API/api-user';
+import { ActivityModel } from '../../model/model';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
-import { UserCookie } from '../service/cookie';
+import { UserCookie } from '../../service/cookie';
 
 @Component({
   selector: 'app-view-data-activyty',

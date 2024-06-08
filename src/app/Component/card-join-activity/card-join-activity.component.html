@@ -10,11 +10,11 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item [routerLink]="'/form-post/'+activity.id" *ngIf="mycode == activity.addBy.code_student">
+                        <button mat-menu-item [routerLink]="'/form-post/'+activity.id" *ngIf="checkAuth()">
                             <mat-icon >edit</mat-icon>
                             <span>เเก้ไขโพสต์</span>
                         </button>
-                        <button mat-menu-item (click)="deletePost()" *ngIf="mycode == activity.addBy.code_student">
+                        <button mat-menu-item (click)="deletePost()" *ngIf="checkAuth()">
                             <mat-icon >delete</mat-icon>
                             <span>ลบโพสต์</span>
                         </button>

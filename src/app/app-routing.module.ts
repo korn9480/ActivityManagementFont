@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginUserComponent } from './login-user/login-user.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
-import { HomeComponent } from './home/home.component';
-import { ActivityClubComponent } from './activity-club/activity-club.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { ViewDataActivytyComponent } from './view-data-activyty/view-data-activyty.component';
-import { JoinActivityComponent } from './join-activity/join-activity.component';
-import { ProfileComponent } from './profile/profile.component';
-import { FormPostActivityComponent } from './form-post-activity/form-post-activity.component';
-import { ShowListAdminComponent } from './show-list-admin/show-list-admin.component';
+import { LoginUserComponent } from 'src/app/page/login-user/login-user.component';
+import { ForgotPasswordComponent } from 'src/app/page/forgot-password/forgot-password.component';
+import { RegisterUserComponent } from 'src/app/page/register-user/register-user.component';
+import { HomeComponent } from 'src/app/page/home/home.component';
+import { ActivityClubComponent } from 'src/app/page/activity-club/activity-club.component';
+import { CalendarComponent } from 'src/app/page/calendar/calendar.component';
+import { ViewDataActivytyComponent } from 'src/app/page/view-data-activyty/view-data-activyty.component';
+import { JoinActivityComponent } from 'src/app/page/join-activity/join-activity.component';
+import { ProfileComponent } from 'src/app/page/profile/profile.component';
+import { FormPostActivityComponent } from 'src/app/page/form-post-activity/form-post-activity.component';
+import { ShowListAdminComponent } from 'src/app/page/show-list-admin/show-list-admin.component';
 import { GuardPage, GuardPageProfile } from './service/guards/guard';
-import { ClubProfileComponent } from './club-profile/club-profile.component';
+import { ClubProfileComponent } from './page/club-profile/club-profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginUserComponent},

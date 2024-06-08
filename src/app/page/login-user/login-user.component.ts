@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiUser } from '../API/api-user';
-import { UserCookie } from '../service/cookie';
+import { ApiUser } from 'src/app/API/api-user';
+import { UserCookie } from 'src/app/service/cookie';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

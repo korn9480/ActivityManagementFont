@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { UserCookie, ClubCookie } from '../service/cookie';
-import { ActivityModel, AssetModel, ListParticipants, RegisterModel } from '../model/model';
-import { FormAsset, FormRegister } from '../model/form';
+import { UserCookie, ClubCookie } from 'src/app/service/cookie';
+import { ActivityModel, AssetModel, ListParticipants, RegisterModel } from 'src/app/model/model';
+import { FormAsset, FormRegister } from 'src/app/model/form';
 import { environment } from 'src/environments/environment.development';
 @Injectable({
     providedIn : 'root'

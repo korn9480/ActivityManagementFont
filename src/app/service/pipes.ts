@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AllergyModel } from '../model/model';
+import { AllergyModel } from 'src/app/model/model';
 class ThaiTimeService {
   mapMonth(index:number):string{
     const thaiMonths = [

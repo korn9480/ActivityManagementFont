@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormAsset, FormJoinActivty, FormNewActiviy } from '../model/form';
-import { ApiUser } from '../API/api-user';
-import { ActivityModel } from '../model/model';
+import { FormAsset, FormJoinActivty, FormNewActiviy } from 'src/app/model/form';
+import { ApiUser } from 'src/app/API/api-user';
+import { ActivityModel } from 'src/app/model/model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
-import { UserCookie } from '../service/cookie';
+import { UserCookie } from 'src/app/service/cookie';
 import { MatDialog } from '@angular/material/dialog';
-import { AlertImgFullComponent } from '../Component/alert-img-full/alert-img-full.component';
+import { AlertImgFullComponent } from 'src/app/Component/alert-img-full/alert-img-full.component';
 @Component({
   selector: 'app-form-post-activity',
   templateUrl: './form-post-activity.component.html',

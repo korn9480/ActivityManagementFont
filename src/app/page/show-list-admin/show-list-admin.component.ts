@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ApiUser } from '../API/api-user';
-import { ActivityModel, AllergyModel, ListParticipants, RegisterModel } from '../model/model';
+import { ApiUser } from 'src/app/API/api-user';
+import { ActivityModel, AllergyModel, ListParticipants, RegisterModel } from 'src/app/model/model';
 import { ActivatedRoute } from '@angular/router';
 import { ClipboardService } from 'ngx-clipboard';
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterModel, AllergyModel } from '../model/model';
+import { RegisterModel, AllergyModel } from 'src/app/model/model';
 import { Router } from '@angular/router';
-import { ApiUser } from '../API/api-user';
-import { UserCookie } from '../service/cookie';
-import { FormAllergy, FormRegister } from '../model/form';
+import { ApiUser } from 'src/app/API/api-user';
+import { UserCookie } from 'src/app/service/cookie';
+import { FormAllergy, FormRegister } from 'src/app/model/form';
 import { environment } from 'src/environments/environment.development';
 
 @Component({

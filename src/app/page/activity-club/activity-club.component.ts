@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiUser } from '../API/api-user';
+import { ApiUser } from 'src/app/API/api-user';
 import { Router } from '@angular/router';
-import { ActivityModel } from '../model/model';
-import { environment } from '../../environments/environment.development';
+import { ActivityModel } from 'src/app/model/model';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-activity-club',
