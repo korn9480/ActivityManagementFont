@@ -1,0 +1,13 @@
+<!-- <app-alert-img-full [is_show]="is_display_alert"></app-alert-img-full> -->
+<div class="bg-home min-h-screen">
+    <app-navbar></app-navbar> 
+    <!-- ปุ่มเพิ่มกิจกรรม -->
+    <div class=" text-center ">
+        <button id="btn-add-activity" class="btn text-lg text-white px-8 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-8 bg-bt bt-shadow" routerLink="/form-post" >เพิ่มกิจกรรม</button>
+    </div>
+    <div *ngFor="let activity of activity_join;let i = index">
+        <app-card-join-activity [activity]="activity" (updated)="refresh()" (update)="updateActivity($event)"
+            [index_array]="i" 
+        ></app-card-join-activity>
+    </div>
+</div>

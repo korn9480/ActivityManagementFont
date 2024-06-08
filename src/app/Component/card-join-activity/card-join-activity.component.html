@@ -1,0 +1,54 @@
+
+<div class="background bg">
+    <div class="feed-background">
+        <div class="post">
+            <div class="heading mb-4">
+                <div class="post-profile"> 
+                    <img class="icon-profile" [src]="activity.addBy.profile" alt="Post Profile">
+                    <div class="post-user-name">{{activity.addBy.first_name}} {{activity.addBy.last_name}}</div>                    
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item [routerLink]="'/form-post/'+activity.id" *ngIf="checkAuth()">
+                            <mat-icon >edit</mat-icon>
+                            <span>เเก้ไขโพสต์</span>
+                        </button>
+                        <button mat-menu-item (click)="deletePost()" *ngIf="checkAuth()">
+                            <mat-icon >delete</mat-icon>
+                            <span>ลบโพสต์</span>
+                        </button>
+                        <button mat-menu-item (click)="share()">
+                            <mat-icon>share</mat-icon>
+                            <span>เเชร์ลิ้งค์</span>
+                        </button>
+                    </mat-menu>
+                </div>
+
+                <div>
+                    <div class="mb-1">{{activity.nameActivity}}</div>
+                        <div>
+                            <span class="post-date">
+                                <span>วันที่ {{activity.dateTimeStart|thaiDate}}</span>
+                                <span class="ml-1 mr-1" *ngIf="activity.dateTimeEnd">ถึง</span>
+                                <span *ngIf="activity.dateTimeEnd">{{activity.dateTimeEnd|thaiDate}}</span>
+                            </span>
+                            <span>
+                                <span class="ml-4 mr-4">เวลา {{activity.dateTimeStart|thaiTime}} ถึง {{activity.dateTimeEnd|thaiTime}} </span>
+                            </span>
+                            <span class="post-location">สถานที่ {{activity.location}}</span>
+                        </div>
+                        <div>{{activity.number_pp}}/{{activity.participants}} คน</div>
+                    <div class="post-detail" *ngIf="activity.details">{{activity.details}}</div>
+                </div>
+
+            </div>
+            <img src="" routerLink="/name_path">
+            <div class="grid grid-cols-3 gap-2">
+                <div class="box-image" *ngFor="let i of activity.asset" >
+                    <img class="img-card" [src]="localhost+i.path">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

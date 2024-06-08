@@ -1,0 +1,45 @@
+<div class="bg min-h-screen">
+    <app-navbar></app-navbar>
+    <div class="w-content mx-auto p-6 bg-white bg-white shadow-md mt-12" *ngIf="data!=undefined">
+        <div class="flex justify-between mb-6 mb-mobile">
+            <div class="text-lg">{{data.nameActivity}}</div>
+            <div *ngIf="isShowKebab()">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/form-post/'+data.id">
+                        <mat-icon>edit</mat-icon>
+                        <span>เเก้ไขกิจกรรม</span>
+                    </button>
+                    <button mat-menu-item [routerLink]="'/show-list=admin/'+data.id+'/'+data.nameActivity">
+                        <mat-icon>view_list</mat-icon>
+                        <span>แสดงรายชื่อผู้เข้าร่วม</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+        <div [ngClass]="{'img-content': data.asset.length > 0}" *ngIf="data.asset.length > 0 || data.details.length > 0 ">
+            <div class="overflow-hidden object-none img-firt" *ngIf="data.asset.length > 0">
+                <img class="image-activity w-full h-auto custom-positionn" [src]="localhost+data.asset[0].path" alt="Image Activity">
+            </div>
+            <div class="detail-activity text-lg">{{data.details}}</div>
+        </div>
+        <div class="heading-detail my-8 my-mobile">
+            <span *ngIf="!isDateStartWithDateEndEqual()">วันที่ {{data.dateTimeStart|thaiDateTime}}น. 
+                <span>ถึง {{data.dateTimeEnd|thaiDateTime}}น.</span>
+            </span>
+            <span *ngIf="isDateStartWithDateEndEqual()">วันที่ {{data.dateTimeStart|thaiDate}} 
+                <span>เริ่ม {{data.dateTimeStart|thaiTime}}น. ถึง {{data.dateTimeEnd|thaiTime}}น.</span>
+            </span>
+            <span class="ml-2 mr-2">สถานที่ {{data.location}}</span>
+            <div class="amount">จำนวน {{data.number_pp}}/{{data.participants}} คน</div>
+        </div>
+        <div class="text-lg mb-8 mb-mobile">รูปกิจกรรม</div>
+        <div class="grid grid-cols-3 gap-6">
+            <div *ngFor="let i of  data.asset" class="w-full relative h-[200px]">
+                <img [src]="localhost+i.path" class="w-full h-full object-cover"  alt="Image 1">
+            </div>
+        </div>
+    </div>
+</div>

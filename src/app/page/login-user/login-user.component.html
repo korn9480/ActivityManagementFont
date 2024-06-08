@@ -1,0 +1,74 @@
+  <!-- background image  -->
+  <div class="h-screen bg-cover bg-center bg-fixed" 
+  style="background-image: url(../../assets/image/bg.png)">
+
+<div class="flex justify-center items-center h-full"> 
+ <div class="bg-white pt-8 pb-8 pl-14 pr-14 shadow-lg mx-auto rounded-lg">
+
+   <div class="text-center">
+     <h1 class="text-2xl mb-8">ยอดหญ้าบนภูสูง</h1>
+     <h1 class="text-xl mb-6">เข้าสู่ระบบ</h1>
+   </div>
+
+   <form (submit)="login()" [formGroup]="formLogin">
+
+     <div class="mb-4" [ngClass]="{'error' : formLogin.get('code_student')?.hasError('required') &&  formLogin.get('code_student')?.touched}">
+         <label class="text-lg" for="code_student">รหัสนิสิต</label>
+         <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 mt-2 rounded-md" formControlName="code_student"
+             type="text" id="code_student" name="username" [maxlength]="8" required autocomplete="username">
+         <input *ngIf="!rememberPassword" class="border-2 border-black w-full p-1 mt-2 rounded-md" formControlName="code_student"
+             type="text" id="code_student" name="username" [maxlength]="8">
+         <div *ngIf="formLogin.get('code_student')?.hasError('required') && formLogin.get('code_student')?.touched" 
+               class="text-red-500 mt-1 text-sm">รหัสนิสิตน้อยกว่า 8 ตัว
+         </div>
+     </div>
+
+     <div class="mb-2" [ngClass]="{'error' : (formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched) || error_password }">
+        <label class="text-lg" for="password">รหัสผ่าน</label>
+        <div class="relative" *ngIf="isViewPassword">
+          <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 rounded-md" formControlName="password"
+                type="text" id="password" name="password" required autocomplete="current-password">
+          <input *ngIf="!rememberPassword" class="border-2 border-black w-full p-1 rounded-md" 
+                type="text" id="password" name="password" required formControlName="password">
+          <span (click)="viewPassword()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+            <mat-icon>visibility_off</mat-icon>
+          </span>
+        </div>
+        <div class="relative" *ngIf="!isViewPassword">
+          <input *ngIf="rememberPassword" class="border-2 border-black w-full p-1 rounded-md" formControlName="password"
+                type="password" id="password" name="password" required autocomplete="current-password">
+          <input *ngIf="!rememberPassword" class="border-2 border-black w-full p-1 rounded-md" 
+                type="password" id="password" name="password" required formControlName="password">
+          <span (click)="viewPassword()" class="border-red absolute top-1 right-1 buttom-0 flex align-center">
+            <mat-icon>visibility</mat-icon>
+          </span>
+        </div>
+        <div *ngIf="formLogin.get('password')?.hasError('required') &&  formLogin.get('password')?.touched" 
+            class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ได้กรอก
+       </div>
+       <div *ngIf="error_password" class="text-red-500 mt-1 text-sm">รหัสผ่านไม่ถูกต้อง</div>
+     </div>
+   
+     <div class="flex justify-between">
+       <label class="flex">
+         <input class="mr-2 mx-auto" type="checkbox" name="remember-password">
+         <span>จดจำรหัสผ่าน</span>
+       </label>
+       <a href="/forgot-password" class="text">ลืมรหัสผ่าน ?</a>
+     </div>
+
+     <div class="flex justify-center ">
+       <button id="btn-login" type="submit" class="btn text-lg text-white px-6 py-2 rounded-md cursor-pointer mx-auto mt-8 mb-8 bg-bt bt-shadow">เข้าสู่ระบบ</button>
+     </div>
+
+     <div class="flex justify-between">
+       <div class="mx-auto pr-0">
+         <span class="text-base mr-6">ยังไม่มีบัญชี ?</span>
+         <a routerLink="/register" class="text">สมัครสมาชิก</a>
+       </div> 
+     </div>
+   </form>
+
+ </div>
+</div>
+</div>

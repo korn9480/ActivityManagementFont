@@ -1,0 +1,155 @@
+.popup-add {
+    position: fixed;
+    z-index: 3;
+    right: 0; left: 0;
+    top: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .popup .show {
+    display: flex;
+    width: 300px;
+    height: 80px;
+    margin-right: 250px;
+    /* bottom: ; */
+  }
+  .btn-close{
+    display: flex;
+    justify-content: right;
+  }
+  .close{
+    display: none  ;
+  }
+  .popup-content {
+    position: relative;
+    width: 70%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+  }
+  .group-input{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px; 
+    }
+  
+  .box-input-text input,textarea{
+    width: 100%;
+  }
+  .input-date{
+    display: flex;
+    column-gap: 0.5rem;
+  }
+  .box-up-file{
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    background-color: #D9D9D9;    
+  }
+  /*------------*/
+  .group-box{
+    display: grid;
+    align-items:start;
+    grid-template-columns: repeat(3, 1fr); 
+    align-items: center;
+    column-gap: 1rem;
+  }
+  .group-box--two{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    height: 100px;
+  }
+  .group-box--max-heigth{
+    height: 150px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .box-input {
+    position: relative;
+    flex-direction: column;
+    height: 40px;
+    text-align: left;
+  
+  }
+  .box-input input {
+    margin-bottom: 5px;
+    height: 24px;
+  }
+  .input-details textarea{
+    height: 3rem;
+  }
+  .error-message{
+    margin-top: 0;
+  }
+  /*form*/
+  .scroll {
+    overflow-y: scroll;
+    max-height: 1000px;
+    /* margin-right: 40px; */
+  }
+  .scroll ::-webkit-scrollbar{
+  
+  }
+  .error-datails{
+    border: 2px solid red;
+  }
+  /* image activity*/
+  .images-activity{
+    position: relative;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3,1fr);
+    overflow: hidden;
+    column-gap: 0.4rem;
+    row-gap: 0.4rem;
+    padding: 1rem;
+    border: 1px solid black;
+  }
+  .images-activity div{
+    width: 100%;
+    max-height: 300px;
+    /* object-fit: contain */
+  }
+  .add-image{
+    position: absolute;
+    z-index: 3;
+    left: 0.4rem;
+    top: 0.4rem;
+    /* background-color: rgb(145, 139, 139); */
+    padding: 0.5rem 1rem;
+  }
+  .box-image {
+    position: relative;
+  }
+  .box-image img{
+    /* position: relative; */
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+  }
+  .bg-add-image{
+    background-color: rgb(249, 148, 23);
+  }
+  .delete-image{
+    font-size: 1rem;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    right: 0;
+    text-align: center;
+    background-color: white;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    /* z-index: 3; */
+  }
+  .cursor-x{
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
+  }

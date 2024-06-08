@@ -1,0 +1,29 @@
+p{
+    font-size: 50px;
+    border: 5px;
+    text-align: center;
+}
+.z-index{
+    z-index: 4;
+    /* position: sticky; */
+}
+.fc-toolbar-chunk{
+    z-index: -2;
+    /* color: purple; */
+    
+}
+.bg{
+    background-color:rgb(232, 226, 226);
+}
+.fc-header-toolbar ,.fc-toolbar ,.fc-toolbar-ltr{
+
+}
+
+@media screen and (max-width:376px) {
+    .h-mobile{
+        width: 95%;
+    }
+    .fc .fc-toolbar{
+        display: none;
+    }
+}
