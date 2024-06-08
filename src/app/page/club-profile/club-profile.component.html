@@ -85,40 +85,46 @@
                 <div class="text-xl">จัดการผู้ดูเเลเว็ปไซต์</div>
                 <div class="line"></div>
                 <div class="text-lg mb-1">เพิ่มผู้ดูเเล</div>
-                <div class="flex gap-x-4">
-                    <input type="text" class="border-2 border-black p-1 rounded-md" [ngClass]="{'border-red-500':errorAddAdmin}" placeholder="กรอกรหัสนิสิต" [(ngModel)]="newAdmin">
-                    <button class="btn flex py-1 px-5 text-lg text-white rounded-md cursor-pointer shadow-lg bg-bt bt-shadow" (click)="addAdmin()">เพิ่ม</button>
+                <div class="grid grid-cols-4 gap-x-4 w-full items-center">
+                    <div class="col-span-2">
+                        <input type="text" class="border-2 border-black p-1 rounded-md w-full" [ngClass]="{'border-red-500':errorAddAdmin}" placeholder="กรอกรหัสนิสิต" [(ngModel)]="newAdmin">
+                    </div>
+                    <div class="col-span-1">
+                        <button class="flex py-1 px-5 text-lg text-white rounded-md cursor-pointer shadow-lg bg-bt bt-shadow" (click)="addAdmin()">เพิ่ม</button>
+                    </div>
                 </div>
                 <div class="mt-2 text-lg">รายชื่อผู้ดูเเล</div>
-                <table id="dataTable" class="min-w-full text-left text-sm font-light">
-                    <thead class="border-b font-medium dark:border-neutral-500">
-                      <tr>
-                        <th scope="col" class="whitespace-nowrap px-6 py-4">ลำดับ</th>
-                        <th scope="col" class="whitespace-nowrap px-6 py-4">รุ่น</th>
-                        <th scope="col" class="whitespace-nowrap px-6 py-4">ชื่อ - นามสกุล</th>
-                        <th scope="col" class="whitespace-nowrap px-6 py-4">คณะ</th>
-                        <th scope="col" class="">ลบสิทธิ์</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-300 dark:hover:bg-neutral-200" *ngFor="let ar of listAdmin;let i = index">
-                            <td class="whitespace-nowrap px-6 py-4 font-medium" >{{i+1}}</td>
-                            <td class="whitespace-nowrap px-6 py-4" >{{ar.code_student.substring(0,2)}}</td>
-                            <td class="whitespace-nowrap px-6 py-4" >
-                                <span class="mr-2">
-                                    {{ar.first_name}}
-                                </span>
-                                <span>
-                                    {{ar.last_name}}
-                                </span>
-                            </td>
-                            <td class="whitespace-nowrap px-6 py-4" >{{ar.faculty}}</td>
-                            <td class="whitespace-nowrap px-6 py-4">
-                                <button class="hover:text-red-500" (click)="deleteAdmin(ar.id,ar.first_name,ar.last_name)" *ngIf="ar.is_delete == '1'"><mat-icon>delete</mat-icon></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                  </table>
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <table id="dataTable" class="min-w-full text-left text-sm font-light">
+                        <thead class="border-b font-medium dark:border-neutral-500">
+                          <tr>
+                            <th scope="col" class="whitespace-nowrap px-6 py-4">ลำดับ</th>
+                            <th scope="col" class="whitespace-nowrap px-6 py-4">รุ่น</th>
+                            <th scope="col" class="whitespace-nowrap px-6 py-4">ชื่อ - นามสกุล</th>
+                            <th scope="col" class="whitespace-nowrap px-6 py-4">คณะ</th>
+                            <th scope="col" class="">ลบสิทธิ์</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-300 dark:hover:bg-neutral-200" *ngFor="let ar of listAdmin;let i = index">
+                                <td class="whitespace-nowrap px-6 py-4 font-medium" >{{i+1}}</td>
+                                <td class="whitespace-nowrap px-6 py-4" >{{ar.code_student.substring(0,2)}}</td>
+                                <td class="whitespace-nowrap px-6 py-4" >
+                                    <span class="mr-2">
+                                        {{ar.first_name}}
+                                    </span>
+                                    <span>
+                                        {{ar.last_name}}
+                                    </span>
+                                </td>
+                                <td class="whitespace-nowrap px-6 py-4" >{{ar.faculty}}</td>
+                                <td class="whitespace-nowrap px-6 py-4">
+                                    <button class="hover:text-red-500" (click)="deleteAdmin(ar.id,ar.first_name,ar.last_name)" *ngIf="ar.is_delete == '1'"><mat-icon>delete</mat-icon></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                      </table>
+                </div>
             </div>
         <div *ngIf="showAlert" class="anima flex items-center p-4  mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
