@@ -49,6 +49,14 @@ export class ThaiTime extends ThaiTimeService implements PipeTransform{
       return ""
     }
     const date = new Date(value)
+    let m = date.getMinutes()+""
+    let h = date.getHours()+""
+    if (date.getMinutes()<10){
+      m += '0'+date.getMinutes()
+    }
+    if (date.getHours()<10){
+      h += '0'+date.getMinutes()
+    }
     return `${this.setFormatTime(date.getHours())}.${this.setFormatTime(date.getMinutes())}`;
   }
 }

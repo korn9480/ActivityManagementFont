@@ -13,6 +13,8 @@ import { FormPostActivityComponent } from 'src/app/page/form-post-activity/form-
 import { ShowListAdminComponent } from 'src/app/page/show-list-admin/show-list-admin.component';
 import { GuardPage, GuardPageProfile } from './service/guards/guard';
 import { ClubProfileComponent } from './page/club-profile/club-profile.component';
+import { MyActivityComponent } from './page/my-activity/my-activity.component';
+import { UpImageAfterComponent } from './page/up-image-after/up-image-after.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginUserComponent},
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'form-post',component: FormPostActivityComponent,canActivate:[GuardPage]},
   { path: 'form-post/:idActivity',component: FormPostActivityComponent,canActivate:[GuardPage]},
   { path: 'show-list=admin/:idActivity/:nameActivity',component:ShowListAdminComponent,canActivate:[GuardPage]},
+  { path: 'my-activity', component:MyActivityComponent, canActivate:[GuardPage]},
+  { path: 'up-img-after/:idActivity', component: UpImageAfterComponent, canActivate:[GuardPage]},
   { path: '**',redirectTo:'login'},
   // ViewDataActivity
 

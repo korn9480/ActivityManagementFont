@@ -38,6 +38,8 @@ import { PipeModele } from './service/pipes.modeul';
 import { MeterialModule } from './material.module';
 import { ShowListAdminComponent } from './page/show-list-admin/show-list-admin.component';
 import { ClubProfileComponent } from './page/club-profile/club-profile.component';
+import { MyActivityComponent } from './page/my-activity/my-activity.component';
+import { UpImageAfterComponent } from './page/up-image-after/up-image-after.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { ClubProfileComponent } from './page/club-profile/club-profile.component
     FormPostActivityComponent,
     ShowListAdminComponent,
     ClubProfileComponent,
+    MyActivityComponent,
+    UpImageAfterComponent
   ],
   imports: [
     BrowserModule,

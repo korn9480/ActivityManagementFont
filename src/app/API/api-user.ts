@@ -1,9 +1,16 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { UserCookie, ClubCookie } from 'src/app/service/cookie';
-import { ActivityModel, AssetModel, ListParticipants, RegisterModel } from 'src/app/model/model';
+import { ActivityModel, AssetModel, ListParticipants, PaginationModel, RegisterModel } from 'src/app/model/model';
 import { FormAsset, FormRegister } from 'src/app/model/form';
 import { environment } from 'src/environments/environment.development';
+
+class SearchPagination {
+    list: number = 10
+    page: number = 1
+    sort: "DESC"|"ASC" = "ASC"
+}
+
 @Injectable({
     providedIn : 'root'
 })
@@ -86,6 +93,11 @@ export class ApiUser{
     get_list_students(idActivity:number){
         return this.http.get<ListParticipants[]>(this.localhost+"/activity/perple_join/"+idActivity,this.get_header())
     }
+    get_my_activity(status:string,search:SearchPagination = new SearchPagination(),code_student:string){
+        let query = new HttpParams()
+        .set('limit',search.list).set('page',search.page).set('sort',search.sort).set('status',status).set('code_student',code_student)
+        return this.http.get<PaginationModel<ActivityModel>>(this.localhost+"/activity/me",{headers:this.get_header().headers,params:query})
+    }
     // api join activity of activity
     joinActivity(id:number,form:any){
 
@@ -99,7 +111,7 @@ export class ApiUser{
     get_user_profile(patProfile: string){
         return this.http.get(this.localhost+"/asset/"+patProfile)
     }
-    create_asset(fileUpload:FormAsset[],activity_id:number){
+    create_asset_poster(fileUpload:FormAsset[],activity_id:number){
         let formData = new FormData()
 
         let number = 1
@@ -111,8 +123,22 @@ export class ApiUser{
         formData.append('activityId',activity_id+"")
         formData.append('type',fileUpload[0].type+"")
 
-        return this.http.post(this.localhost+"/asset",formData,this.get_header())
+        return this.http.post(this.localhost+"/asset/poster",formData,this.get_header())
     }
+    create_asset_after(fileUpload:FormAsset[],activity_id:number){
+        let formData = new FormData()
+
+        let number = 1
+        fileUpload.forEach((asset:FormAsset)=>{
+            asset.activityId = activity_id
+            formData.append('path',asset.path)
+            number += 1
+        })
+        formData.append('activityId',activity_id+"")
+        formData.append('type',fileUpload[0].type+"")
+        return this.http.post(this.localhost+"/asset/imgEvent",formData,this.get_header())
+    }
+
     update_asset(fileUpload:FormAsset[], activity_id:number){
         let formData = new FormData()
         fileUpload.forEach((asset:any)=>{

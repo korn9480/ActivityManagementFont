@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<div class="bg-home pt-12 min-h-screen">
+    <div class="w-content mx-auto">
+        <div class="max-w-[1500px] mx-auto px-5 py-6 bg-white bg-white shadow-md">
+              <div class="flex justify-center gap-x-8 text-center mb-2 " *ngIf="userCookie.get_role()=='user'">
+                  <button class="text-xl head-content " [ngClass]="{'border-b-2 border-purple-500 text-purple-500':statusActivity=='create'}" (click)="selectStatusActivity('create')">ฉันสร้าง</button>
+                  <button class="text-xl head-content" [ngClass]="{'border-b-2 border-purple-500 text-purple-500': statusActivity=='joinNow' }" (click)="selectStatusActivity('joinNow')">กำลังเข้าร่วม</button>
+                  <button class="text-xl head-content" [ngClass]="{'border-b-2 border-purple-500 text-purple-500':statusActivity=='history'}" (click)="selectStatusActivity('history')">เคยเข้าร่วมของชมรม</button>
+              </div>
+              <div class="flex justify-center gap-x-8 text-center mb-2" *ngIf="userCookie.get_role()=='admin'">
+                <button class="text-xl head-content " [ngClass]="{'border-b-2 border-purple-500 text-purple-500':statusActivity=='create'}" (click)="selectStatusActivity('create')">ฉันสร้าง</button>
+                <button class="text-xl head-content" [ngClass]="{'border-b-2 border-purple-500 text-purple-500':statusActivity=='upImage'}" (click)="selectStatusActivity('upImage')">อัพรูปกิจกรรม</button>
+            </div>
+              <!-- <div class="text-right min-h-6 year-moblile">
+                  <label for="clickYaer" class="mb-4">
+                      <span class="">ปี</span>
+                      <select class="px-1 no-underline" id="clickYaer">
+                          <option class="w-full text-center" *ngFor="let i of yearSelectAll" [value]="i">{{i}}</option>
+                      </select>
+                  </label>
+              </div> -->
+            <div class="grid grid-cols-3 gap-x-6 gap-y-6 pb-4" *ngIf="activity_club.length > 0">
+              <div *ngFor="let i of activity_club;let index = index" class="max-h-[340px] relative">
+                <div class="bg-white shadow-md card-box">
+                    <div class="card-container" [routerLink]="'/view-data-activity/'+i.id">
+                        <div class="w-full h-full relative photer-ac">
+                            <img class="w-full h-full object-cover" *ngIf="i.asset.length > 0" [src]="localhost+i.asset[0].path" alt="Card Image">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <b class="">{{i.nameActivity}}</b>
+                            </div>
+                            <div  class="month-crad">
+                                <span *ngIf="!isDateStartWithDateEndEqual(index)">วันที่ {{i.dateTimeStart|thaiDateTime}}น. 
+                                    <span>ถึง {{i.dateTimeEnd|thaiDateTime}}น.</span>
+                                </span>
+                                <span *ngIf="isDateStartWithDateEndEqual(index)">วันที่ {{i.dateTimeStart|thaiDate}} 
+                                    <span>เริ่ม {{i.dateTimeStart|thaiTime}}น. ถึง {{i.dateTimeEnd|thaiTime}}น.</span>
+                                </span>
+                            </div>
+                            <div> {{i.number_pp}}/{{i.participants}} คน</div>
+                        </div>
+                    </div>
+                    <div class="p-2 pt-0" *ngIf="i.is_open_join">
+                        <button class="text-white px-5 py-1  rounded-md cursor-pointer mx-auto bg-bt bt-shadow mr-4" [routerLink]="'/join-activity/'+i.id">ลงชื่อ</button>
+                        <button class="text-white px-5 py-1  rounded-md cursor-pointer mx-auto bg-red-600 bt-shadow" (click)="deletePost(i.id)">ลบ</button>
+                    </div>
+                    <div class="p-2 pt-0" *ngIf="statusActivity=='upImage'">
+                        <button class="text-white px-5 py-1  rounded-md cursor-pointer mx-auto bg-red-600 bt-shadow" [routerLink]="'/up-img-after/'+i.id">เพิ่มรูป</button>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+            <div *ngIf="activity_club.length <= 0">
+                <div class="text-lg text-center">ไม่มีกิจกรรม</div>
+            </div>
+        </div>
+    </div>
+</div>

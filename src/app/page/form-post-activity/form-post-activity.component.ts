@@ -107,7 +107,7 @@ export class FormPostActivityComponent {
         this.closePopup()
         return ;
       }
-      this.api.create_asset(this.fileUpload,activity_id).subscribe((data:any)=>{
+      this.api.create_asset_poster(this.fileUpload,activity_id).subscribe((data:any)=>{
         this.closePopup()
       })
   

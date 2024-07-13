@@ -60,3 +60,8 @@ export interface AllergyModel{
     code_student:string
     allergy : string
 }
+
+export interface PaginationModel<T>{
+    total:number
+    data:T[]
+}
