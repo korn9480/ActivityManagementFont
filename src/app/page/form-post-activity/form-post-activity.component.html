@@ -16,7 +16,7 @@
     
                         <div class="tag-input align-center border-2 p-1 focus:outline-none rounded-md" [ngClass]="{'tag-input--warn':warn.dateTimeStart}">
                             <input id="date-start" name="date-start" (change)="dateStart()" type="datetime-local" class="outline-none" required [(ngModel)]="form.dateTimeStart"> 
-                            <label class="" id="date-start">{{form.dateTimeStart|thaiDateTime}}</label>
+                            <label class="" for="date-start">{{form.dateTimeStart|thaiDateTime}}</label>
                         </div>
     
                         <div class="tag-input align-center border-2 border-black p-1 focus:outline-none rounded-md" [ngClass]="{'tag-input--warn':warn.dateTimeEnd}">
@@ -88,4 +88,4 @@
     
         </form>
 </div>
-    
+<app-loader *ngIf="isLoader"></app-loader>

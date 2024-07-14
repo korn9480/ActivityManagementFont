@@ -26,6 +26,7 @@ export class FormPostActivityComponent {
   urlFiles:any[] = []
   fileUpload:FormAsset[] = []
   id_delete:number[] = []
+  isLoader:boolean = false
 
   warn = {
     id: false,
@@ -75,6 +76,7 @@ export class FormPostActivityComponent {
     this.router.navigate(['/home'])
   } 
   addActivity() {
+    this.isLoader = true
     console.log(this.form.dateTimeStart)
     if (this.form.id <= 0){
       // call api activity
@@ -86,6 +88,7 @@ export class FormPostActivityComponent {
     }
   }
   showWarm(massege:string[]){
+      this.isLoader = false
       for(let i of massege){
         if (i.includes('nameActivity')) this.warn.nameActivity = true
         else if (i.includes('dateTimeStart')) this.warn.dateTimeStart = true

@@ -18,6 +18,7 @@ export class RegisterUserComponent {
   allergics:string = ""
   isViewPassword:boolean = false
   isViewPasswordConfirm:boolean = false
+  isLoader:boolean = false
 
   error ={
     conde_already_exist:false,
@@ -79,11 +80,14 @@ export class RegisterUserComponent {
         this.form.allergies.push(data)
       }
       console.log(this.form)
+      this.isLoader = true
       this.Api.register_user(this.form).subscribe(
         (data:any)=>{
+          this.isLoader = false
           this.router.navigate(['/login']);
         },
         (r_error:any)=>{
+          this.isLoader = false
           console.log(r_error)
           if (r_error.error.message==`User [${this.form.code_student}] already exist`){
             this.error.conde_already_exist = true
