@@ -19,7 +19,7 @@
               <div *ngFor="let i of activity_club;let index = index" class="max-h-[340px] relative">
                 <div class="bg-white shadow-md card-container" [routerLink]="'/view-data-activity/'+i.id">
                     <div class="w-full h-full relative photer-ac">
-                        <img class="w-full h-full object-cover" *ngIf="i.asset.length > 0" [src]="localhost+i.asset[0].path" alt="Card Image">
+                        <app-img class="w-full h-full object-cover" *ngIf="i.asset.length > 0" [imageUrl]="localhost+i.asset[0].path"></app-img>
                     </div>
                     <div class="card-body">
                         <div>

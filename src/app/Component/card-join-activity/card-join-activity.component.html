@@ -4,7 +4,8 @@
         <div class="post">
             <div class="heading mb-4">
                 <div class="post-profile"> 
-                    <img class="icon-profile" [src]="activity.addBy.profile" alt="Post Profile">
+                    <app-img class="icon-profile z-1 border-gray-50" [imageUrl]="activity.addBy.profile"></app-img>
+                    <!-- <img class="icon-profile" [src]="activity.addBy.profile" alt="Post Profile"> -->
                     <div class="post-user-name">{{activity.addBy.first_name}} {{activity.addBy.last_name}}</div>                    
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
@@ -21,6 +22,10 @@
                         <button mat-menu-item (click)="share()">
                             <mat-icon>share</mat-icon>
                             <span>เเชร์ลิ้งค์</span>
+                        </button>
+                        <button mat-menu-item [routerLink]="'/join-activity/'+activity.id">
+                            <mat-icon>person_add</mat-icon>
+                            <span>เข้าร่วม</span>
                         </button>
                     </mat-menu>
                 </div>
@@ -46,7 +51,8 @@
             <img src="" routerLink="/name_path">
             <div class="grid grid-cols-3 gap-2">
                 <div class="box-image" *ngFor="let i of activity.asset" >
-                    <img class="img-card" [src]="localhost+i.path">
+                    <!-- <img class="img-card" [src]="localhost+i.path"> -->
+                     <app-img class="img-card" [imageUrl]="localhost+i.path"></app-img>
                 </div>
             </div>
         </div>

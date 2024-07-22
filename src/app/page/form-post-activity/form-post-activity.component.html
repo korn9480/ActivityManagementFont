@@ -15,13 +15,19 @@
                     <div class="grid grid-cols-2 gap-2 relative mt-2 grid-m-date">
     
                         <div class="tag-input align-center border-2 p-1 focus:outline-none rounded-md" [ngClass]="{'tag-input--warn':warn.dateTimeStart}">
-                            <input id="date-start" name="date-start" (change)="dateStart()" type="datetime-local" class="outline-none" required [(ngModel)]="form.dateTimeStart"> 
-                            <label class="" for="date-start">{{form.dateTimeStart|thaiDateTime}}</label>
+                            <span (click)="toggleDateTimePicker(datePickerStart)">
+                                <mat-icon>calendar_today</mat-icon>
+                            </span>
+                            <input id="date-start" #datePickerStart name="date-start" (change)="dateStart()" type="datetime-local" class="outline-none hidden " required [(ngModel)]="form.dateTimeStart"> 
+                            <label class="flex-nowrap" for="date-start">{{form.dateTimeStart|thaiDateTime}}</label>
                         </div>
     
                         <div class="tag-input align-center border-2 border-black p-1 focus:outline-none rounded-md" [ngClass]="{'tag-input--warn':warn.dateTimeEnd}">
-                            <input id="date-end" name="date-end" type="datetime-local" class="outline-none" required [(ngModel)]="form.dateTimeEnd">
-                            <label id="date-end">{{form.dateTimeEnd|thaiDateTime}}</label>
+                            <span (click)="toggleDateTimePicker(datePickerEnd)">
+                                <mat-icon>calendar_today</mat-icon>
+                            </span>
+                            <input id="date-end" name="date-end" #datePickerEnd type="datetime-local" class="outline-none hidden" required [(ngModel)]="form.dateTimeEnd">
+                            <label id="date-end ">{{form.dateTimeEnd|thaiDateTime}}</label>
                         </div>
     
                     </div>

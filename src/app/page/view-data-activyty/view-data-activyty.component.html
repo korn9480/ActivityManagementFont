@@ -1,6 +1,7 @@
+<!-- <app-img-full [imageUrl]="urlImageFull" (output)="openImageFull('')"></app-img-full> -->
 <div class="bg min-h-screen">
     <app-navbar></app-navbar>
-    <div class="w-content mx-auto p-6 bg-white bg-white shadow-md mt-12" *ngIf="data!=undefined">
+    <div class="w-4/5 mx-auto p-6 bg-white bg-white shadow-md mt-12" *ngIf="data!=undefined">
         <div class="flex justify-between mb-6 mb-mobile">
             <div class="text-lg">{{data.nameActivity}}</div>
             <div *ngIf="isShowKebab()">
@@ -21,7 +22,8 @@
         </div>
         <div [ngClass]="{'img-content': data.asset.length > 0}" *ngIf="data.asset.length > 0 || data.details.length > 0 ">
             <div class="overflow-hidden object-none img-firt" *ngIf="data.asset.length > 0">
-                <img class="image-activity w-full h-auto custom-positionn" [src]="localhost+data.asset[0].path" alt="Image Activity">
+                <!-- <img class="image-activity w-full h-auto custom-positionn" [src]="localhost+data.asset[0].path" alt="Image Activity"> -->
+                 <app-img [imageUrl]="localhost+data.asset[0].path" class="image-activity w-full h-auto custom-positionn"></app-img>
             </div>
             <div class="detail-activity text-lg">{{data.details}}</div>
         </div>
@@ -38,7 +40,8 @@
         <div class="text-lg mb-8 mb-mobile">รูปกิจกรรม</div>
         <div class="grid grid-cols-3 gap-6">
             <div *ngFor="let i of  data.asset" class="w-full relative h-[200px]">
-                <img [src]="localhost+i.path" class="w-full h-full object-cover"  alt="Image 1">
+                <!-- <img [src]="localhost+i.path" class="w-full h-full object-cover" loading="lazy"  alt="Image 1" (click)="openImageFull(localhost+i.path)"> -->
+                 <app-img [imageUrl]="localhost+i.path"></app-img>
             </div>
         </div>
     </div>

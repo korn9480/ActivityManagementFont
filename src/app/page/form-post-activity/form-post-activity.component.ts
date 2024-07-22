@@ -57,6 +57,8 @@ export class FormPostActivityComponent {
       id = data.idActivity
     })
     this.resetForm()
+    this.form.dateTimeStart = this.formatDateTime(new Date(),true)
+    this.dateStart()
     if (id!=0 && id!=undefined){
       this.api.get_activity_one(id).subscribe((data:ActivityModel)=>{
         this.form = data
@@ -69,8 +71,25 @@ export class FormPostActivityComponent {
     let dateStart = new Date(this.form.dateTimeStart)
     dateStart.setHours(dateStart.getHours() + 3)
     console.log(dateStart.toLocaleDateString())
-    this.form.dateTimeEnd = dateStart.toISOString()
+    this.form.dateTimeEnd = this.formatDateTime(dateStart)
   }
+
+  formatDateTime(date: Date,setingMinte:boolean = false): string {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const hours = ('0' + date.getHours()).slice(-2);
+    let minutes = ""
+    if (setingMinte) {
+      minutes = ('00')
+    }
+    else {
+      minutes = ('0' + date.getMinutes()).slice(-2);
+    }
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  }
+
   closePopup() {
     this.resetForm()
     this.router.navigate(['/home'])
@@ -197,5 +216,9 @@ export class FormPostActivityComponent {
       // data:"คุณต้องการยกเลิกการเข้าร่วมกิจกกรมนี้หรือไม่ ?"
     })
     return dialogRef.afterClosed()
+  }
+
+  toggleDateTimePicker(dateTimePicker: HTMLInputElement) {
+      dateTimePicker.showPicker()
   }
 }

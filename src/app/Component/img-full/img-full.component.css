@@ -1,0 +1,42 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+  max-width: 90%;
+}
+.img-fluid {
+  max-width: 100%;
+  max-height: 600px;
+  /* height: auto; */
+}
+
+.modal-header {
+  padding: 8px 0;
+  display: flex;
+  justify-content: end;
+}
+
+.btn-close {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.not-show {
+  display: none;
+}
+/* 
+.bg-bt{
+  background-color: rgb(93, 56, 145);
+} */

@@ -41,6 +41,8 @@ import { ClubProfileComponent } from './page/club-profile/club-profile.component
 import { MyActivityComponent } from './page/my-activity/my-activity.component';
 import { UpImageAfterComponent } from './page/up-image-after/up-image-after.component';
 import { LoaderComponent } from './Component/loader/loader.component';
+import { ImgFullComponent } from './Component/img-full/img-full.component';
+import { ImgComponent } from './Component/img/img.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { LoaderComponent } from './Component/loader/loader.component';
     ClubProfileComponent,
     MyActivityComponent,
     UpImageAfterComponent,
-    LoaderComponent
+    LoaderComponent,
+    ImgFullComponent,
+    ImgComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +82,7 @@ import { LoaderComponent } from './Component/loader/loader.component';
     FullCalendarModule ,
     MeterialModule,
     PipeModele,
+    
   ],
   providers: [],
 

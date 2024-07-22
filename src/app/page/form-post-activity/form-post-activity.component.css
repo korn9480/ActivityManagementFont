@@ -4,11 +4,16 @@
 }
 .tag-input{
     display: grid;
-    grid-template-columns: 20px auto;
+    grid-template-columns: 30px auto;
     position: relative;
     align-content: center;
     border: 2px solid black;
 }
+
+.tag-input input{
+    width: 100%;
+}
+
 .set-icon{
     display: flex;
     align-items: center;
@@ -22,6 +27,7 @@
 .bt-shadow{
     --tw-shadow-color: #5D3891;
     box-shadow: 0 2px 10px -2px rgb(93, 56, 145);
+    /* flex-wrap: ; */
 }
 #date-start{
     margin-top: auto;
@@ -32,6 +38,9 @@
 }
 .bg-bt-white{
     background-color: white;
+}
+.hidden {
+    display: none;
 }
 
 @media only screen and (max-width:1300px) {
