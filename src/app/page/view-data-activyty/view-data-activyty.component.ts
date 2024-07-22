@@ -13,7 +13,7 @@ import { UserCookie } from '../../service/cookie';
 export class ViewDataActivytyComponent implements OnInit {
   constructor(private api:ApiUser,private route:ActivatedRoute,public cookie: UserCookie){}
   data !: ActivityModel 
-  localhost = environment.localhost_back + '/asset/'
+  localhost = environment.localhost_asset
   urlImageFull:string = ''
   ngOnInit(): void {
     let idActivity = 0

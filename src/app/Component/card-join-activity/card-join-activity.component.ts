@@ -29,7 +29,7 @@ export class CardJoinActivityComponent implements OnInit{
   @Output('updated') updated = new EventEmitter();
   @Output('update') event_btn = new EventEmitter<number>()
 
-  localhost = environment.localhost_back+'/asset/'
+  localhost = environment.localhost_asset
 
   showPopup: boolean = false;
   status:boolean = false;

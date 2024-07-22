@@ -22,7 +22,7 @@ export class FormPostActivityComponent {
   @Output('show') showPopup = new EventEmitter();
   @Output('alert') alert = new EventEmitter()
   form!:FormNewActiviy|ActivityModel 
-  localhost = environment.localhost_back + '/asset/'
+  localhost = environment.localhost_asset
   urlFiles:any[] = []
   fileUpload:FormAsset[] = []
   id_delete:number[] = []
