@@ -1,0 +1,19 @@
+<div class="modal" tabindex="-1" [ngClass]="{ 'not-show': imageUrl == '' }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          mat-menu
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img [src]="imageUrl" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</div>

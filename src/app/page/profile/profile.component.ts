@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   urlFile:any
   profile_navbar:any
   showAlert: boolean = false;
+  isLoader:boolean = false
 
   ngOnInit(): void {
     this.Api.get_profile().subscribe((data:RegisterModel)=>{
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
     })
   }
   showAlertSubmit(){
+    this.isLoader = false
     this.showAlert =true
     setTimeout(() => {
       this.showAlert = false;
@@ -109,9 +111,11 @@ export class ProfileComponent implements OnInit {
         })
       }
       console.log("-------------------")
+      this.isLoader = true
       this.Api.update_user(this.form).subscribe((data:any)=>{
         this.showAlertSubmit()
         },(r_error:any)=>{
+          this.isLoader = false
           if (r_error.error.message==`User [${this.form.code_student}] already exist`){
             this.error.conde_already_exist = true
             return;

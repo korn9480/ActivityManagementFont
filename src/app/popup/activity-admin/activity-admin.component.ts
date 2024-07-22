@@ -17,7 +17,7 @@ export class ActivityAdminComponent implements OnInit {
   @Output('show') showPopup = new EventEmitter();
   @Input('data') form!:FormNewActiviy|ActivityModel 
   @Output('alert') alert = new EventEmitter()
-  localhost = environment.localhost_back + '/asset/'
+  localhost = environment.localhost_asset
   urlFiles:any[] = []
   fileUpload:FormAsset[] = []
   id_delete:number[] = []

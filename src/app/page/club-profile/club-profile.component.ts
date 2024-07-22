@@ -33,6 +33,7 @@ export class ClubProfileComponent {
   newAdmin: string = ""
   errorAddAdmin = false
   listAdmin! : AdminModel[]
+  isLoader:boolean = false
 
   ngOnInit(): void {
     this.apiUser.get_profile().subscribe((data:RegisterModel)=>{
@@ -57,6 +58,7 @@ export class ClubProfileComponent {
     })
   }
   showAlertSubmit(){
+    this.isLoader = true
     this.showAlert =true
     setTimeout(() => {
       this.showAlert = false;
@@ -93,6 +95,7 @@ export class ClubProfileComponent {
       this.error_code_student = true;
     } else {
       this.error_code_student = false;
+      this.isLoader = true
       if (typeof(this.form.profile) != "string"){
         console.log("------------- upload profile*----------------- ")
         this.apiUser.upload_profile_club(this.form.profile).subscribe((data:any)=>{
@@ -103,6 +106,7 @@ export class ClubProfileComponent {
       this.apiUser.update_club(this.form).subscribe((data:any)=>{
         this.showAlertSubmit()
         },(r_error:any)=>{
+          this.isLoader = false
           if (r_error.error.message==`User [${this.form.code_student}] already exist`){
             this.error.conde_already_exist = true
             return;

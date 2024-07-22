@@ -1,0 +1,16 @@
+<div
+  style="background-color: rgb(128, 128, 128, 0.2);"
+  [ngClass]="{ placeholder: true, 'placeholder-loaded': isLoaded }"
+  (click)="openImageFull()"
+  class="w-full h-full object-cover relative z-0"
+>
+  <img
+    [src]="imageUrl"
+    [ngClass]="{ image: true, 'image-loaded': isLoaded }"
+    loading="lazy"
+    class="w-full h-full object-cover z-0"
+    (load)="onImageLoad()"
+    (click)="openImageFull()"
+  />
+</div>
+<app-img-full [imageUrl]="imageFull" (output)="closeImageFull()"></app-img-full>

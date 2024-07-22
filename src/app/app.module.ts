@@ -40,6 +40,9 @@ import { ShowListAdminComponent } from './page/show-list-admin/show-list-admin.c
 import { ClubProfileComponent } from './page/club-profile/club-profile.component';
 import { MyActivityComponent } from './page/my-activity/my-activity.component';
 import { UpImageAfterComponent } from './page/up-image-after/up-image-after.component';
+import { LoaderComponent } from './Component/loader/loader.component';
+import { ImgFullComponent } from './Component/img-full/img-full.component';
+import { ImgComponent } from './Component/img/img.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { UpImageAfterComponent } from './page/up-image-after/up-image-after.comp
     ShowListAdminComponent,
     ClubProfileComponent,
     MyActivityComponent,
-    UpImageAfterComponent
+    UpImageAfterComponent,
+    LoaderComponent,
+    ImgFullComponent,
+    ImgComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +82,7 @@ import { UpImageAfterComponent } from './page/up-image-after/up-image-after.comp
     FullCalendarModule ,
     MeterialModule,
     PipeModele,
+    
   ],
   providers: [],
 

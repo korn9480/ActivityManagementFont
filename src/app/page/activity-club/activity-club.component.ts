@@ -13,7 +13,7 @@ export class ActivityClubComponent implements OnInit {
   constructor(
     private api:ApiUser,private router : Router
   ){}
-  localhost = environment.localhost_back+'/asset/'
+  localhost = environment.localhost_asset
   typeActivity:number = 1 // user = 1, club = 2
   yearSelectAll:number[] = []
   acitivtyYear:number = new Date().getFullYear() + 543

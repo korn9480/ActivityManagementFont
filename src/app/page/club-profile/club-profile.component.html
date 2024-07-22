@@ -7,21 +7,20 @@
                 
                 <div class="flex"> 
     
-                    <div class="hidden-d">
+                    <label for="upload-profile" class="hidden-d">
                         <div class="w-32 h-32 rounded-full overflow-hidden object-none cusrom-position">
                             <img class="" *ngIf="!urlFile" src="/assets/image/profile.png" alt="Profile User">
                             <img class="" *ngIf="urlFile" [src]="urlFile" alt="Profile User">
                         </div>
-        
                         <div class="flex justify-between items-center mt-2">
-                            <label for="upload-profile">
+                            <div>
                                 <img class="w-8 h-8 ml-1" src="../../assets/image/edit-profile.webp" alt="Edit Profile">
-                            </label>
+                            </div>
                             <input type="file" id="upload-profile" accept="image/*" name="profile" style="display: none;"
                                 (change)="onSelectFiles($event)">
                             <div class="">แก้ไขรูปภาพ</div>
                         </div>
-                    </div>
+                    </label>
     
                     <div class="items-center ml-12 w-full">
                         <div class="mr-auto text-xl">ข้อมูลส่วนตัว</div>
@@ -136,3 +135,4 @@
         </div>
     </div>
 </div> 
+<app-loader [message]="'อัพเดตข้อมูล'" *ngIf="isLoader"></app-loader>

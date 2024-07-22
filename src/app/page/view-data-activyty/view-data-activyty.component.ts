@@ -13,7 +13,8 @@ import { UserCookie } from '../../service/cookie';
 export class ViewDataActivytyComponent implements OnInit {
   constructor(private api:ApiUser,private route:ActivatedRoute,public cookie: UserCookie){}
   data !: ActivityModel 
-  localhost = environment.localhost_back + '/asset/'
+  localhost = environment.localhost_asset
+  urlImageFull:string = ''
   ngOnInit(): void {
     let idActivity = 0
     this.route.params.subscribe((p:any)=>{
@@ -33,5 +34,10 @@ export class ViewDataActivytyComponent implements OnInit {
     let a = this.cookie.get_role() === 'admin'
     let b = this.data.addBy.code_student == this.cookie.get_code_student()
     return a || b
+  }
+
+  openImageFull(url:string){
+    console.log("🚀 ~ ViewDataActivytyComponent ~ openImageFull ~ url:", url)
+    this.urlImageFull = url
   }
 }

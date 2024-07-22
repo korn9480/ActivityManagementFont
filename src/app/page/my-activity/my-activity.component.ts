@@ -16,7 +16,7 @@ export class MyActivityComponent implements OnInit{
   constructor(private apiUser:ApiUser,private clubCookie:ClubCookie, private dialog: MatDialog,public userCookie:UserCookie){}
   typeActivity:number = 1
   activity_club:ActivityModel[] = []
-  localhost = environment.localhost_back+'/asset/'
+  localhost = environment.localhost_asset
   statusActivity : 'create'|'joinNow'|'history'|'upImage' = 'create'
 
 

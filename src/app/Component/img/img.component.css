@@ -1,0 +1,24 @@
+.image {
+    display: block;
+    width: 100%;
+    opacity: 0;
+  }
+  
+  .placeholder {
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(5px);
+  }
+  
+  .image-loaded {
+    opacity: 1;
+  }
+  
+  .placeholder-loaded {
+    filter: none;
+  }
+
+  .size-img{
+    position: relative;
+
+  }

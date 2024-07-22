@@ -17,11 +17,18 @@
   padding-bottom: 16px;
   justify-content: space-between;
 }
-.icon-profile{
+.icon-profile {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   margin-right: 24px;
+  overflow: hidden; /* Ensure content inside follows the border-radius */
+}
+.icon-profile img {
+  width: 100%; /* Make the image take up the full width of the div */
+  height: 100%; /* Make the image take up the full height of the div */
+  object-fit: cover; /* Ensure the image covers the area, maintaining aspect ratio */
+  border-radius: 50%; /* Apply the border-radius to the image */
 }
 .hamburger{
   position: relative;
